@@ -1,0 +1,361 @@
+patient_id,race_ethnicity,age,systolic_bp_mmHg
+1,White,50,149
+2,Other/Multiracial,42,126
+3,Other/Multiracial,69,122
+4,Hispanic/Latino,40,121
+5,Asian,72,92
+6,Asian,49,130
+7,White,55,135
+8,White,74,106
+9,Hispanic/Latino,80,126
+10,Black/African American,39,137
+11,White,39,130
+12,White,29,135
+13,Asian,67,113
+14,Other/Multiracial,63,116
+15,Asian,60,129
+16,Black/African American,80,133
+17,Asian,54,148
+18,American Indian/Alaska Native,68,128
+19,Other/Multiracial,52,110
+20,Hispanic/Latino,75,125
+21,American Indian/Alaska Native,79,115
+22,Black/African American,72,140
+23,American Indian/Alaska Native,58,107
+24,Asian,76,130
+25,Asian,46,124
+26,American Indian/Alaska Native,74,119
+27,Asian,80,136
+28,Other/Multiracial,44,129
+29,Black/African American,68,146
+30,Asian,39,146
+31,Asian,25,119
+32,Hispanic/Latino,80,117
+33,Black/African American,30,100
+34,American Indian/Alaska Native,37,131
+35,American Indian/Alaska Native,53,107
+36,Hispanic/Latino,34,117
+37,Hispanic/Latino,31,139
+38,American Indian/Alaska Native,43,135
+39,Hispanic/Latino,66,96
+40,White,46,128
+41,Hispanic/Latino,34,109
+42,Black/African American,54,138
+43,Asian,46,108
+44,Asian,69,123
+45,White,54,90
+46,Asian,31,112
+47,Asian,60,127
+48,Other/Multiracial,44,128
+49,White,61,131
+50,Hispanic/Latino,67,149
+51,Black/African American,80,165
+52,White,29,130
+53,Black/African American,59,157
+54,Black/African American,59,143
+55,American Indian/Alaska Native,73,129
+56,American Indian/Alaska Native,77,117
+57,Other/Multiracial,35,99
+58,Hispanic/Latino,43,141
+59,Asian,79,141
+60,White,58,123
+61,Black/African American,47,143
+62,Black/African American,70,120
+63,White,76,131
+64,Black/African American,42,152
+65,American Indian/Alaska Native,53,129
+66,Asian,40,119
+67,White,73,125
+68,White,28,114
+69,White,61,120
+70,Black/African American,79,133
+71,Other/Multiracial,80,135
+72,Hispanic/Latino,37,114
+73,Asian,44,129
+74,Black/African American,40,151
+75,Other/Multiracial,61,129
+76,Black/African American,45,120
+77,American Indian/Alaska Native,38,98
+78,Asian,67,128
+79,Hispanic/Latino,29,148
+80,Black/African American,72,138
+81,Other/Multiracial,41,127
+82,White,25,123
+83,American Indian/Alaska Native,57,134
+84,White,53,136
+85,Other/Multiracial,32,116
+86,American Indian/Alaska Native,73,126
+87,Black/African American,66,155
+88,American Indian/Alaska Native,67,118
+89,White,46,146
+90,Black/African American,32,138
+91,White,76,124
+92,American Indian/Alaska Native,39,121
+93,White,78,136
+94,Hispanic/Latino,75,103
+95,White,43,110
+96,Black/African American,80,124
+97,Hispanic/Latino,47,148
+98,Hispanic/Latino,49,140
+99,Other/Multiracial,64,131
+100,Other/Multiracial,78,146
+101,Other/Multiracial,31,102
+102,Asian,80,138
+103,White,32,149
+104,Other/Multiracial,45,137
+105,American Indian/Alaska Native,74,116
+106,Other/Multiracial,72,121
+107,Hispanic/Latino,48,104
+108,Black/African American,47,136
+109,American Indian/Alaska Native,76,143
+110,Black/African American,76,156
+111,Other/Multiracial,73,103
+112,Black/African American,59,148
+113,White,57,154
+114,Other/Multiracial,67,113
+115,American Indian/Alaska Native,79,133
+116,American Indian/Alaska Native,57,110
+117,White,73,118
+118,Hispanic/Latino,58,153
+119,Asian,67,137
+120,White,80,94
+121,Other/Multiracial,78,129
+122,Hispanic/Latino,41,144
+123,Hispanic/Latino,56,125
+124,Asian,47,114
+125,Other/Multiracial,51,101
+126,Hispanic/Latino,55,140
+127,Black/African American,77,126
+128,White,67,124
+129,Asian,67,142
+130,White,59,100
+131,Hispanic/Latino,40,148
+132,Other/Multiracial,46,140
+133,Other/Multiracial,52,112
+134,White,71,134
+135,Black/African American,45,137
+136,White,44,109
+137,Asian,41,126
+138,Other/Multiracial,26,123
+139,Asian,48,143
+140,Asian,36,144
+141,Other/Multiracial,71,110
+142,Hispanic/Latino,57,98
+143,Other/Multiracial,59,128
+144,Black/African American,52,117
+145,American Indian/Alaska Native,31,107
+146,American Indian/Alaska Native,51,123
+147,American Indian/Alaska Native,56,120
+148,White,30,142
+149,Other/Multiracial,54,131
+150,Black/African American,51,136
+151,Asian,75,146
+152,Asian,52,105
+153,Hispanic/Latino,79,126
+154,American Indian/Alaska Native,54,136
+155,American Indian/Alaska Native,38,135
+156,White,36,145
+157,White,56,125
+158,Other/Multiracial,50,90
+159,White,40,132
+160,Black/African American,48,119
+161,White,28,105
+162,Other/Multiracial,29,131
+163,Asian,42,147
+164,Asian,80,108
+165,Other/Multiracial,73,110
+166,Black/African American,27,138
+167,Asian,39,132
+168,Asian,41,129
+169,Black/African American,71,133
+170,White,71,124
+171,American Indian/Alaska Native,72,131
+172,Other/Multiracial,75,99
+173,Asian,45,90
+174,Hispanic/Latino,28,118
+175,American Indian/Alaska Native,49,116
+176,Other/Multiracial,54,121
+177,Black/African American,60,103
+178,Asian,80,112
+179,Asian,78,112
+180,Other/Multiracial,38,112
+181,Asian,72,127
+182,Asian,47,115
+183,Other/Multiracial,26,141
+184,American Indian/Alaska Native,44,101
+185,American Indian/Alaska Native,58,151
+186,Hispanic/Latino,28,158
+187,White,78,112
+188,Other/Multiracial,63,141
+189,White,34,109
+190,Black/African American,63,122
+191,Other/Multiracial,59,104
+192,White,48,128
+193,Hispanic/Latino,80,139
+194,Other/Multiracial,26,144
+195,Other/Multiracial,47,118
+196,Asian,36,90
+197,White,38,101
+198,Black/African American,65,155
+199,Asian,46,127
+200,Black/African American,27,144
+201,American Indian/Alaska Native,72,140
+202,Other/Multiracial,44,151
+203,American Indian/Alaska Native,29,125
+204,Black/African American,78,133
+205,Black/African American,71,123
+206,American Indian/Alaska Native,74,105
+207,White,71,133
+208,Black/African American,57,102
+209,Hispanic/Latino,29,108
+210,Black/African American,33,139
+211,American Indian/Alaska Native,51,158
+212,Black/African American,29,141
+213,Asian,62,115
+214,American Indian/Alaska Native,29,115
+215,Black/African American,73,141
+216,Asian,32,139
+217,American Indian/Alaska Native,64,132
+218,White,26,138
+219,White,52,133
+220,Other/Multiracial,78,101
+221,White,58,145
+222,Other/Multiracial,68,134
+223,White,80,134
+224,Other/Multiracial,41,96
+225,Hispanic/Latino,71,129
+226,Asian,51,146
+227,Black/African American,68,141
+228,Hispanic/Latino,25,90
+229,Asian,51,146
+230,Hispanic/Latino,41,132
+231,Hispanic/Latino,44,139
+232,White,61,98
+233,Asian,40,117
+234,Other/Multiracial,65,127
+235,Black/African American,54,121
+236,White,59,119
+237,Black/African American,49,134
+238,White,56,115
+239,American Indian/Alaska Native,52,138
+240,Other/Multiracial,67,127
+241,American Indian/Alaska Native,60,151
+242,Black/African American,65,127
+243,Black/African American,69,133
+244,Hispanic/Latino,46,135
+245,American Indian/Alaska Native,46,116
+246,Hispanic/Latino,61,133
+247,Black/African American,79,124
+248,Other/Multiracial,79,114
+249,White,29,113
+250,Black/African American,46,146
+251,Asian,55,127
+252,Black/African American,42,140
+253,Hispanic/Latino,79,120
+254,Asian,59,121
+255,American Indian/Alaska Native,55,132
+256,Hispanic/Latino,35,101
+257,Black/African American,27,116
+258,American Indian/Alaska Native,58,115
+259,Other/Multiracial,26,136
+260,Asian,75,116
+261,American Indian/Alaska Native,61,117
+262,American Indian/Alaska Native,51,116
+263,Hispanic/Latino,68,144
+264,Black/African American,30,136
+265,Black/African American,62,122
+266,Other/Multiracial,52,148
+267,Other/Multiracial,44,127
+268,Hispanic/Latino,30,123
+269,Black/African American,30,106
+270,Black/African American,64,121
+271,Hispanic/Latino,28,110
+272,White,73,124
+273,Black/African American,26,153
+274,Hispanic/Latino,41,107
+275,White,44,115
+276,Asian,35,122
+277,White,31,126
+278,Hispanic/Latino,45,109
+279,White,28,127
+280,Black/African American,52,125
+281,Hispanic/Latino,79,133
+282,American Indian/Alaska Native,25,154
+283,Other/Multiracial,66,126
+284,Other/Multiracial,25,143
+285,White,47,110
+286,American Indian/Alaska Native,45,133
+287,White,58,114
+288,American Indian/Alaska Native,32,99
+289,Other/Multiracial,61,108
+290,Hispanic/Latino,33,121
+291,White,39,151
+292,White,80,118
+293,White,33,115
+294,Hispanic/Latino,38,146
+295,Other/Multiracial,42,115
+296,Other/Multiracial,78,120
+297,Asian,59,110
+298,Asian,30,106
+299,Hispanic/Latino,44,126
+300,American Indian/Alaska Native,35,109
+301,Asian,42,95
+302,Hispanic/Latino,38,114
+303,American Indian/Alaska Native,69,133
+304,American Indian/Alaska Native,73,114
+305,American Indian/Alaska Native,33,137
+306,Asian,34,98
+307,American Indian/Alaska Native,49,140
+308,Hispanic/Latino,54,115
+309,Other/Multiracial,70,133
+310,Asian,75,113
+311,White,31,90
+312,Hispanic/Latino,51,114
+313,Black/African American,66,153
+314,Black/African American,60,140
+315,Asian,27,118
+316,American Indian/Alaska Native,68,144
+317,American Indian/Alaska Native,49,151
+318,Other/Multiracial,49,130
+319,Other/Multiracial,28,141
+320,American Indian/Alaska Native,66,120
+321,Asian,69,145
+322,Hispanic/Latino,59,123
+323,Black/African American,29,115
+324,White,62,129
+325,American Indian/Alaska Native,65,104
+326,Black/African American,26,142
+327,American Indian/Alaska Native,40,135
+328,Hispanic/Latino,79,116
+329,Other/Multiracial,76,120
+330,Hispanic/Latino,30,157
+331,Hispanic/Latino,42,123
+332,Hispanic/Latino,75,110
+333,Asian,27,103
+334,White,51,129
+335,American Indian/Alaska Native,63,157
+336,White,53,125
+337,Hispanic/Latino,44,91
+338,American Indian/Alaska Native,75,126
+339,Black/African American,52,126
+340,Hispanic/Latino,32,144
+341,Asian,27,131
+342,Other/Multiracial,54,165
+343,American Indian/Alaska Native,34,124
+344,Asian,32,109
+345,Hispanic/Latino,78,132
+346,Asian,70,107
+347,Hispanic/Latino,58,146
+348,Black/African American,38,152
+349,Hispanic/Latino,73,126
+350,Hispanic/Latino,70,149
+351,Hispanic/Latino,62,163
+352,Other/Multiracial,78,95
+353,Asian,27,104
+354,Asian,71,136
+355,American Indian/Alaska Native,44,146
+356,American Indian/Alaska Native,67,136
+357,Other/Multiracial,67,114
+358,Hispanic/Latino,72,101
+359,Other/Multiracial,67,133
+360,American Indian/Alaska Native,69,134

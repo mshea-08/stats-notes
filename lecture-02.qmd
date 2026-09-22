@@ -1,0 +1,356 @@
+# Summary Statistics
+
+We've given a few examples of ways to visualize data, now we want to talk about some important **summary statistics**. Summary statistics are quantitative values one can use to succintly give an idea for the shape of the distribution. Some questions we try to answer using summary statistics:
+
+1. What is a typical value? What range does a typical value fall between?
+2. What is the range of possible values? What is the range of *likely* values?
+
+In this section we will cover different measures of **center** and measures of **spread** to help answer these questions.
+
+## Measures of Center
+
+There are three measures of center we will cover:
+
+* **Mode**: The value(s) with the highest frequency in the dataset. 
+* **Mean**: The average of the values. If a dataset has $n$ values $x_1$, $x_2$, $\dots$, $x_n$, then the mean $\bar{x}$ is given by 
+
+$$\bar{x} = \frac{x_1+x_2+ \cdots + x_n}{n}.$$
+
+* **Median**: The midpoint of the distribution. It is the number such that half the observations fall above and half fall below. 
+
+::: {#exm-ages}
+A college class has 22 students with the following ages: 18, 22, 21, 21, 21, 18, 20, 42, 23, 44, 18, 18, 21, 18, 22, 18, 22, 23, 20, 38, 20, 34. To compute the mode and median it helps to reorder the data,
+
+$$18, 18, 18, 18, 18, 18, 20, 20, 20, 21, 21, 21, 21, 22, 22, 22, 23, 23, 34, 38, 42, 44$$
+
+The mode is 18, which occurs in the dataset 6 times. 
+
+Since the dataset has size 22 count out (in order) to the 11th and 12th observations. The median is the average of these two "middle" observations. Since they are both 21, the median of the dataset is 21. 
+
+Using the formula in the definition, the mean is $522/22 = 23.73$. 
+
+Notice that the mean is slightly larger than the median this is because there are a handful of older students with *outlier* ages. The mean gets pulled by outliers more than the median does.
+
+[See this data on StatCrunch to perform the computations there.](https://www.statcrunch.com/app/index.html?dataid=5133686){target="_blank"}
+:::
+
+::: {.callout-important title="Median on Datasets of Even Size"}
+For this course, to compute the median when the dataset has an *even* number of observations average the two observation in the middle. This is a typical convention chosen in statistics. 
+:::
+
+As mentioned in Example @exm-ages, differences in the median and mean can reveal information about the shape of the distribution. A distribution is **skewed** if it has a long tail to one side. 
+
+```{r}
+#| label: fig-income
+#| fig-cap: "Right-skewed household income distribution."
+#| echo: false
+#| fig-width: 6
+
+income <- c(20.7, 21.4, 22.4, 26.3, 26.8, 28.4, 28.6, 28.6, 33.2, 33.8,
+            34.6, 35.0, 36.7, 37.9, 39.7, 40.0, 40.1, 41.7, 42.8, 44.7,
+            45.3, 47.1, 47.4, 48.5, 52.5, 78.0, 92.0, 110.0, 145.0, 210.0)
+
+hist(income,
+     breaks = 10,
+     main = "Household Income Distribution",
+     xlab = "Income ($1000s)", ylab = "Frequency")
+```
+
+The above dataset is skewed *to the right* since it has a long tail on the right side. For a distribution that is skewed to the right (left) the mean will be greater (less) than the median.
+
+::: {.callout-important title="Mean Versus Median"}
+The reason **outliers pull the mean more than the median** is because mean minimizes the error *squared*, while the median minimizes the absolute error. Squaring the error means outliers will have extra impact. This fact is outside of the scope of this course, but I am happy to chat about it for curious minds!
+:::
+
+::: {#exm-createdata1}
+## Creating Data
+Using StatCrunch complete the following:
+
+1. Create a dataset of 10 student ages where the median is 20.
+
+2. Is it possible to do this and have no student be 20 years old? 
+
+3. If we increased the size of the dataset to 15 students can you still create a dataset with median 20 *and* no students are 20 years old?
+:::
+
+::: {#exm-createdata2}
+1. Using StatCrunch, create a dataset of 30 non-negative numbers where the mean is less than the median. Plot the histogram of the data. 
+
+2. (Challenge) If I have a dataset of 30 non-negative numbers and the median is 50, what is the smallest possible mean?
+:::
+
+::: {.callout-important title="When to use mode?"}
+What might be a situation where the mode is the most relevant summary statistic to use?
+:::
+
+::: {.callout-important title="Nobody's Average"}
+In 1950 the airforce measured 140 physical dimension of 4063 pilots and designed the cockpit to match he average (mean) dimensions. Lieutenant Gilbert S. Daniels then compared this "average pilot" to individual pilot records to show that no pilot was within 15% of the average on the ten most relevant dimensions. In other words, the cockpits were designed to fit no one! Thus lead to the adaptation of adjustable seats. 
+:::
+
+## Measures of Spread
+
+::: {#exm-spreaddiff}
+## Commute Times
+[Data on StatCrunch.](https://www.statcrunch.com/app/index.html?dataid=5133808){target="_blank"} The below histograms depict the commute time of 500 people who work in Town A and Town B. How are the datasets similar and how are they different?
+
+```{r}
+#| label: fig-commute-spread
+#| fig-cap: "Commute times in two different towns."
+#| echo: false
+#| fig-width: 9
+
+set.seed(42)
+
+rnorm_positive <- function(n, mean, sd) {
+  out <- numeric(0)
+  while (length(out) < n) {
+    draw <- rnorm(n * 2, mean = mean, sd = sd)
+    out <- c(out, draw[draw > 0])
+  }
+  out[1:n]
+}
+
+# Create data
+town_a <- round(rnorm_positive(500, mean = 30, sd = 4)) 
+town_b <- round(rnorm_positive(500, mean = 30, sd = 12))  
+
+par(mfrow = c(1, 2))
+
+# Town A hist
+hist(town_a,
+     main = "Town A Commute times",
+     xlab = "Minutes", ylab = "Frequency",
+     xlim = c(0,80))
+
+# Town B hist
+hist(town_b,
+     main = "Town B Commute times",
+     xlab = "Minutes", ylab = "Frequency",
+     xlim = c(0,80))
+```
+:::
+
+The above example illustrates that it is important to have statistics that describe the *spread* of a distribution. There are a few we will investigate today.
+
+### Range
+
+The **range** of a dataset is the largest observation minus the smallest observation. 
+
+```{r}
+#| echo: false
+
+commute_data <- data.frame(
+  town_a_minutes = town_a,
+  town_b_minutes = town_b
+)
+
+write.csv(commute_data, "commute_times.csv", row.names = FALSE)
+```
+
+::: {#exm-commutetimes}
+[The commute times data is given here.](https://www.statcrunch.com/app/index.html?dataid=5133808){target="_blank"} Compute the range of the commuting data for each town. 
+:::
+
+Range does give us an initial look at the spread of the distribution, but outliers can obfuscate how range relates to spread. Consider two classes with the following histograms of exam scores:
+
+```{r}
+#| label: fig-quiz-spread
+#| fig-cap: "Scores on Exam 1 in Class A and Class B"
+#| echo: false
+#| fig-width: 9
+
+
+class_a <- c(10, 82, 83, 80, 91, 76, 70, 74, 80, 86,
+             66, 71, 79, 87, 83, 96, 73, 77, 80, 44)
+class_b <- c(10, 34, 36, 44, 45, 48, 50, 56, 66, 64,
+             76, 77, 80, 84, 88, 89, 91, 95, 82, 83)
+
+par(mfrow=c(1,2))
+
+hist(class_a, breaks = seq(0, 100, by = 5),
+     xlim = c(0, 100),
+     xlab = "Exam 1 Scores in Class A", ylab = "Count")
+
+hist(class_b, breaks = seq(0, 100, by = 5),
+     xlim = c(0, 100),
+     xlab = "Exam 1 Scores in Class B", ylab = "Count")
+```
+
+The range of both distributions is (approximately) the same, but the spread looks very different. Only 2 out of 20 students scored below a 60 in Class A, while 8 students (out of 20) scored below a 60 in Class B. 
+
+### Inter-Quartile Range (IQR)
+
+Recall that the **median** divides the observations into two parts of equal size. This is because we defined the median as the value which half the observations are below and half are above. **Quartiles** divide the data into 4 equal parts. Specifically we define:
+
+* The first quartile (or lower quartile), Q1, is the value such that 25% of the data lies below this value. 
+* The second quartile (or median), Q2, is value where 50% of the data lies below this value. 
+* The third quartile (or upper quartile), Q3, is the value such that 75% of the data lies below this value. 
+
+Computing the min, Q1, Q2, Q3, and max of a data set is known as the **five-number summary**. 
+
+::: {#exm-5num}
+Below are the exact list of Exam 1 scores for Class A and Class B (from the histograms in Figure @fig-quiz-spread).  Compute the five-number summary for each class. What differences do you observe about the distribution from the statistics?
+
+| Class A | Class B |
+|---------|---------|
+| 10      | 10      |
+| 44      | 34      |
+| 66      | 36      |
+| 70      | 44      |
+| 71      | 45      |
+| 73      | 48      |
+| 74      | 50      |
+| 76      | 56      |
+| 77      | 64      |
+| 79      | 66      |
+| 80      | 76      |
+| 80      | 77      |
+| 80      | 80      |
+| 82      | 82      |
+| 83      | 83      |
+| 83      | 84      |
+| 86      | 88      |
+| 87      | 89      |
+| 91      | 91      |
+| 96      | 95      |
+
+:::
+
+The **inter-quartile range** (IQR) is defined as Q3-Q1. 
+
+::: {#exm-iqr}
+Compute the IQR for the exam scores by class. 
+:::
+
+::: {.callout-important title="IQR Versus Range"}
+Why might IQR be seen as a better gauge of spread than range? 
+:::
+
+### Outliers
+
+The general notion of an **outlier** is an oberservation that lies far away from the general distribution. The readings define outliers are points that are:
+
+* Smaller than $\text{Q}1 - 1.5 \cdot (\text{IQR})$, or 
+* Larger than $\text{Q}3 + 1.5 \cdot (\text{IQR})$.
+
+<span style="color:red;">**Do not**</span> think of this as a set in stone rule. In fact, the multiplier 1.5 was not chosen with any real mathematical theory behind it. Use these values to flag *potential* outliers in the dataset, but context is an important determining factor when understanding data. 
+
+::: {#exm-commutebimodal}
+We have the following list of commute times for a neighborhood: 24, 25, 26, 27, 27, 28, 28, 29, 29, 30, 30, 30, 31, 31, 32, 32, 33, 33, 34, 34, 35, 35, 36, 36, 37, 38, 39, 40, 41, 42, 72, 74, 76, 78, 80, 82. Let's start by looking at the five-number summary.
+
+```{r}
+#| echo: false
+
+# Commute times for a mixed population: remote-adjacent workers vs. downtown commuters
+commute_b <- c(24, 25, 26, 27, 27, 28, 28, 29, 29, 30,
+             30, 30, 31, 31, 32, 32, 33, 33, 34, 34,
+             35, 35, 36, 36, 37, 38, 39, 40, 41, 42,
+             72, 74, 76, 78, 80, 82)
+
+print(fivenum(commute_b))
+```
+
+From this we can compute the lower and upper fence:
+
+$$\text{lower} = 29.5 - 1.5(10) = 14.5, \quad \text{upper} = 39.5 + 15 = 54.5$$
+
+That means 6 data points are flagged as outliers using this rule: 72, 74, 76, 78, 80, 82. Let's look at the histogram of the distribution, 
+
+```{r}
+#| label: fig-bimodal-commute
+#| fig-cap: "Histogram of neighborhood commute times."
+#| echo: false
+#| fig-width: 6
+
+hist(commute_b,
+     breaks = seq(20, 90, by = 5),
+     main = "Neighborhood Commute Times",
+     xlab = "Commute Time (minutes)", ylab = "Count")
+```
+
+What we see from the histogram is a **bimodal** distribution. There is one subset of the neighborhood that commutes a shorter distance (think across town), while a small subset of the neighborhood commutes to a different city. Thus the 1.5 IQR outlier rule is a bad fit here. 
+:::
+
+::: {.callout-important title="Removing Data"}
+There is a false notion that outliers should be removed from the data set but this is **not true**! Outliers should be expected in data and are part of the underlying distribution. 
+
+Only remove data points if they are the result of mistake in data entry or collection, or if they can be explained by a fundamentally different process which you are not interested in investigating. 
+:::
+
+## Boxplots
+
+**Boxplots** are a way to visualize the five number summary as well as outliers. Let's see this with an example.
+
+::: {#exm-boxplot}
+## Boxplots in StatCrunch
+[For this example use this data on StatCrunch.](https://www.statcrunch.com/app/index.html?dataid=5141492){target="_blank"} To make a boxplot of the data select Graph > Boxplot. Just select annual_income and then compute. 
+:::
+
+The box of the boxplot goes from Q1 to Q3 and the median is shown as a horizontal line. The two sticks (called whiskers) on either side of the box go until the largest data point *that isn't an outlier* and the stars (called fences) indicate outlier values. If we deselect the box indicating "Use fences to identify outliers" in StatCrunch then the whiskers will go all the way until the end of the range. 
+
+![Labeled boxplot.](images/boxplot_def.png){fig-align="center"}
+
+::: {#exm-boxplotcompare}
+The boxplots below show the typed words per minutes for support agents and software engineers. Compare the two distributions using what you know about boxplots. 
+
+![Typing speed boxplots for support agents and software engineers.](images/wpm_boxplot.png){fig-align="center"}
+:::
+
+## Standard Deviation
+
+Here we will define and use the **sample standard deviation**. This is slightly different, but related to, the *population* standard deviation as well as the variance. These are terms we will define explicitly later. Given data points $x_1$, \dots, $x_n$ the **sample standard deviation** is defined by the formula
+
+$$SD = \sqrt{\frac{(x_1-\bar{x})^2 + (x_2-\bar{x})^2 + \cdots + (x_n - \bar{x})^2}{n-1}}$$
+
+where $\bar{x}$ denotes the mean of the dataset. Let's see this formula in action with a small example,
+
+::: {#exm-sdsmall}
+Anna denotes how many Reese's Peanutbutter Cups her 10 friends eat at a party. She gets the following amounts:
+
+$$3, 4, 3, 6, 6, 2, 1, 8, 5, 5.$$
+
+To compute the standard deviation, we first need to compute the mean,
+
+$$\bar{x} = \frac{3+4+3+6+6+2+1+8+5+5}{10} = \frac{43}{10} = 4.3.$$
+
+Next compute the differences,
+
+$$-1.3,-0.3,-1.3,1.7,1.7,-2.3,-3.3,3.7,0.7,0.7.$$
+
+Square and sum, 
+
+$$ 1.69 + 0.09 + 1.69 + 2.89 + 2.89 + 5.29 + 10.89 + 13.69 + 0.49 + 0.49 = 40.1 $$
+
+Now divide by $n-1 = 10-1 = 9$ and take the square root,
+
+$$SD = \sqrt{\frac{40.1}{9}} = \sqrt{4.456} \approx 2.11.$$
+:::
+
+We claim that standard deviation is telling us *something* about the spread of the distribution, but we can be more precise than that. The standard deviation tell us the average distance from an given datapoint to the mean. A larger standard deviation means the data is more spread out, while a smaller standard deviation tells us the data is compact.
+
+::: {#exm-sd}
+## Standard Deviation in StatCrunch
+[For this example use this data on StatCrunch.](https://www.statcrunch.com/app/index.html?dataid=5141492){target="_blank"} Compute the standard deviation of the income dataset. 
+:::
+
+Just like the mean, the sample standard deviation is heavily influenced by outliers. 
+
+## Extra Practice
+
+1. Compute the mean and median for the annual income dataset. Based on these values is the data skewed to thee right or left? Generate a histogram of the data to confirm your thoughts. [Data](https://www.statcrunch.com/app/index.html?dataid=5141492){target="_blank"}
+
+2. A survey recorded the time spent on homework in two different grades. The five-number summaries are recorded below. Compute the IQR for each grade and sketch the boxplots (by hand). What are the main differences in the distributions?
+
+| | Grade 9 | Grade 11 |
+| --- | --- | --- |
+| Minimum | 60 | 40 |
+| Q1 | 90 | 70 |
+| Median | 110 | 120 |
+| Q3 | 130 | 200 |
+| Maximum | 160 | 260 | 
+
+3. The principal tells you that, based on the above sumamary data, 9th graders and 11th graders spend a similar amount of time on homework. How might you respond to the principal?
+
+4. A group of 6 people were asked how many minutes they worked out for yesterday and the following results were obtained: 30, 60, 75, 0, 60, 45. Compute the mean and standard deviation by hand (calculator okay).
+
+5. A news article reports: "The mean commute time is 25 minutes with a standard deviation of 40 minutes." What does this suggest about the shape of the distribution? Why might this statement be misleading?

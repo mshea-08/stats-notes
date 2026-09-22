@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>2&nbsp; Summary Statistics – Statistics Lecture Notes</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./lecture-01.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-d3f7f8e73c8d287b30bcf59c2b563615.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture-02.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary Statistics</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statistics Lecture Notes</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Exploring Data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture-02.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary Statistics</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#measures-of-center" id="toc-measures-of-center" class="nav-link active" data-scroll-target="#measures-of-center"><span class="header-section-number">2.1</span> Measures of Center</a></li>
+  <li><a href="#measures-of-spread" id="toc-measures-of-spread" class="nav-link" data-scroll-target="#measures-of-spread"><span class="header-section-number">2.2</span> Measures of Spread</a>
+  <ul class="collapse">
+  <li><a href="#range" id="toc-range" class="nav-link" data-scroll-target="#range"><span class="header-section-number">2.2.1</span> Range</a></li>
+  <li><a href="#inter-quartile-range-iqr" id="toc-inter-quartile-range-iqr" class="nav-link" data-scroll-target="#inter-quartile-range-iqr"><span class="header-section-number">2.2.2</span> Inter-Quartile Range (IQR)</a></li>
+  <li><a href="#outliers" id="toc-outliers" class="nav-link" data-scroll-target="#outliers"><span class="header-section-number">2.2.3</span> Outliers</a></li>
+  </ul></li>
+  <li><a href="#boxplots" id="toc-boxplots" class="nav-link" data-scroll-target="#boxplots"><span class="header-section-number">2.3</span> Boxplots</a></li>
+  <li><a href="#standard-deviation" id="toc-standard-deviation" class="nav-link" data-scroll-target="#standard-deviation"><span class="header-section-number">2.4</span> Standard Deviation</a></li>
+  <li><a href="#extra-practice" id="toc-extra-practice" class="nav-link" data-scroll-target="#extra-practice"><span class="header-section-number">2.5</span> Extra Practice</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary Statistics</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>We’ve given a few examples of ways to visualize data, now we want to talk about some important <strong>summary statistics</strong>. Summary statistics are quantitative values one can use to succintly give an idea for the shape of the distribution. Some questions we try to answer using summary statistics:</p>
+<ol type="1">
+<li>What is a typical value? What range does a typical value fall between?</li>
+<li>What is the range of possible values? What is the range of <em>likely</em> values?</li>
+</ol>
+<p>In this section we will cover different measures of <strong>center</strong> and measures of <strong>spread</strong> to help answer these questions.</p>
+<section id="measures-of-center" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="measures-of-center"><span class="header-section-number">2.1</span> Measures of Center</h2>
+<p>There are three measures of center we will cover:</p>
+<ul>
+<li><strong>Mode</strong>: The value(s) with the highest frequency in the dataset.</li>
+<li><strong>Mean</strong>: The average of the values. If a dataset has <span class="math inline">\(n\)</span> values <span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_2\)</span>, <span class="math inline">\(\dots\)</span>, <span class="math inline">\(x_n\)</span>, then the mean <span class="math inline">\(\bar{x}\)</span> is given by</li>
+</ul>
+<p><span class="math display">\[\bar{x} = \frac{x_1+x_2+ \cdots + x_n}{n}.\]</span></p>
+<ul>
+<li><strong>Median</strong>: The midpoint of the distribution. It is the number such that half the observations fall above and half fall below.</li>
+</ul>
+<div id="exm-ages" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2.1</strong></span> A college class has 22 students with the following ages: 18, 22, 21, 21, 21, 18, 20, 42, 23, 44, 18, 18, 21, 18, 22, 18, 22, 23, 20, 38, 20, 34. To compute the mode and median it helps to reorder the data,</p>
+<p><span class="math display">\[18, 18, 18, 18, 18, 18, 20, 20, 20, 21, 21, 21, 21, 22, 22, 22, 23, 23, 34, 38, 42, 44\]</span></p>
+<p>The mode is 18, which occurs in the dataset 6 times.</p>
+<p>Since the dataset has size 22 count out (in order) to the 11th and 12th observations. The median is the average of these two “middle” observations. Since they are both 21, the median of the dataset is 21.</p>
+<p>Using the formula in the definition, the mean is <span class="math inline">\(522/22 = 23.73\)</span>.</p>
+<p>Notice that the mean is slightly larger than the median this is because there are a handful of older students with <em>outlier</em> ages. The mean gets pulled by outliers more than the median does.</p>
+<p><a href="https://www.statcrunch.com/app/index.html?dataid=5133686" target="_blank">See this data on StatCrunch to perform the computations there.</a></p>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="Median on Datasets of Even Size">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Median on Datasets of Even Size
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For this course, to compute the median when the dataset has an <em>even</em> number of observations average the two observation in the middle. This is a typical convention chosen in statistics.</p>
+</div>
+</div>
+<p>As mentioned in Example <a href="#exm-ages" class="quarto-xref">Example&nbsp;<span>2.1</span></a>, differences in the median and mean can reveal information about the shape of the distribution. A distribution is <strong>skewed</strong> if it has a long tail to one side.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-income" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-income-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lecture-02_files/figure-html/fig-income-1.png" class="img-fluid figure-img" width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-income-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.1: Right-skewed household income distribution.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The above dataset is skewed <em>to the right</em> since it has a long tail on the right side. For a distribution that is skewed to the right (left) the mean will be greater (less) than the median.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Mean Versus Median">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Mean Versus Median
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The reason <strong>outliers pull the mean more than the median</strong> is because mean minimizes the error <em>squared</em>, while the median minimizes the absolute error. Squaring the error means outliers will have extra impact. This fact is outside of the scope of this course, but I am happy to chat about it for curious minds!</p>
+</div>
+</div>
+<div id="exm-createdata1" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2.2 (Creating Data)</strong></span> Using StatCrunch complete the following:</p>
+<ol type="1">
+<li><p>Create a dataset of 10 student ages where the median is 20.</p></li>
+<li><p>Is it possible to do this and have no student be 20 years old?</p></li>
+<li><p>If we increased the size of the dataset to 15 students can you still create a dataset with median 20 <em>and</em> no students are 20 years old?</p></li>
+</ol>
+</div>
+<div id="exm-createdata2" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2.3</strong></span> &nbsp;</p>
+<ol type="1">
+<li><p>Using StatCrunch, create a dataset of 30 non-negative numbers where the mean is less than the median. Plot the histogram of the data.</p></li>
+<li><p>(Challenge) If I have a dataset of 30 non-negative numbers and the median is 50, what is the smallest possible mean?</p></li>
+</ol>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="When to use mode?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>When to use mode?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>What might be a situation where the mode is the most relevant summary statistic to use?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="Nobody's Average">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Nobody’s Average
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In 1950 the airforce measured 140 physical dimension of 4063 pilots and designed the cockpit to match he average (mean) dimensions. Lieutenant Gilbert S. Daniels then compared this “average pilot” to individual pilot records to show that no pilot was within 15% of the average on the ten most relevant dimensions. In other words, the cockpits were designed to fit no one! Thus lead to the adaptation of adjustable seats.</p>
+</div>
+</div>
+</section>
+<section id="measures-of-spread" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="measures-of-spread"><span class="header-section-number">2.2</span> Measures of Spread</h2>
+<div id="exm-spreaddiff" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2.4 (Commute Times)</strong></span> <a href="https://www.statcrunch.com/app/index.html?dataid=5133808" target="_blank">Data on StatCrunch.</a> The below histograms depict the commute time of 500 people who work in Town A and Town B. How are the datasets similar and how are they different?</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-commute-spread" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-commute-spread-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lecture-02_files/figure-html/fig-commute-spread-1.png" class="img-fluid figure-img" width="864">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-commute-spread-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.2: Commute times in two different towns.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The above example illustrates that it is important to have statistics that describe the <em>spread</em> of a distribution. There are a few we will investigate today.</p>
+<section id="range" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="range"><span class="header-section-number">2.2.1</span> Range</h3>
+<p>The <strong>range</strong> of a dataset is the largest observation minus the smallest observation.</p>
+<div id="exm-commutetimes" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2.5</strong></span> <a href="https://www.statcrunch.com/app/index.html?dataid=5133808" target="_blank">The commute times data is given here.</a> Compute the range of the commuting data for each town.</p>
+</div>
+<p>Range does give us an initial look at the spread of the distribution, but outliers can obfuscate how range relates to spread. Consider two classes with the following histograms of exam scores:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-quiz-spread" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-quiz-spread-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lecture-02_files/figure-html/fig-quiz-spread-1.png" class="img-fluid figure-img" width="864">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-quiz-spread-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.3: Scores on Exam 1 in Class A and Class B
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The range of both distributions is (approximately) the same, but the spread looks very different. Only 2 out of 20 students scored below a 60 in Class A, while 8 students (out of 20) scored below a 60 in Class B.</p>
+</section>
+<section id="inter-quartile-range-iqr" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="inter-quartile-range-iqr"><span class="header-section-number">2.2.2</span> Inter-Quartile Range (IQR)</h3>
+<p>Recall that the <strong>median</strong> divides the observations into two parts of equal size. This is because we defined the median as the value which half the observations are below and half are above. <strong>Quartiles</strong> divide the data into 4 equal parts. Specifically we define:</p>
+<ul>
+<li>The first quartile (or lower quartile), Q1, is the value such that 25% of the data lies below this value.</li>
+<li>The second quartile (or median), Q2, is value where 50% of the data lies below this value.</li>
+<li>The third quartile (or upper quartile), Q3, is the value such that 75% of the data lies below this value.</li>
+</ul>
+<p>Computing the min, Q1, Q2, Q3, and max of a data set is known as the <strong>five-number summary</strong>.</p>
+<div id="exm-5num" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2.6</strong></span> Below are the exact list of Exam 1 scores for Class A and Class B (from the histograms in Figure <a href="#fig-quiz-spread" class="quarto-xref">Figure&nbsp;<span>2.3</span></a>). Compute the five-number summary for each class. What differences do you observe about the distribution from the statistics?</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Class A</th>
+<th>Class B</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>10</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>44</td>
+<td>34</td>
+</tr>
+<tr class="odd">
+<td>66</td>
+<td>36</td>
+</tr>
+<tr class="even">
+<td>70</td>
+<td>44</td>
+</tr>
+<tr class="odd">
+<td>71</td>
+<td>45</td>
+</tr>
+<tr class="even">
+<td>73</td>
+<td>48</td>
+</tr>
+<tr class="odd">
+<td>74</td>
+<td>50</td>
+</tr>
+<tr class="even">
+<td>76</td>
+<td>56</td>
+</tr>
+<tr class="odd">
+<td>77</td>
+<td>64</td>
+</tr>
+<tr class="even">
+<td>79</td>
+<td>66</td>
+</tr>
+<tr class="odd">
+<td>80</td>
+<td>76</td>
+</tr>
+<tr class="even">
+<td>80</td>
+<td>77</td>
+</tr>
+<tr class="odd">
+<td>80</td>
+<td>80</td>
+</tr>
+<tr class="even">
+<td>82</td>
+<td>82</td>
+</tr>
+<tr class="odd">
+<td>83</td>
+<td>83</td>
+</tr>
+<tr class="even">
+<td>83</td>
+<td>84</td>
+</tr>
+<tr class="odd">
+<td>86</td>
+<td>88</td>
+</tr>
+<tr class="even">
+<td>87</td>
+<td>89</td>
+</tr>
+<tr class="odd">
+<td>91</td>
+<td>91</td>
+</tr>
+<tr class="even">
+<td>96</td>
+<td>95</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The <strong>inter-quartile range</strong> (IQR) is defined as Q3-Q1.</p>
+<div id="exm-iqr" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2.7</strong></span> Compute the IQR for the exam scores by class.</p>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="IQR Versus Range">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>IQR Versus Range
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Why might IQR be seen as a better gauge of spread than range?</p>
+</div>
+</div>
+</section>
+<section id="outliers" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="outliers"><span class="header-section-number">2.2.3</span> Outliers</h3>
+<p>The general notion of an <strong>outlier</strong> is an oberservation that lies far away from the general distribution. The readings define outliers are points that are:</p>
+<ul>
+<li>Smaller than <span class="math inline">\(\text{Q}1 - 1.5 \cdot (\text{IQR})\)</span>, or</li>
+<li>Larger than <span class="math inline">\(\text{Q}3 + 1.5 \cdot (\text{IQR})\)</span>.</li>
+</ul>
+<p><span style="color:red;"><strong>Do not</strong></span> think of this as a set in stone rule. In fact, the multiplier 1.5 was not chosen with any real mathematical theory behind it. Use these values to flag <em>potential</em> outliers in the dataset, but context is an important determining factor when understanding data.</p>
+<div id="exm-commutebimodal" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2.8</strong></span> We have the following list of commute times for a neighborhood: 24, 25, 26, 27, 27, 28, 28, 29, 29, 30, 30, 30, 31, 31, 32, 32, 33, 33, 34, 34, 35, 35, 36, 36, 37, 38, 39, 40, 41, 42, 72, 74, 76, 78, 80, 82. Let’s start by looking at the five-number summary.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 24.0 29.5 33.5 39.5 82.0</code></pre>
+</div>
+</div>
+<p>From this we can compute the lower and upper fence:</p>
+<p><span class="math display">\[\text{lower} = 29.5 - 1.5(10) = 14.5, \quad \text{upper} = 39.5 + 15 = 54.5\]</span></p>
+<p>That means 6 data points are flagged as outliers using this rule: 72, 74, 76, 78, 80, 82. Let’s look at the histogram of the distribution,</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-bimodal-commute" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bimodal-commute-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lecture-02_files/figure-html/fig-bimodal-commute-1.png" class="img-fluid figure-img" width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bimodal-commute-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.4: Histogram of neighborhood commute times.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>What we see from the histogram is a <strong>bimodal</strong> distribution. There is one subset of the neighborhood that commutes a shorter distance (think across town), while a small subset of the neighborhood commutes to a different city. Thus the 1.5 IQR outlier rule is a bad fit here.</p>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="Removing Data">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Removing Data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There is a false notion that outliers should be removed from the data set but this is <strong>not true</strong>! Outliers should be expected in data and are part of the underlying distribution.</p>
+<p>Only remove data points if they are the result of mistake in data entry or collection, or if they can be explained by a fundamentally different process which you are not interested in investigating.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="boxplots" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="boxplots"><span class="header-section-number">2.3</span> Boxplots</h2>
+<p><strong>Boxplots</strong> are a way to visualize the five number summary as well as outliers. Let’s see this with an example.</p>
+<div id="exm-boxplot" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2.9 (Boxplots in StatCrunch)</strong></span> <a href="https://www.statcrunch.com/app/index.html?dataid=5141492" target="_blank">For this example use this data on StatCrunch.</a> To make a boxplot of the data select Graph &gt; Boxplot. Just select annual_income and then compute.</p>
+</div>
+<p>The box of the boxplot goes from Q1 to Q3 and the median is shown as a horizontal line. The two sticks (called whiskers) on either side of the box go until the largest data point <em>that isn’t an outlier</em> and the stars (called fences) indicate outlier values. If we deselect the box indicating “Use fences to identify outliers” in StatCrunch then the whiskers will go all the way until the end of the range.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/boxplot_def.png" class="img-fluid figure-img"></p>
+<figcaption>Labeled boxplot.</figcaption>
+</figure>
+</div>
+<div id="exm-boxplotcompare" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2.10</strong></span> The boxplots below show the typed words per minutes for support agents and software engineers. Compare the two distributions using what you know about boxplots.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wpm_boxplot.png" class="img-fluid figure-img"></p>
+<figcaption>Typing speed boxplots for support agents and software engineers.</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="standard-deviation" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="standard-deviation"><span class="header-section-number">2.4</span> Standard Deviation</h2>
+<p>Here we will define and use the <strong>sample standard deviation</strong>. This is slightly different, but related to, the <em>population</em> standard deviation as well as the variance. These are terms we will define explicitly later. Given data points <span class="math inline">\(x_1\)</span>, , <span class="math inline">\(x_n\)</span> the <strong>sample standard deviation</strong> is defined by the formula</p>
+<p><span class="math display">\[SD = \sqrt{\frac{(x_1-\bar{x})^2 + (x_2-\bar{x})^2 + \cdots + (x_n - \bar{x})^2}{n-1}}\]</span></p>
+<p>where <span class="math inline">\(\bar{x}\)</span> denotes the mean of the dataset. Let’s see this formula in action with a small example,</p>
+<div id="exm-sdsmall" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2.11</strong></span> Anna denotes how many Reese’s Peanutbutter Cups her 10 friends eat at a party. She gets the following amounts:</p>
+<p><span class="math display">\[3, 4, 3, 6, 6, 2, 1, 8, 5, 5.\]</span></p>
+<p>To compute the standard deviation, we first need to compute the mean,</p>
+<p><span class="math display">\[\bar{x} = \frac{3+4+3+6+6+2+1+8+5+5}{10} = \frac{43}{10} = 4.3.\]</span></p>
+<p>Next compute the differences,</p>
+<p><span class="math display">\[-1.3,-0.3,-1.3,1.7,1.7,-2.3,-3.3,3.7,0.7,0.7.\]</span></p>
+<p>Square and sum,</p>
+<p><span class="math display">\[ 1.69 + 0.09 + 1.69 + 2.89 + 2.89 + 5.29 + 10.89 + 13.69 + 0.49 + 0.49 = 40.1 \]</span></p>
+<p>Now divide by <span class="math inline">\(n-1 = 10-1 = 9\)</span> and take the square root,</p>
+<p><span class="math display">\[SD = \sqrt{\frac{40.1}{9}} = \sqrt{4.456} \approx 2.11.\]</span></p>
+</div>
+<p>We claim that standard deviation is telling us <em>something</em> about the spread of the distribution, but we can be more precise than that. The standard deviation tell us the average distance from an given datapoint to the mean. A larger standard deviation means the data is more spread out, while a smaller standard deviation tells us the data is compact.</p>
+<div id="exm-sd" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2.12 (Standard Deviation in StatCrunch)</strong></span> <a href="https://www.statcrunch.com/app/index.html?dataid=5141492" target="_blank">For this example use this data on StatCrunch.</a> Compute the standard deviation of the income dataset.</p>
+</div>
+<p>Just like the mean, the sample standard deviation is heavily influenced by outliers.</p>
+</section>
+<section id="extra-practice" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="extra-practice"><span class="header-section-number">2.5</span> Extra Practice</h2>
+<ol type="1">
+<li><p>Compute the mean and median for the annual income dataset. Based on these values is the data skewed to thee right or left? Generate a histogram of the data to confirm your thoughts. <a href="https://www.statcrunch.com/app/index.html?dataid=5141492" target="_blank">Data</a></p></li>
+<li><p>A survey recorded the time spent on homework in two different grades. The five-number summaries are recorded below. Compute the IQR for each grade and sketch the boxplots (by hand). What are the main differences in the distributions?</p></li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Grade 9</th>
+<th>Grade 11</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Minimum</td>
+<td>60</td>
+<td>40</td>
+</tr>
+<tr class="even">
+<td>Q1</td>
+<td>90</td>
+<td>70</td>
+</tr>
+<tr class="odd">
+<td>Median</td>
+<td>110</td>
+<td>120</td>
+</tr>
+<tr class="even">
+<td>Q3</td>
+<td>130</td>
+<td>200</td>
+</tr>
+<tr class="odd">
+<td>Maximum</td>
+<td>160</td>
+<td>260</td>
+</tr>
+</tbody>
+</table>
+<ol start="3" type="1">
+<li><p>The principal tells you that, based on the above sumamary data, 9th graders and 11th graders spend a similar amount of time on homework. How might you respond to the principal?</p></li>
+<li><p>A group of 6 people were asked how many minutes they worked out for yesterday and the following results were obtained: 30, 60, 75, 0, 60, 45. Compute the mean and standard deviation by hand (calculator okay).</p></li>
+<li><p>A news article reports: “The mean commute time is 25 minutes with a standard deviation of 40 minutes.” What does this suggest about the shape of the distribution? Why might this statement be misleading?</p></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./lecture-01.html" class="pagination-link" aria-label="Exploring Data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Exploring Data</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

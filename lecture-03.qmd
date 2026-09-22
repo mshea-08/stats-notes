@@ -1,0 +1,156 @@
+# Examining Relationships 
+
+In this section we want to learn ways to examine the relationship between two variables. Typically, we are asking research questions about whether one variable impacts the other. The **response variable** or dependent variable is the variable that gives the outcome of the study. The **explanatory variable** is the variable that claims to impact the response variable. 
+
+Just like in Topic 1, these variables can be **quantitative** or **categorical**. In these notes we will spend some time looking at examples and the ways we can visualize and interpret relationships.
+
+## Side-by-Side Boxplots (C -> Q)
+
+If the explanatory variable is catagorical and the response variable is quantatative, then one way to visualize the potential differences in distribution is by using side-by-side boxplots. 
+
+::: {#exm-systolicBP}
+[Dataset.](https://www.statcrunch.com/app/?dataid=5143558){target="blank"} This dataset shows the race/ethnicity, age, and systolic BP for 360 patients (this data is simulated and not real). We would like to analyze if race/ethnicity impact patients BP. 
+
+To graph side-by-side boxplots in StatCrunch first select Graph > Boxplot. Next, select the column systolic_BP_mmHg and "group by" race_ethnicity. 
+```{r}
+#| label: fig-sbp
+#| fig-cap: "Side-by-side histogram of systolic BP."
+#| echo: false
+#| fig-width: 6
+#| fig-height: 8
+
+# Read the data
+df <- read.csv("datasets/race_systolic_bp.csv")
+
+# Make sure race_ethnicity is treated as a factor
+df$race_ethnicity <- as.factor(df$race_ethnicity)
+
+par(mar = c(14, 4, 4, 2))  # bottom, left, top, right
+
+boxplot(systolic_bp_mmHg ~ race_ethnicity, data = df,
+        main = "Systolic Blood Pressure by Race/Ethnicity",
+        ylab = "Systolic BP (mmHg)",
+        col = "lightblue",
+        las = 2,
+        xlab = "")  
+
+mtext("Race/Ethnicity", side = 1, line = 12)
+```
+:::
+
+Based on the graph, it looks like the race Black/African American has a higher Q1 and median than the other categories. We should be careful qualifying claims with just the above plots though! 
+
+::: {.callout-important}
+What could be other reasons the population of black patients appear to have a higher systolic BP that isn't related to their race?
+:::
+
+Another method of visualizing relationships between a catagorical explanatory variable and a quantitative response variable is by using a stacked histogram. This can be done in StatCrunch as well. 
+
+```{r}
+#| label: fig-stackedhist
+#| fig-cap: "Stacked histogram of goals scored by different positions."
+#| echo: false
+#| fig-width: 6
+
+library(ggplot2)
+
+set.seed(42)
+
+positions <- c("Forward", "Midfielder", "Defender")
+
+n_forwards    <- 40
+n_midfielders <- 50
+n_defenders   <- 50
+
+data <- rbind(
+  data.frame(
+    position = "Forward",
+    goals = round(rgamma(n_forwards, shape = 3, scale = 4))
+  ),
+  data.frame(
+    position = "Midfielder",
+    goals = round(rgamma(n_midfielders, shape = 1.5, scale = 3))
+  ),
+  data.frame(
+    position = "Defender",
+    goals = round(rgamma(n_defenders, shape = 1, scale = 1.5))
+  )
+)
+
+data$position <- factor(data$position, levels = positions)
+
+ggplot(data, aes(x = goals, fill = position)) +
+  geom_histogram(binwidth = 1, position = "stack", color = "white", boundary = -0.5) +
+  scale_fill_manual(values = c(
+    "Forward"    = "#E63946",
+    "Midfielder" = "#F4A261",
+    "Defender"   = "#2A9D8F"
+  )) +
+  labs(
+    title = "Goals Scored by Players in a Season",
+    subtitle = "Distribution by Position",
+    x = "Goals Scored",
+    y = "Number of Players",
+    fill = "Position"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    plot.title = element_text(face = "bold"),
+    legend.position = "right"
+  )
+```
+
+Here we see that the histogram is colored by player position. From this visualization we can see that defenders typically don't score much. 
+
+## Contingency Tables (C -> C)
+
+## Scatterplots (Q -> Q)
+
+::: {#exm-study}
+We want to determine if more time spent studying improves the score received on an exam. The amount of time spent studying was self reported by students. [Open the data in StatCrunch.](https://www.statcrunch.com/app/?dataid=5143819){target="blank"}
+
+Since we want to know if study time improves exam score, the explanatory variable is study time and the reesponse variable is exam score. We can plot these using a scatter plot (Graph > Scatter Plot). We should set the study time as the x variable and the exam score as the y variable. 
+:::
+
+```{r}
+#| label: fig-scatter
+#| fig-cap: "Scatter plot of time spent studying and exam scores."
+#| echo: false
+#| fig-width: 6
+
+df <- read.csv("datasets/student_study_scores.csv")
+
+plot(df$study_hours,df$exam_score,
+    xlab="Hours spent studying",
+    ylab="Exam Score",
+    pch=19)
+```
+
+We see from the scatter plot that hours spent studying is **positively correlated** with exam scores. This means that the more hours spent studying, the higher of an exam score a student tends to receive. Notice that the points appear to show a "fuzzy" line with a positive slope.
+
+Average hours of exercise weekly is **negatively correlated** with resting heart rate. This means the more hours exercised, the lower the resting heart rate. 
+
+```{r}
+#| label: fig-scatter2
+#| fig-cap: "Scatter plot of weekly exercise hours and resting heart rate."
+#| echo: false
+#| fig-width: 6
+
+set.seed(42)
+
+n <- 40
+
+# Simulate weekly exercise hours (0 to 12 hours)
+exercise_hours <- round(runif(n, 0, 12), 1)
+
+# Resting heart rate negatively correlated with exercise, plus noise
+resting_hr <- round(85 - exercise_hours * 2 + rnorm(n, 0, 6))
+resting_hr <- pmin(pmax(resting_hr, 45), 100)  
+
+# Scatter plot
+plot(exercise_hours, resting_hr,
+     xlab = "Average Hours Exercised per Week",
+     ylab = "Resting Heart Rate (bpm)",
+     pch = 19,
+     col = "#2A9D8F")
+```

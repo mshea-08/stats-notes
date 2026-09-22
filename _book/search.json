@@ -1,0 +1,302 @@
+[
+  {
+    "objectID": "lecture-01-intro.html",
+    "href": "lecture-01-intro.html",
+    "title": "1  Exploring Data",
+    "section": "",
+    "text": "1.1 Overview\nIn these notes we will look at a few common methods for visualizing data.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Exploring Data</span>"
+    ]
+  },
+  {
+    "objectID": "lecture-01-intro.html#measures-of-central-tendency",
+    "href": "lecture-01-intro.html#measures-of-central-tendency",
+    "title": "1  Exploring Data",
+    "section": "1.2 Measures of central tendency",
+    "text": "1.2 Measures of central tendency\nFor a sample \\(x_1, x_2, \\dots, x_n\\), the sample mean is:\n\\[\n\\bar{x} = \\frac{1}{n} \\sum_{i=1}^{n} x_i\n\\]\nThe sample variance is:\n\\[\ns^2 = \\frac{1}{n-1} \\sum_{i=1}^{n} (x_i - \\bar{x})^2\n\\]\n\n\n\n\n\n\nNote\n\n\n\nWe divide by \\(n-1\\) rather than \\(n\\) (Bessel’s correction) so that \\(s^2\\) is an unbiased estimator of the population variance.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Exploring Data</span>"
+    ]
+  },
+  {
+    "objectID": "lecture-01-intro.html#a-worked-example-in-code",
+    "href": "lecture-01-intro.html#a-worked-example-in-code",
+    "title": "1  Exploring Data",
+    "section": "1.3 A worked example in code",
+    "text": "1.3 A worked example in code\nBelow is a live R code chunk. When you render this document, Quarto actually runs the code and embeds the output (numbers, tables, plots) directly into the document — you never have to copy-paste results by hand.\n\n\nCode\nset.seed(1)\nx &lt;- rnorm(100, mean = 50, sd = 10)\n\nsummary_stats &lt;- data.frame(\n  mean = mean(x),\n  median = median(x),\n  sd = sd(x),\n  IQR = IQR(x)\n)\n\nsummary_stats\n\n\n      mean   median       sd      IQR\n1 51.08887 51.13909 8.981994 11.85788\n\n\nWe can visualize the distribution:\n\n\nCode\nhist(x, breaks = 15, col = \"steelblue\", border = \"white\",\n     main = \"Distribution of x\", xlab = \"value\")\nabline(v = mean(x), col = \"red\", lwd = 2)\n\n\n\n\n\n\n\n\nFigure 1.1: Histogram of simulated data\n\n\n\n\n\nFigure 1.1 shows a roughly symmetric, bell-shaped distribution, which is expected since the data were simulated from a normal distribution.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Exploring Data</span>"
+    ]
+  },
+  {
+    "objectID": "lecture-01-intro.html#summary-table",
+    "href": "lecture-01-intro.html#summary-table",
+    "title": "1  Exploring Data",
+    "section": "1.4 Summary table",
+    "text": "1.4 Summary table\n\n\n\n\n\n\n\n\nMeasure\nFormula\nRobust to outliers?\n\n\n\n\nMean\n\\(\\bar{x} = \\frac{1}{n}\\sum x_i\\)\nNo\n\n\nMedian\nMiddle value of sorted data\nYes\n\n\nVariance\n\\(s^2 = \\frac{1}{n-1}\\sum (x_i-\\bar x)^2\\)\nNo\n\n\nIQR\n\\(Q_3 - Q_1\\)\nYes",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Exploring Data</span>"
+    ]
+  },
+  {
+    "objectID": "lecture-01-intro.html#further-reading",
+    "href": "lecture-01-intro.html#further-reading",
+    "title": "1  Exploring Data",
+    "section": "1.5 Further reading",
+    "text": "1.5 Further reading\nSee Wasserman (2004) for a rigorous treatment of these concepts.\n\n\n\n\nWasserman, Larry. 2004. All of Statistics: A Concise Course in Statistical Inference. Springer.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Exploring Data</span>"
+    ]
+  },
+  {
+    "objectID": "lecture-01-intro.html#bar-and-pie-charts",
+    "href": "lecture-01-intro.html#bar-and-pie-charts",
+    "title": "1  Exploring Data",
+    "section": "1.2 Bar and Pie Charts",
+    "text": "1.2 Bar and Pie Charts\nBar and Pie charts are two ways to visualize the distribution of categorical data. Suppose 250 individuals were polled about how they commute to work and the following results were obtained,\n\n\n\nCategory\nCount\n\n\n\n\nCar\n134\n\n\nPublic Transit\n58\n\n\nBike\n44\n\n\nWalk\n24\n\n\n\nWe can visualize this data using either a bar or pie chart.\n\n\n\n\n\n\n\n\nFigure 1.1: The same data shown as a bar chart (left) and a pie chart (right).\n\n\n\n\n\nCreating a bar chart is simple, each categorical variable gets a bar where the height is represented by the number of respondents in the dataset. To create a pie chart, we start by computing the percentage of the whole each category,\n\n\n\nCategory\nCount\nPercentage\n\n\n\n\nCar\n134\n53.6%\n\n\nPublic Transit\n58\n23.2%\n\n\nBike\n44\n17.6%\n\n\nWalk\n24\n9.6%\n\n\n\nThe angle each pie slice gets corresponds to its percentage. For example, the transit category should have an interior angle that is 23.2% of 360 degrees, or\n\\[0.232 \\cdot 360 = 83.52 \\text{ degrees.}\\]\n\nExample 1.1 A class of 32 students was surveyed about whether they prefer morning, afternoon, or evening classes. The results are given in the table below.\n\n\n\nTime of Day\nCount\n\n\n\n\nMorning\n10\n\n\nAfternoon\n14\n\n\nEvening\n8\n\n\n\nTo compute the percentage of votes of each category, we divide the quantity by the total number of students, 32.\n\n\n\nTime of Day\nCount\nPercentage\n\n\n\n\nMorning\n10\n10/32 = 31.25%\n\n\nAfternoon\n14\n14/32 = 43.75%\n\n\nEvening\n8\n8/32 = 25%\n\n\n\n\n\n\n\n\nA pie chart depicting student class time preferences.\n\n\n\n\n\n\n\n\n\n\n\nImportantPicking the Best Visual\n\n\n\nIn what ways are bar and pie charts similar and in what ways are they different? What are some benefits to a pie chart over a bar chart (and vice versa)?\n\n\n\nExample 1.2 (Basic Visuals in StatCrunch) A company has collected data on 500 customers. Open this dataset in StatCrunch. Use StatCrunch to create a bar chart of customer satisfaction by doing the following:\n\nUnder Graph, select Bar Plot, then With Data.\nIn the pop up screen, select the column SatisfactionRating. Set Type to Frequency and then hit Compute!\n\nPlay around with the Graph settings to see if you can have the customer satisfaction grouped by the customer region.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Exploring Data</span>"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Statistics Lecture Notes",
+    "section": "",
+    "text": "Introduction\nThese are the lecture notes for Math 146 (34644) at Seattle Central College. These notes will be updated throughout the semester. Please note that these are built on top of your assigned readings and it is recommended that you go through those thoroughly first!\nLecture numbers will not exactly correspond to the numbers in the navigation. Here I will keep a running list on what is covered each day.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "lecture-01-intro.html#misleading-visuals",
+    "href": "lecture-01-intro.html#misleading-visuals",
+    "title": "1  Exploring Data",
+    "section": "1.3 Misleading Visuals",
+    "text": "1.3 Misleading Visuals\nSome visualizations can be misleading! Sometimes this is just poor judgement, but sometimes this can be done to make a specific point.\n\nExample 1.3 (Bad Visualizations) Can you determine what makes these visuals misleading? Do you think it was done to make a specific point?\n\n\n\nImage from www.codeconquest.com/blog/12-bad-data-visualization-examples-explained/\n\n\n\n\n\nImage from www.codeconquest.com/blog/12-bad-data-visualization-examples-explained/",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Exploring Data</span>"
+    ]
+  },
+  {
+    "objectID": "lecture-01-intro.html#bad-visualizations",
+    "href": "lecture-01-intro.html#bad-visualizations",
+    "title": "1  Exploring Data",
+    "section": "1.4 Bad Visualizations",
+    "text": "1.4 Bad Visualizations\nCan you determine what makes these visuals misleading?",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Exploring Data</span>"
+    ]
+  },
+  {
+    "objectID": "lecture-01-intro.html#basic-visuals-in-statcrunch",
+    "href": "lecture-01-intro.html#basic-visuals-in-statcrunch",
+    "title": "1  Exploring Data",
+    "section": "1.3 Basic Visuals in StatCrunch",
+    "text": "1.3 Basic Visuals in StatCrunch\nA company has collected data on 500 customers. Open this dataset in StatCrunch. Use StatCrunch to create a bar chart of customer satisfaction by doing the following:\n\nUnder Graph, select Bar Plot, then With Data.\nIn the pop up screen, select the column SatisfactionRating. Set Type to Frequency and then hit Compute!\n\nPlay around with the Graph settings to see if you can have the customer satisfaction grouped by the customer region.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Exploring Data</span>"
+    ]
+  },
+  {
+    "objectID": "lecture-01-intro.html#histograms",
+    "href": "lecture-01-intro.html#histograms",
+    "title": "1  Exploring Data",
+    "section": "1.4 Histograms",
+    "text": "1.4 Histograms\nBar and pie charts are a great way to visualize categorical data. Now we want to address ways to visualize quantitative data, or data that is in the form of numbers.\n\nExample 1.4 (Quantitative Data) Some example of quantitative data include: test scores, age, height, weight, (systolic) blood pressure, etc.\n\nA good way to look at quantitative data is to use a histogram. A histogram breaks the range of all possible values into smaller intervals, then counts how many observation fall into each window. This looks kind of like a bar chart, but the bars sit right next to each other.\n\nExample 1.5 Students in a calculus class obtain the following scores on the midterm exam,\n\\[100, 85, 91, 76, 88, 82, 95, 62, 84, 79, 90, 73, 87, 81, 92, 77, 86, 83, 80, 89, 74, 93, 85, 79, 82\\]\nThe lowest score is a 62 and the highest score is 100. Let’s break down the range \\([60,100]\\) into intervals of length 5.\n\n\n\nInterval\nCount\n\n\n\n\n(60,65]\n1\n\n\n(65,70]\n0\n\n\n(70,75]\n2\n\n\n(75,80]\n5\n\n\n(80,85]\n7\n\n\n(85,90]\n5\n\n\n(90,95]\n4\n\n\n(95,100]\n1\n\n\n\nFrom this we can make a histogram.\n\n\n\n\n\nA histogram of test scores.\n\n\n\n\n\nIt is typical to call the intervals of a histogram bins, although the reading on WAMAP will call them classes. A histogram should always have bins of the same length. It can be misleading to use different bin lengths in the same way it is misleading to use breaks on the vertical axis of bar charts.\nMost computer programs will set automatic bin sizes based on the distribution of the data you get it, although you will typically have an option to manually input bin specifications. In StatCrunch you are give the optional inputs of the starting value and the bin width.\n\n\n\n\n\n\nImportantBin Endpoints\n\n\n\nFor whatever computer program you use, make sure you know how the endpoints of your bin intervals are treated. In Example Example 1.5, I wrote intervals like (70,75] which means 70 is excluded from the bin and 75 is included in the bin. The statistical programming language R (what generates the graphs in these notes) uses right inclusive bins, however StatCrunch uses left inclusive bins.\n\n\nThe histograms below represent the same data, just with different bin sizes.\n\n\n\n\n\n\n\n\nFigure 1.2: Histograms of the same dataset with different bin widths.\n\n\n\n\n\nFrom the histogram on the left the data looks uniform across the values 0-4. When we choose a small bin width though, we see a different behavior emerge.\n\nExample 1.6 Reopen are customer dataset in StatCrunch.. Create a histogram of customer ages by going to Graph -&gt; Histogram.\n\n\nExample 1.7 The following histogram shows high tide heights over the month of July at a beach.\n\n\n\n\n\n\n\n\nFigure 1.3: Histograms of high tide heights in July.\n\n\n\n\n\nThe number of high tides that were more than 2 meters is given by the total in the last two bins, \\(6+1=7\\). To compute the percentage of high tides that were more than two meters, note that the total number of high tides is \\(62\\).\n\\[ \\frac{7}{62}\\cdot 100 \\approx 11.29\\%\\]\n\n\n\n\n\n\n\nImportantInformation Lost\n\n\n\nWhat kinds of information do we lose by only seeing a histogram of the data?",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Exploring Data</span>"
+    ]
+  },
+  {
+    "objectID": "lecture-01-intro.html#other-quantitative-plots",
+    "href": "lecture-01-intro.html#other-quantitative-plots",
+    "title": "1  Exploring Data",
+    "section": "1.5 Other Quantitative Plots",
+    "text": "1.5 Other Quantitative Plots\nWe saw with a histogram that some information is lost in the visual. One way around this is by using a stem plot, also known as a stem and leaf plot. In a stem plot, each data point is seperated into a stem and leaf. The leaf is typically the right most digit and the stem is everything else.\n\n\n\n\n\n\nNoteStem Plot\n\n\n\nYou can divide your stem and leaf plot in different ways. We won’t dig much into this because they are simply not that important.\n\n\n\nExample 1.8 The students in a college course are the following ages: 18, 22, 21, 21, 21, 18, 20, 42, 23, 44, 18, 18, 21, 18, 22, 18, 22, 23, 20, 38, 20, 34. The tens digit will be the stems of our plot while the ones digit will be the leafs. We get,\n\n\n\n  The decimal point is 1 digit(s) to the right of the |\n\n  1 | 888888\n  2 | 000111122233\n  3 | 48\n  4 | 24",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Exploring Data</span>"
+    ]
+  },
+  {
+    "objectID": "lecture-01-intro.html#measures-of-center",
+    "href": "lecture-01-intro.html#measures-of-center",
+    "title": "1  Exploring Data",
+    "section": "2.1 Measures of Center",
+    "text": "2.1 Measures of Center\nThere are three measures of center we will cover:\n\nMode: The value(s) with the highest frequency in the dataset.\nMean: The average of the values. If a dataset has \\(n\\) values \\(x_1\\), \\(x_2\\), \\(\\dots\\), \\(x_n\\), then the mean \\(\\bar{x}\\) is given by\n\n\\[\\bar{x} = \\frac{x_1+x_2+ \\cdots + x_n}{n}.\\]\n\nMedian: The midpoint of the distribution. It is the number such that half the observations fall above and half fall below.\n\n\nExample 2.1 A college class has 22 students with the following ages: 18, 22, 21, 21, 21, 18, 20, 42, 23, 44, 18, 18, 21, 18, 22, 18, 22, 23, 20, 38, 20, 34. To compute the mode and median it helps to reorder the data,\n\\[18, 18, 18, 18, 18, 18, 20, 20, 20, 21, 21, 21, 21, 22, 22, 22, 23, 23, 34, 38, 42, 44\\]\nThe mode is 18, which occurs in the dataset 6 times.\nSince the dataset has size 22 count out (in order) to the 11th and 12th observations. The median is the average of these two “middle” observations. Since they are both 21, the median of the dataset is 21.\nUsing the formula in the definition, the mean is \\(522/22 = 23.73\\).\nNotice that the mean is slightly larger than the median this is because there are a handful of older students with outlier ages. The mean gets pulled by outliers more than the median does.\n\n\n\n\n\n\n\nImportantMedian on Datasets of Even Size\n\n\n\nFor this course, to compute the median when the dataset has an even number of observations average the two observation in the middle. This is a typical convention chosen in statistics.\n\n\nAs mentioned in Example Example 2.1, differences in the median and mean can reveal information about the shape of the distribution. A distribution is skewed if it has a long tail to one side.\n\n\n\n\n\n\n\n\nFigure 2.1: Right-skewed household income distribution.\n\n\n\n\n\nThe above dataset is skewed to the right since it has a long tail on the right side. For a distribution that is skewed to the right (left) the mean will be greater (less) than the median.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Exploring Data</span>"
+    ]
+  },
+  {
+    "objectID": "lecture-01.html",
+    "href": "lecture-01.html",
+    "title": "1  Exploring Data",
+    "section": "",
+    "text": "1.1 Overview\nIn these notes we will look at a few common methods for visualizing data. There are two main types of data we will be concerned with in this class: categorical and quantatative data. Categorical data is when the results are descriptive (not numerical) and can be organized into a finite number of answers. Examples of categorical data include: favorite color, blood type, methods of transportation, favorite food, etc. Quantative data is data that is numerical. This can include: weights, heights, times, exam scores, etc.\nThe tools we use to visualize data depend on whether the data is catagorical or quantatative.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Exploring Data</span>"
+    ]
+  },
+  {
+    "objectID": "lecture-01.html#bar-and-pie-charts",
+    "href": "lecture-01.html#bar-and-pie-charts",
+    "title": "1  Exploring Data",
+    "section": "1.2 Bar and Pie Charts",
+    "text": "1.2 Bar and Pie Charts\nBar and Pie charts are two ways to visualize the distribution of categorical data. Suppose 250 individuals were polled about how they commute to work and the following results were obtained,\n\n\n\nCategory\nCount\n\n\n\n\nCar\n134\n\n\nPublic Transit\n58\n\n\nBike\n44\n\n\nWalk\n24\n\n\n\nWe can visualize this data using either a bar or pie chart.\n\n\n\n\n\n\n\n\nFigure 1.1: The same data shown as a bar chart (left) and a pie chart (right).\n\n\n\n\n\nCreating a bar chart is simple, each categorical variable gets a bar where the height is represented by the number of respondents in the dataset. To create a pie chart, we start by computing the percentage of the whole for each category,\n\n\n\nCategory\nCount\nPercentage\n\n\n\n\nCar\n134\n53.6%\n\n\nPublic Transit\n58\n23.2%\n\n\nBike\n44\n17.6%\n\n\nWalk\n24\n9.6%\n\n\n\nThe angle each pie slice gets corresponds to its percentage. For example, the transit category should have an interior angle that is 23.2% of 360 degrees, or\n\\[0.232 \\cdot 360 = 83.52 \\text{ degrees.}\\]\n\nExample 1.1 A class of 32 students was surveyed about whether they prefer morning, afternoon, or evening classes. The results are given in the table below.\n\n\n\nTime of Day\nCount\n\n\n\n\nMorning\n10\n\n\nAfternoon\n14\n\n\nEvening\n8\n\n\n\nTo compute the percentage of votes of each category, we divide the quantity by the total number of students, 32.\n\n\n\nTime of Day\nCount\nPercentage\n\n\n\n\nMorning\n10\n10/32 = 31.25%\n\n\nAfternoon\n14\n14/32 = 43.75%\n\n\nEvening\n8\n8/32 = 25%\n\n\n\n\n\n\n\n\nA pie chart depicting student class time preferences.\n\n\n\n\n\n\n\n\n\n\n\nImportantPicking the Best Visual\n\n\n\nIn what ways are bar and pie charts similar and in what ways are they different? What are some benefits to a pie chart over a bar chart (and vice versa)?\n\n\nDon’t worry so much about creating a pie or bar chart by hand as we will use technology in this class. The below example explain how to create the graphs using StatCrunch.\n\nExample 1.2 (Basic Visuals in StatCrunch) A company has collected data on 500 customers. Open this dataset in StatCrunch. Use StatCrunch to create a bar chart of customer satisfaction by doing the following:\n\nUnder Graph, select Bar Plot, then With Data.\nIn the pop up screen, select the column SatisfactionRating. Set Type to Frequency and then hit Compute!\n\nNext create a pie chart of the customer regions by selecting Graph &gt; Pie Chart &gt; With Data.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Exploring Data</span>"
+    ]
+  },
+  {
+    "objectID": "lecture-01.html#misleading-visuals",
+    "href": "lecture-01.html#misleading-visuals",
+    "title": "1  Exploring Data",
+    "section": "1.3 Misleading Visuals",
+    "text": "1.3 Misleading Visuals\nSome visualizations can be misleading! Sometimes this is just poor judgement, but sometimes this can be done to make a specific point.\n\nExample 1.3 (Bad Visualizations) Can you determine what makes these visuals misleading? Do you think it was done to make a specific point?\n\n\n\nImage from www.codeconquest.com/blog/12-bad-data-visualization-examples-explained/\n\n\n\n\n\nImage from www.codeconquest.com/blog/12-bad-data-visualization-examples-explained/",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Exploring Data</span>"
+    ]
+  },
+  {
+    "objectID": "lecture-01.html#histograms",
+    "href": "lecture-01.html#histograms",
+    "title": "1  Exploring Data",
+    "section": "1.4 Histograms",
+    "text": "1.4 Histograms\nBar and pie charts are a great way to visualize categorical data. Now we want to address ways to visualize quantitative data, or data that is in the form of numbers.\n\nExample 1.4 (Quantitative Data) Some example of quantitative data include: test scores, age, height, weight, (systolic) blood pressure, etc.\n\nA good way to look at quantitative data is to use a histogram. A histogram breaks the range of all possible values into smaller intervals, then counts how many observation fall into each window. This looks kind of like a bar chart, but the bars sit right next to each other.\n\nExample 1.5 Students in a calculus class obtain the following scores on the midterm exam,\n\\[100, 85, 91, 76, 88, 82, 95, 62, 84, 79, 90, 73, 87, 81, 92, 77, 86, 83, 80, 89, 74, 93, 85, 79, 82\\]\nThe lowest score is a 62 and the highest score is 100. Let’s break down the range \\([60,100]\\) into intervals of length 5.\n\n\n\nInterval\nCount\n\n\n\n\n(60,65]\n1\n\n\n(65,70]\n0\n\n\n(70,75]\n2\n\n\n(75,80]\n5\n\n\n(80,85]\n7\n\n\n(85,90]\n5\n\n\n(90,95]\n4\n\n\n(95,100]\n1\n\n\n\nFrom this we can make a histogram.\n\n\n\n\n\nA histogram of test scores.\n\n\n\n\n\nIt is typical to call the intervals of a histogram bins, although the reading on WAMAP will call them classes. A histogram should always have bins of the same length. It can be misleading to use different bin lengths in the same way it is misleading to use breaks on the vertical axis of bar charts.\nMost computer programs will set automatic bin sizes based on the distribution of the data you get it, although you will typically have an option to manually input bin specifications. In StatCrunch you are give the optional inputs of the starting value and the bin width.\n\n\n\n\n\n\nImportantBin Endpoints\n\n\n\nFor whatever computer program you use, make sure you know how the endpoints of your bin intervals are treated. In Example Example 1.5, I wrote intervals like (70,75] which means 70 is excluded from the bin and 75 is included in the bin. The statistical programming language R (what generates the graphs in these notes) uses right inclusive bins, however StatCrunch uses left inclusive bins.\n\n\nThe histograms below represent the same data, just with different bin sizes.\n\n\n\n\n\n\n\n\nFigure 1.2: Histograms of the same dataset with different bin widths.\n\n\n\n\n\nFrom the histogram on the left the data looks uniform across the values 0-4. When we choose a small bin width though, we see a different behavior emerge.\n\nExample 1.6 (Histograms on StatCrunch) Reopen the customer dataset in StatCrunch. Create a histogram of customer ages by going to Graph &gt; Histogram.\n\n\nExample 1.7 (High Tide Heights) The following histogram shows high tide heights over the month of July at a beach.\n\n\n\n\n\n\n\n\nFigure 1.3: Histograms of high tide heights in July.\n\n\n\n\n\nThe number of high tides that were more than 2 meters is given by the total in the last two bins, \\(6+1=7\\). To compute the percentage of high tides that were more than two meters, note that the total number of high tides is \\(62\\).\n\\[ \\frac{7}{62}\\cdot 100 \\approx 11.29\\%\\]\n\n\n\n\n\n\n\nImportantInformation Lost\n\n\n\nWhat kinds of information do we lose by only seeing a histogram of the data?",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Exploring Data</span>"
+    ]
+  },
+  {
+    "objectID": "lecture-02.html",
+    "href": "lecture-02.html",
+    "title": "2  Summary Statistics",
+    "section": "",
+    "text": "2.1 Measures of Center\nWe’ve given a few examples of ways to visualize data, now we want to talk about some important summary statistics. Summary statistics are quantitative values one can use to succintly give an idea for the shape of the distribution. Some questions we try to answer using summary statistics:\nIn this section we will cover different measures of center and measures of spread to help answer these questions.\nThere are three measures of center we will cover:\n\\[\\bar{x} = \\frac{x_1+x_2+ \\cdots + x_n}{n}.\\]\nAs mentioned in Example Example 2.1, differences in the median and mean can reveal information about the shape of the distribution. A distribution is skewed if it has a long tail to one side.\nFigure 2.1: Right-skewed household income distribution.\nThe above dataset is skewed to the right since it has a long tail on the right side. For a distribution that is skewed to the right (left) the mean will be greater (less) than the median.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary Statistics</span>"
+    ]
+  },
+  {
+    "objectID": "lecture-02.html#measures-of-center",
+    "href": "lecture-02.html#measures-of-center",
+    "title": "2  Summary Statistics",
+    "section": "",
+    "text": "Mode: The value(s) with the highest frequency in the dataset.\nMean: The average of the values. If a dataset has \\(n\\) values \\(x_1\\), \\(x_2\\), \\(\\dots\\), \\(x_n\\), then the mean \\(\\bar{x}\\) is given by\n\n\n\nMedian: The midpoint of the distribution. It is the number such that half the observations fall above and half fall below.\n\n\nExample 2.1 A college class has 22 students with the following ages: 18, 22, 21, 21, 21, 18, 20, 42, 23, 44, 18, 18, 21, 18, 22, 18, 22, 23, 20, 38, 20, 34. To compute the mode and median it helps to reorder the data,\n\\[18, 18, 18, 18, 18, 18, 20, 20, 20, 21, 21, 21, 21, 22, 22, 22, 23, 23, 34, 38, 42, 44\\]\nThe mode is 18, which occurs in the dataset 6 times.\nSince the dataset has size 22 count out (in order) to the 11th and 12th observations. The median is the average of these two “middle” observations. Since they are both 21, the median of the dataset is 21.\nUsing the formula in the definition, the mean is \\(522/22 = 23.73\\).\nNotice that the mean is slightly larger than the median this is because there are a handful of older students with outlier ages. The mean gets pulled by outliers more than the median does.\nSee this data on StatCrunch to perform the computations there.\n\n\n\n\n\n\n\nImportantMedian on Datasets of Even Size\n\n\n\nFor this course, to compute the median when the dataset has an even number of observations average the two observation in the middle. This is a typical convention chosen in statistics.\n\n\n\n\n\n\n\n\n\n\n\nImportantMean Versus Median\n\n\n\nThe reason outliers pull the mean more than the median is because mean minimizes the error squared, while the median minimizes the absolute error. Squaring the error means outliers will have extra impact. This fact is outside of the scope of this course, but I am happy to chat about it for curious minds!\n\n\n\nExample 2.2 (Creating Data) Using StatCrunch complete the following:\n\nCreate a dataset of 10 student ages where the median is 20.\nIs it possible to do this and have no student be 20 years old?\nIf we increased the size of the dataset to 15 students can you still create a dataset with median 20 and no students are 20 years old?\n\n\n\nExample 2.3  \n\nUsing StatCrunch, create a dataset of 30 non-negative numbers where the mean is less than the median. Plot the histogram of the data.\n(Challenge) If I have a dataset of 30 non-negative numbers and the median is 50, what is the smallest possible mean?\n\n\n\n\n\n\n\n\nImportantWhen to use mode?\n\n\n\nWhat might be a situation where the mode is the most relevant summary statistic to use?\n\n\n\n\n\n\n\n\nImportantNobody’s Average\n\n\n\nIn 1950 the airforce measured 140 physical dimension of 4063 pilots and designed the cockpit to match he average (mean) dimensions. Lieutenant Gilbert S. Daniels then compared this “average pilot” to individual pilot records to show that no pilot was within 15% of the average on the ten most relevant dimensions. In other words, the cockpits were designed to fit no one! Thus lead to the adaptation of adjustable seats.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary Statistics</span>"
+    ]
+  },
+  {
+    "objectID": "lecture-02.html#measures-of-spread",
+    "href": "lecture-02.html#measures-of-spread",
+    "title": "2  Summary Statistics",
+    "section": "2.2 Measures of Spread",
+    "text": "2.2 Measures of Spread\n\nExample 2.4 (Commute Times) Data on StatCrunch. The below histograms depict the commute time of 500 people who work in Town A and Town B. How are the datasets similar and how are they different?\n\n\n\n\n\n\n\n\nFigure 2.2: Commute times in two different towns.\n\n\n\n\n\n\nThe above example illustrates that it is important to have statistics that describe the spread of a distribution. There are a few we will investigate today.\n\n2.2.1 Range\nThe range of a dataset is the largest observation minus the smallest observation.\n\nExample 2.5 The commute times data is given here. Compute the range of the commuting data for each town.\n\nRange does give us an initial look at the spread of the distribution, but outliers can obfuscate how range relates to spread. Consider two classes with the following histograms of exam scores:\n\n\n\n\n\n\n\n\nFigure 2.3: Scores on Exam 1 in Class A and Class B\n\n\n\n\n\nThe range of both distributions is (approximately) the same, but the spread looks very different. Only 2 out of 20 students scored below a 60 in Class A, while 8 students (out of 20) scored below a 60 in Class B.\n\n\n2.2.2 Inter-Quartile Range (IQR)\nRecall that the median divides the observations into two parts of equal size. This is because we defined the median as the value which half the observations are below and half are above. Quartiles divide the data into 4 equal parts. Specifically we define:\n\nThe first quartile (or lower quartile), Q1, is the value such that 25% of the data lies below this value.\nThe second quartile (or median), Q2, is value where 50% of the data lies below this value.\nThe third quartile (or upper quartile), Q3, is the value such that 75% of the data lies below this value.\n\nComputing the min, Q1, Q2, Q3, and max of a data set is known as the five-number summary.\n\nExample 2.6 Below are the exact list of Exam 1 scores for Class A and Class B (from the histograms in Figure Figure 2.3). Compute the five-number summary for each class. What differences do you observe about the distribution from the statistics?\n\n\n\nClass A\nClass B\n\n\n\n\n10\n10\n\n\n44\n34\n\n\n66\n36\n\n\n70\n44\n\n\n71\n45\n\n\n73\n48\n\n\n74\n50\n\n\n76\n56\n\n\n77\n64\n\n\n79\n66\n\n\n80\n76\n\n\n80\n77\n\n\n80\n80\n\n\n82\n82\n\n\n83\n83\n\n\n83\n84\n\n\n86\n88\n\n\n87\n89\n\n\n91\n91\n\n\n96\n95\n\n\n\n\nThe inter-quartile range (IQR) is defined as Q3-Q1.\n\nExample 2.7 Compute the IQR for the exam scores by class.\n\n\n\n\n\n\n\nImportantIQR Versus Range\n\n\n\nWhy might IQR be seen as a better gauge of spread than range?\n\n\n\n\n2.2.3 Outliers\nThe general notion of an outlier is an oberservation that lies far away from the general distribution. The readings define outliers are points that are:\n\nSmaller than \\(\\text{Q}1 - 1.5 \\cdot (\\text{IQR})\\), or\nLarger than \\(\\text{Q}3 + 1.5 \\cdot (\\text{IQR})\\).\n\nDo not think of this as a set in stone rule. In fact, the multiplier 1.5 was not chosen with any real mathematical theory behind it. Use these values to flag potential outliers in the dataset, but context is an important determining factor when understanding data.\n\nExample 2.8 We have the following list of commute times for a neighborhood: 24, 25, 26, 27, 27, 28, 28, 29, 29, 30, 30, 30, 31, 31, 32, 32, 33, 33, 34, 34, 35, 35, 36, 36, 37, 38, 39, 40, 41, 42, 72, 74, 76, 78, 80, 82. Let’s start by looking at the five-number summary.\n\n\n[1] 24.0 29.5 33.5 39.5 82.0\n\n\nFrom this we can compute the lower and upper fence:\n\\[\\text{lower} = 29.5 - 1.5(10) = 14.5, \\quad \\text{upper} = 39.5 + 15 = 54.5\\]\nThat means 6 data points are flagged as outliers using this rule: 72, 74, 76, 78, 80, 82. Let’s look at the histogram of the distribution,\n\n\n\n\n\n\n\n\nFigure 2.4: Histogram of neighborhood commute times.\n\n\n\n\n\nWhat we see from the histogram is a bimodal distribution. There is one subset of the neighborhood that commutes a shorter distance (think across town), while a small subset of the neighborhood commutes to a different city. Thus the 1.5 IQR outlier rule is a bad fit here.\n\n\n\n\n\n\n\nImportantRemoving Data\n\n\n\nThere is a false notion that outliers should be removed from the data set but this is not true! Outliers should be expected in data and are part of the underlying distribution.\nOnly remove data points if they are the result of mistake in data entry or collection, or if they can be explained by a fundamentally different process which you are not interested in investigating.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary Statistics</span>"
+    ]
+  },
+  {
+    "objectID": "lecture-02.html#boxplots",
+    "href": "lecture-02.html#boxplots",
+    "title": "2  Summary Statistics",
+    "section": "2.3 Boxplots",
+    "text": "2.3 Boxplots\nBoxplots are a way to visualize the five number summary as well as outliers. Let’s see this with an example.\n\nExample 2.9 (Boxplots in StatCrunch) For this example use this data on StatCrunch. To make a boxplot of the data select Graph &gt; Boxplot. Just select annual_income and then compute.\n\nThe box of the boxplot goes from Q1 to Q3 and the median is shown as a horizontal line. The two sticks (called whiskers) on either side of the box go until the largest data point that isn’t an outlier and the stars (called fences) indicate outlier values. If we deselect the box indicating “Use fences to identify outliers” in StatCrunch then the whiskers will go all the way until the end of the range.\n\n\n\nLabeled boxplot.\n\n\n\nExample 2.10 The boxplots below show the typed words per minutes for support agents and software engineers. Compare the two distributions using what you know about boxplots.\n\n\n\nTyping speed boxplots for support agents and software engineers.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary Statistics</span>"
+    ]
+  },
+  {
+    "objectID": "lecture-02.html#standard-deviation",
+    "href": "lecture-02.html#standard-deviation",
+    "title": "2  Summary Statistics",
+    "section": "2.4 Standard Deviation",
+    "text": "2.4 Standard Deviation\nHere we will define and use the sample standard deviation. This is slightly different, but related to, the population standard deviation as well as the variance. These are terms we will define explicitly later. Given data points \\(x_1\\), , \\(x_n\\) the sample standard deviation is defined by the formula\n\\[SD = \\sqrt{\\frac{(x_1-\\bar{x})^2 + (x_2-\\bar{x})^2 + \\cdots + (x_n - \\bar{x})^2}{n-1}}\\]\nwhere \\(\\bar{x}\\) denotes the mean of the dataset. Let’s see this formula in action with a small example,\n\nExample 2.11 Anna denotes how many Reese’s Peanutbutter Cups her 10 friends eat at a party. She gets the following amounts:\n\\[3, 4, 3, 6, 6, 2, 1, 8, 5, 5.\\]\nTo compute the standard deviation, we first need to compute the mean,\n\\[\\bar{x} = \\frac{3+4+3+6+6+2+1+8+5+5}{10} = \\frac{43}{10} = 4.3.\\]\nNext compute the differences,\n\\[-1.3,-0.3,-1.3,1.7,1.7,-2.3,-3.3,3.7,0.7,0.7.\\]\nSquare and sum,\n\\[ 1.69 + 0.09 + 1.69 + 2.89 + 2.89 + 5.29 + 10.89 + 13.69 + 0.49 + 0.49 = 40.1 \\]\nNow divide by \\(n-1 = 10-1 = 9\\) and take the square root,\n\\[SD = \\sqrt{\\frac{40.1}{9}} = \\sqrt{4.456} \\approx 2.11.\\]\n\nWe claim that standard deviation is telling us something about the spread of the distribution, but we can be more precise than that. The standard deviation tell us the average distance from an given datapoint to the mean. A larger standard deviation means the data is more spread out, while a smaller standard deviation tells us the data is compact.\n\nExample 2.12 (Standard Deviation in StatCrunch) For this example use this data on StatCrunch. Compute the standard deviation of the income dataset.\n\nJust like the mean, the sample standard deviation is heavily influenced by outliers.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary Statistics</span>"
+    ]
+  },
+  {
+    "objectID": "lecture-02.html#extra-practice",
+    "href": "lecture-02.html#extra-practice",
+    "title": "2  Summary Statistics",
+    "section": "2.5 Extra Practice",
+    "text": "2.5 Extra Practice\n\nCompute the mean and median for the annual income dataset. Based on these values is the data skewed to thee right or left? Generate a histogram of the data to confirm your thoughts. Data\nA survey recorded the time spent on homework in two different grades. The five-number summaries are recorded below. Compute the IQR for each grade and sketch the boxplots (by hand). What are the main differences in the distributions?\n\n\n\n\n\nGrade 9\nGrade 11\n\n\n\n\nMinimum\n60\n40\n\n\nQ1\n90\n70\n\n\nMedian\n110\n120\n\n\nQ3\n130\n200\n\n\nMaximum\n160\n260\n\n\n\n\nThe principal tells you that, based on the above sumamary data, 9th graders and 11th graders spend a similar amount of time on homework. How might you respond to the principal?\nA group of 6 people were asked how many minutes they worked out for yesterday and the following results were obtained: 30, 60, 75, 0, 60, 45. Compute the mean and standard deviation by hand (calculator okay).\nA news article reports: “The mean commute time is 25 minutes with a standard deviation of 40 minutes.” What does this suggest about the shape of the distribution? Why might this statement be misleading?",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary Statistics</span>"
+    ]
+  },
+  {
+    "objectID": "lecture-03.html",
+    "href": "lecture-03.html",
+    "title": "3  Examining Relationships",
+    "section": "",
+    "text": "3.1 Side-by-Side Boxplots (C -&gt; Q)\nIn this section we want to learn ways to examine the relationship between two variables. Typically, we are asking research questions about whether one variable impacts the other. The response variable or dependent variable is the variable that gives the outcome of the study. The explanatory variable is the variable that claims to impact the response variable.\nJust like in Topic 1, these variables can be quantitative or categorical. In these notes we will spend some time looking at examples and the ways we can visualize and interpret relationships.\nIf the explanatory variable is catagorical and the response variable is quantatative, then one way to visualize the potential differences in distribution is by using side-by-side boxplots.\nBased on the graph, it looks like the race Black/African American has a higher Q1 and median than the other categories. We should be careful qualifying claims with just the above plots though!\nAnother method of visualizing relationships between a catagorical explanatory variable and a quantitative response variable is by using a stacked histogram. This can be done in StatCrunch as well.\nFigure 3.2: Stacked histogram of goals scored by different positions.\nHere we see that the histogram is colored by player position. From this visualization we can see that defenders typically don’t score much.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Examining Relationships</span>"
+    ]
+  },
+  {
+    "objectID": "lecture-03.html#side-by-side-boxplots-and-stacked-histograms",
+    "href": "lecture-03.html#side-by-side-boxplots-and-stacked-histograms",
+    "title": "3  Examining Relationships",
+    "section": "",
+    "text": "Example 3.1 Dataset. This dataset shows the race/ethnicity, age, and systolic BP for 360 patients (this data is simulated and not real). We would like to analyze if race/ethnicity impact patients BP.\nTo graph side-by-side boxplots in StatCrunch first select Graph &gt; Boxplot. Next, select the column systolic_BP_mmHg and “group by”",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Examining Relationships</span>"
+    ]
+  },
+  {
+    "objectID": "lecture-03.html#scatterplots",
+    "href": "lecture-03.html#scatterplots",
+    "title": "3  Examining Relationships",
+    "section": "3.2 Scatterplots",
+    "text": "3.2 Scatterplots\n\nExample 3.2 We want to determine if the amount of time",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Examining Relationships</span>"
+    ]
+  },
+  {
+    "objectID": "lecture-03.html#side-by-side-boxplots",
+    "href": "lecture-03.html#side-by-side-boxplots",
+    "title": "3  Examining Relationships",
+    "section": "",
+    "text": "Example 3.1 Dataset. This dataset shows the race/ethnicity, age, and systolic BP for 360 patients (this data is simulated and not real). We would like to analyze if race/ethnicity impact patients BP.\nTo graph side-by-side boxplots in StatCrunch first select Graph &gt; Boxplot. Next, select the column systolic_BP_mmHg and “group by” race_ethnicity.\n\n\n\n\n\n\n\n\nFigure 3.1: Side-by-side histogram of systolic BP.\n\n\n\n\n\n\n\n\n\n\n\n\n\nImportant\n\n\n\nWhat could be other reasons the population of black patients appear to have a higher systolic BP that isn’t related to their race?",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Examining Relationships</span>"
+    ]
+  },
+  {
+    "objectID": "lecture-03.html#side-by-side-boxplots-c---q",
+    "href": "lecture-03.html#side-by-side-boxplots-c---q",
+    "title": "3  Examining Relationships",
+    "section": "",
+    "text": "Example 3.1 Dataset. This dataset shows the race/ethnicity, age, and systolic BP for 360 patients (this data is simulated and not real). We would like to analyze if race/ethnicity impact patients BP.\nTo graph side-by-side boxplots in StatCrunch first select Graph &gt; Boxplot. Next, select the column systolic_BP_mmHg and “group by” race_ethnicity.\n\n\n\n\n\n\n\n\nFigure 3.1: Side-by-side histogram of systolic BP.\n\n\n\n\n\n\n\n\n\n\n\n\n\nImportant\n\n\n\nWhat could be other reasons the population of black patients appear to have a higher systolic BP that isn’t related to their race?",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Examining Relationships</span>"
+    ]
+  },
+  {
+    "objectID": "lecture-03.html#contingency-tables-c---c",
+    "href": "lecture-03.html#contingency-tables-c---c",
+    "title": "3  Examining Relationships",
+    "section": "3.2 Contingency Tables (C -> C)",
+    "text": "3.2 Contingency Tables (C -&gt; C)",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Examining Relationships</span>"
+    ]
+  },
+  {
+    "objectID": "lecture-03.html#scatterplots-q---q",
+    "href": "lecture-03.html#scatterplots-q---q",
+    "title": "3  Examining Relationships",
+    "section": "3.3 Scatterplots (Q -> Q)",
+    "text": "3.3 Scatterplots (Q -&gt; Q)\n\nExample 3.2 We want to determine if more time spent studying improves the score received on an exam. The amount of time spent studying was self reported by students. Open the data in StatCrunch.\nSince we want to know if study time improves exam score, the explanatory variable is study time and the reesponse variable is exam score. We can plot these using a scatter plot (Graph &gt; Scatter Plot). We should set the study time as the x variable and the exam score as the y variable.\n\n\n\n\n\n\n\n\n\nFigure 3.3: Scatter plot of time spent studying and exam scores.\n\n\n\n\n\nWe see from the scatter plot that hours spent studying is positively correlated with exam scores. This means that the more hours spent studying, the higher of an exam score a student tends to receive. Notice that the points appear to show a “fuzzy” line with a positive slope.\nAverage hours of exercise weekly is negatively correlated with resting heart rate. This means the more hours exercised, the lower the resting heart rate.\n\n\n\n\n\n\n\n\nFigure 3.4: Scatter plot of weekly exercise hours and resting heart rate.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Examining Relationships</span>"
+    ]
+  }
+]

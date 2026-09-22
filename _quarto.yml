@@ -1,0 +1,31 @@
+project:
+  type: book
+
+crossref:
+  exm-title: "Example"
+
+book:
+  title: "Statistics Lecture Notes"
+  author: "Meredith Shea"
+  date: today
+  chapters:
+    - index.qmd
+    - lecture-01.qmd
+    - lecture-02.qmd
+    - lecture-03.qmd
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    number-sections: true
+    code-fold: show
+  pdf:
+    documentclass: scrreprt
+    toc: true
+    number-sections: true
+
+execute:
+  freeze: auto   # cache/reuse computed output so re-renders are fast
+
+bibliography: references.bib

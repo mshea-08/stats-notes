@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>1&nbsp; Exploring Data – Statistics Lecture Notes</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./lecture-02.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-d3f7f8e73c8d287b30bcf59c2b563615.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture-01.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Exploring Data</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statistics Lecture Notes</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture-01.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Exploring Data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary Statistics</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">1.1</span> Overview</a></li>
+  <li><a href="#bar-and-pie-charts" id="toc-bar-and-pie-charts" class="nav-link" data-scroll-target="#bar-and-pie-charts"><span class="header-section-number">1.2</span> Bar and Pie Charts</a></li>
+  <li><a href="#misleading-visuals" id="toc-misleading-visuals" class="nav-link" data-scroll-target="#misleading-visuals"><span class="header-section-number">1.3</span> Misleading Visuals</a></li>
+  <li><a href="#histograms" id="toc-histograms" class="nav-link" data-scroll-target="#histograms"><span class="header-section-number">1.4</span> Histograms</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Exploring Data</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">1.1</span> Overview</h2>
+<p>In these notes we will look at a few common methods for visualizing data. There are two main types of data we will be concerned with in this class: <strong>categorical</strong> and <strong>quantatative</strong> data. Categorical data is when the results are descriptive (not numerical) and can be organized into a finite number of answers. Examples of categorical data include: favorite color, blood type, methods of transportation, favorite food, etc. Quantative data is data that is numerical. This can include: weights, heights, times, exam scores, etc.</p>
+<p>The tools we use to visualize data depend on whether the data is catagorical or quantatative.</p>
+</section>
+<section id="bar-and-pie-charts" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="bar-and-pie-charts"><span class="header-section-number">1.2</span> Bar and Pie Charts</h2>
+<p><strong>Bar</strong> and <strong>Pie charts</strong> are two ways to visualize the distribution of <strong>categorical</strong> data. Suppose 250 individuals were polled about how they commute to work and the following results were obtained,</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Category</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Car</td>
+<td>134</td>
+</tr>
+<tr class="even">
+<td>Public Transit</td>
+<td>58</td>
+</tr>
+<tr class="odd">
+<td>Bike</td>
+<td>44</td>
+</tr>
+<tr class="even">
+<td>Walk</td>
+<td>24</td>
+</tr>
+</tbody>
+</table>
+<p>We can visualize this data using either a bar or pie chart.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-bar-vs-pie" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bar-vs-pie-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lecture-01_files/figure-html/fig-bar-vs-pie-1.png" class="img-fluid figure-img" width="864">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bar-vs-pie-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.1: The same data shown as a bar chart (left) and a pie chart (right).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Creating a bar chart is simple, each <strong>categorical variable</strong> gets a bar where the height is represented by the number of respondents in the dataset. To create a pie chart, we start by computing the percentage of the whole for each category,</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Category</th>
+<th>Count</th>
+<th>Percentage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Car</td>
+<td>134</td>
+<td>53.6%</td>
+</tr>
+<tr class="even">
+<td>Public Transit</td>
+<td>58</td>
+<td>23.2%</td>
+</tr>
+<tr class="odd">
+<td>Bike</td>
+<td>44</td>
+<td>17.6%</td>
+</tr>
+<tr class="even">
+<td>Walk</td>
+<td>24</td>
+<td>9.6%</td>
+</tr>
+</tbody>
+</table>
+<p>The angle each pie slice gets corresponds to its percentage. For example, the <em>transit</em> category should have an interior angle that is 23.2% of 360 degrees, or</p>
+<p><span class="math display">\[0.232 \cdot 360 = 83.52 \text{ degrees.}\]</span></p>
+<div id="exm-pie" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1.1</strong></span> A class of 32 students was surveyed about whether they prefer morning, afternoon, or evening classes. The results are given in the table below.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Time of Day</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Morning</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>Afternoon</td>
+<td>14</td>
+</tr>
+<tr class="odd">
+<td>Evening</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<p>To compute the percentage of votes of each category, we divide the quantity by the total number of students, 32.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Time of Day</th>
+<th>Count</th>
+<th>Percentage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Morning</td>
+<td>10</td>
+<td>10/32 = 31.25%</td>
+</tr>
+<tr class="even">
+<td>Afternoon</td>
+<td>14</td>
+<td>14/32 = 43.75%</td>
+</tr>
+<tr class="odd">
+<td>Evening</td>
+<td>8</td>
+<td>8/32 = 25%</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lecture-01_files/figure-html/class-time-pie-1.png" class="img-fluid figure-img" width="576"></p>
+<figcaption>A pie chart depicting student class time preferences.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="Picking the Best Visual">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Picking the Best Visual
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In what ways are bar and pie charts similar and in what ways are they different? What are some benefits to a pie chart over a bar chart (and vice versa)?</p>
+</div>
+</div>
+<p>Don’t worry so much about creating a pie or bar chart by hand as we will use technology in this class. The below example explain how to create the graphs using StatCrunch.</p>
+<div id="exm-statcrunch" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1.2 (Basic Visuals in StatCrunch)</strong></span> A company has collected data on 500 customers. <a href="https://www.statcrunch.com/app/index.html?dataid=5131375" target="_blank">Open this dataset in StatCrunch</a>. Use StatCrunch to create a bar chart of customer satisfaction by doing the following:</p>
+<ol type="1">
+<li>Under Graph, select Bar Plot, then With Data.</li>
+<li>In the pop up screen, select the column SatisfactionRating. Set Type to Frequency and then hit Compute!</li>
+</ol>
+<p>Next create a pie chart of the customer regions by selecting Graph &gt; Pie Chart &gt; With Data.</p>
+</div>
+</section>
+<section id="misleading-visuals" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="misleading-visuals"><span class="header-section-number">1.3</span> Misleading Visuals</h2>
+<p>Some visualizations can be misleading! Sometimes this is just poor judgement, but sometimes this can be done to make a specific point.</p>
+<div id="exm-badviz" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1.3 (Bad Visualizations)</strong></span> Can you determine what makes these visuals misleading? Do you think it was done to make a specific point?</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/bad-visual-1.jpeg" class="img-fluid figure-img"></p>
+<figcaption>Image from www.codeconquest.com/blog/12-bad-data-visualization-examples-explained/</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/bad-visual-2.jpeg" class="img-fluid figure-img"></p>
+<figcaption>Image from www.codeconquest.com/blog/12-bad-data-visualization-examples-explained/</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="histograms" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="histograms"><span class="header-section-number">1.4</span> Histograms</h2>
+<p>Bar and pie charts are a great way to visualize <em>categorical</em> data. Now we want to address ways to visualize <strong>quantitative</strong> data, or data that is in the form of numbers.</p>
+<div id="exm-quantdata" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1.4 (Quantitative Data)</strong></span> Some example of quantitative data include: test scores, age, height, weight, (systolic) blood pressure, etc.</p>
+</div>
+<p>A good way to look at quantitative data is to use a <strong>histogram</strong>. A histogram breaks the range of all possible values into smaller intervals, then counts how many observation fall into each window. This looks kind of like a bar chart, but the bars sit right next to each other.</p>
+<div id="exm-testscores" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1.5</strong></span> Students in a calculus class obtain the following scores on the midterm exam,</p>
+<p><span class="math display">\[100, 85, 91, 76, 88, 82, 95, 62, 84, 79, 90, 73, 87, 81, 92, 77, 86, 83, 80, 89, 74, 93, 85, 79, 82\]</span></p>
+<p>The lowest score is a 62 and the highest score is 100. Let’s break down the range <span class="math inline">\([60,100]\)</span> into intervals of length 5.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Interval</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(60,65]</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>(65,70]</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>(70,75]</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>(75,80]</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td>(80,85]</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>(85,90]</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td>(90,95]</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td>(95,100]</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>From this we can make a histogram.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lecture-01_files/figure-html/test-hist-1.png" class="img-fluid figure-img" width="576"></p>
+<figcaption>A histogram of test scores.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>It is typical to call the intervals of a histogram <strong>bins</strong>, although the reading on WAMAP will call them <strong>classes</strong>. A histogram should always have bins of the same length. It can be misleading to use different bin lengths in the same way it is misleading to use breaks on the vertical axis of bar charts.</p>
+<p>Most computer programs will set automatic bin sizes based on the distribution of the data you get it, although you will typically have an option to manually input bin specifications. In StatCrunch you are give the optional inputs of the starting value and the bin width.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Bin Endpoints">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Bin Endpoints
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For whatever computer program you use, make sure you know how the <strong>endpoints</strong> of your bin intervals are treated. In Example <a href="#exm-testscores" class="quarto-xref">Example&nbsp;<span>1.5</span></a>, I wrote intervals like (70,75] which means 70 is excluded from the bin and 75 is included in the bin. The statistical programming language R (what generates the graphs in these notes) uses right inclusive bins, however StatCrunch uses <em>left</em> inclusive bins.</p>
+</div>
+</div>
+<p>The histograms below represent <em>the same</em> data, just with different bin sizes.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-hist-bins" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hist-bins-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lecture-01_files/figure-html/fig-hist-bins-1.png" class="img-fluid figure-img" width="864">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hist-bins-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.2: Histograms of the same dataset with different bin widths.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>From the histogram on the left the data looks <em>uniform</em> across the values 0-4. When we choose a small bin width though, we see a different behavior emerge.</p>
+<div id="exm-histSC" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1.6 (Histograms on StatCrunch)</strong></span> <a href="https://www.statcrunch.com/app/index.html?dataid=5131375" target="_blank">Reopen the customer dataset in StatCrunch</a>. Create a histogram of customer ages by going to Graph &gt; Histogram.</p>
+</div>
+<div id="exm-histinfo" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1.7 (High Tide Heights)</strong></span> The following histogram shows high tide heights over the month of July at a beach.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-tidehist" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tidehist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lecture-01_files/figure-html/fig-tidehist-1.png" class="img-fluid figure-img" width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tidehist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.3: Histograms of high tide heights in July.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The number of high tides that were more than 2 meters is given by the total in the last two bins, <span class="math inline">\(6+1=7\)</span>. To compute the percentage of high tides that were more than two meters, note that the total number of high tides is <span class="math inline">\(62\)</span>.</p>
+<p><span class="math display">\[ \frac{7}{62}\cdot 100 \approx 11.29\%\]</span></p>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="Information Lost">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Information Lost
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>What kinds of information do we lose by only seeing a histogram of the data?</p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Introduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./lecture-02.html" class="pagination-link" aria-label="Summary Statistics">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary Statistics</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
