@@ -2,9 +2,23 @@
 
 ## Overview
 
-In these notes we will look at a few common methods for visualizing data. There are two main types of data we will be concerned with in this class: **categorical** and **quantatative** data. Categorical data is when the results are descriptive (not numerical) and can be organized into a finite number of answers. Examples of categorical data include: favorite color, blood type, methods of transportation, favorite food, etc. Quantative data is data that is numerical. This can include: weights, heights, times, exam scores, etc. 
+In these notes we will look at a few common methods for visualizing data. There are two main types of data we will be concerned with in this class: **categorical** and **quantitative** data. Categorical data is when the results are descriptive and can be organized into a finite number of answers (or categories). Examples of categorical data include: favorite color, blood type, methods of transportation, favorite food, etc. Quantitative data is data that is numerical *and the numbers are representative of actual amounts*. This can include: weights, heights, times, exam scores, etc. 
 
-The tools we use to visualize data depend on whether the data is catagorical or quantatative. 
+::: {#exm-catorquant}
+Discuss with a partner whether the following are **categorical** or **quantitative**:
+
+* Age
+* Birth month
+* Birth year
+* Hair color
+* Zip code
+* Number of siblings
+* Jersey numbers (in sports)
+* Satisfaction score from 1-5
+
+:::
+
+The tools we use to visualize data depend on whether the data is categorical or quantatative. 
 
 ## Bar and Pie Charts
 
@@ -35,7 +49,7 @@ pie(commute, main = "Pie Chart",
 col = c("steelblue", "darkorange", "forestgreen", "firebrick"))
 ```
 
-Creating a bar chart is simple, each **categorical variable** gets a bar where the height is represented by the number of respondents in the dataset. To create a pie chart, we start by computing the percentage of the whole for each category,
+Creating a bar chart is simple, each **categorical variable** gets a bar where the height is represented by the number of respondents in the dataset. To create a pie chart, each category gets a slice of the pie proportional to its percent of the responses. 
 
 | Category | Count | Percentage |
 | --- | --- | --- |
@@ -43,10 +57,6 @@ Creating a bar chart is simple, each **categorical variable** gets a bar where t
 | Public Transit | 58 | 23.2% |
 | Bike | 44 | 17.6% |
 | Walk | 24 | 9.6% |
-
-The angle each pie slice gets corresponds to its percentage. For example, the *transit* category should have an interior angle that is 23.2% of 360 degrees, or 
-
-$$0.232 \cdot 360 = 83.52 \text{ degrees.}$$
 
 ::: {#exm-pie}
 A class of 32 students was surveyed about whether they prefer morning, afternoon, or evening classes. The results are given in the table below. 
@@ -81,6 +91,47 @@ col = c("steelblue", "darkorange", "forestgreen"))
 
 ::: {.callout-important title="Picking the Best Visual"}
 In what ways are bar and pie charts similar and in what ways are they different? What are some benefits to a pie chart over a bar chart (and vice versa)?
+:::
+
+::: {.callout-tip collapse="true"}
+## Answer
+A pie chart is better when the main question is about part of a whole, like whether one category is more than half the total.
+
+```{r}
+#| label: food-pie-bar-1
+#| fig-cap: "Bar and pie charts showing respondents favorite food."
+#| echo: false
+#| fig-width: 8
+
+favorite <- c(cookie=17,"ice cream"=8, brownie=6)
+
+par(mfrow = c(1, 2))
+
+pie(favorite, main = "Pie Chart")
+
+barplot(favorite, main = "Bar Chart")
+```
+
+A bar chart is better when we are comparing many close values. For example consider the favorite food of 100 respondents,
+
+```{r}
+#| label: food-pie-bar-2
+#| fig-cap: "Bar and pie charts showing respondents favorite food."
+#| echo: false
+#| fig-width: 8
+
+favorite <- c(Pizza = 25, Tacos = 27, Sushi = 22, Burgers = 26)
+
+par(mfrow = c(1, 2))
+
+barplot(favorite,
+        main = "Bar Chart")
+
+pie(favorite,
+    main = "Pie Chart")
+
+par(mfrow = c(1, 1))  # reset layout
+```
 :::
 
 Don't worry so much about creating a pie or bar chart by hand as we will use technology in this class. The below example explain how to create the graphs using StatCrunch. 
@@ -158,10 +209,19 @@ hist(scores,
 
 It is typical to call the intervals of a histogram **bins**, although the reading on WAMAP will call them **classes**. A histogram should always have bins of the same length. It can be misleading to use different bin lengths in the same way it is misleading to use breaks on the vertical axis of bar charts. 
 
+::: {.callout-important title="Histogram Versus Bar Chart"}
+Histogram "bars" touch, while bar chart bars do not. Why do you think this distinction is made?
+:::
+
+::: {.callout-tip collapse="true"}
+## Answer
+Histogram bars touch because the bins cover a continuous range of numbers with no gaps between them. Bar chart bars are separated because each bar is a distinct category, and there's nothing connecting the categories together. 
+:::
+
 Most computer programs will set automatic bin sizes based on the distribution of the data you get it, although you will typically have an option to manually input bin specifications. In StatCrunch you are give the optional inputs of the starting value and the bin width. 
 
 ::: {.callout-important title="Bin Endpoints"}
-For whatever computer program you use, make sure you know how the **endpoints** of your bin intervals are treated. In Example @exm-testscores, I wrote intervals like (70,75] which means 70 is excluded from the bin and 75 is included in the bin. The statistical programming language R (what generates the graphs in these notes) uses right inclusive bins, however StatCrunch uses *left* inclusive bins. 
+For whatever computer program you use, make sure you know how the **endpoints** of your bin intervals are treated. In Example @exm-testscores, I wrote intervals like (70,75] which means 70 is excluded from the bin and 75 is included in the bin. The statistical programming language R (what generates the graphs in these notes) uses right inclusive bins, however StatCrunch and Google Sheets use *left* inclusive bins. 
 :::
 
 The histograms below represent *the same* data, just with different bin sizes. 
@@ -193,7 +253,14 @@ hist(data,
      xlab = "Value", ylab = "Frequency")
 ```
 
-From the histogram on the left the data looks *uniform* across the values 0-4. When we choose a small bin width though, we see a different behavior emerge. 
+::: {#exm-binsizes}
+Discuss the following with a partner or two:
+
+* Which histogram do you think is better for the above data set and why?
+* What goes wrong if bins are too wide? What if bins are too narrow? 
+* Is there one "correct" bin width?
+* Could someone manipulate bin size to mislead the public about a dataset?
+:::
 
 
 ::: {#exm-histSC}
@@ -203,7 +270,7 @@ From the histogram on the left the data looks *uniform* across the values 0-4. W
 
 ::: {#exm-histinfo}
 ## High Tide Heights
-The following histogram shows high tide heights over the month of July at a beach.
+The following histogram shows 60 high tide heights over the month of July at a beach. What **percentage** of high tides were more than 2 meters?
 
 ```{r}
 #| label: fig-tidehist
@@ -212,11 +279,11 @@ The following histogram shows high tide heights over the month of July at a beac
 #| fig-width: 6
 
 heights <- c(2.05, 2.06, 1.99, 1.89, 1.86, 1.74, 1.74, 1.74, 1.5, 1.4,
-             1.4, 1.32, 1.23, 1.11, 1.15, 1.21, 1.06, 1.16, 1.1, 1.22,
+             1.4, 1.32, 1.23, 1.15, 1.21, 1.06, 1.16, 1.1, 1.22,
              1.25, 1.47, 1.48, 1.7, 1.78, 1.84, 1.73, 1.94, 2.02, 2.06,
              1.93, 1.99, 1.91, 1.87, 1.95, 1.71, 1.69, 1.66, 1.45, 1.4,
              1.34, 1.26, 1.11, 1.17, 1.26, 1.03, 1.25, 1.23, 1.23, 1.52,
-             1.5, 1.44, 1.64, 1.77, 1.8, 1.95, 1.95, 2.06, 2.15, 2.0,
+             1.5, 1.44, 1.64, 1.8, 1.95, 1.95, 2.06, 2.15, 2.0,
              2.06, 1.98)
 
 hist(heights,
@@ -224,13 +291,120 @@ hist(heights,
      main = "High Tide Heights",
      xlab = "Tide Height (m)", ylab = "Frequency")
 ```
+:::
 
-The number of high tides that were more than 2 meters is given by the total in the last two bins, $6+1=7$. To compute the percentage of high tides that were more than two meters, note that the total number of high tides is $62$. 
+::: {.callout-tip collapse="true"}
+## Answer
+We want to compute,
 
-$$ \frac{7}{62}\cdot 100 \approx 11.29\%$$
+$$\frac{\text{high tides over 2 m}}{\text{total number of high tides}}\cdot 100,$$
+
+where multiply by 100 turns the decimal into a percent. The total number of high tides is 60 as stated in the problem. If not given explicitly, we could carefully sum the quantity in each bin. 
+
+The number of high tides that were more than 2 meters is given by the total in the last two bins, $6+1=7$. 
+
+$$ \frac{7}{60}\cdot 100 \approx 11.67\%$$
 :::
 
 ::: {.callout-important title="Information Lost"}
 What kinds of information do we lose by only seeing a histogram of the data? 
+:::
+
+We can use words to descibe the shape of distributions. Some common terms are:
+
+- A distribution is **symmetric** if the left and right sides are roughly mirror images of each other.
+- A distribution is **skewed right** if it has a long tail stretching to the right. Most values are low, with a few unusually high values.
+- A distribution is **skewed left** if it has a long tail stretching to the left. Most values are high, with a few unusually low values.
+
+The direction of the skew is the direction of the *tail*, not the direction of the peak. A skewed-right distribution has its peak on the left.
+
+We also describe distributions by their number of peaks. A distribution with one peak is **unimodal**, and a distribution with two clear peaks is **bimodal**. The symmetric and skewed examples below are all unimodal.
+
+```{r}
+#| echo: false
+#| fig-width: 8
+#| fig-height: 6
+#| label: fig-shapes
+#| fig-cap: "Four common distribution shapes."
+set.seed(1)
+par(mfrow = c(2, 2))
+
+hist(rnorm(500, mean = 170, sd = 7), breaks = 15,
+     main = "Symmetric", xlab = "Height (cm)", ylab = "Count")
+
+hist(rgamma(500, shape = 2, scale = 15), breaks = 15,
+     main = "Skewed Right", xlab = "Income (thousands of $)", ylab = "Count")
+
+hist(100 - rgamma(500, shape = 2, scale = 5), breaks = 15,
+     main = "Skewed Left", xlab = "Exam score", ylab = "Count")
+
+# uses built in dataset
+hist(faithful$waiting, breaks = 15,
+     main = "Bimodal", xlab = "Minutes between eruptions", ylab = "Count")
+
+par(mfrow = c(1, 1))
+```
+
+| Shape | Real World Examples |
+|---|---|
+| Symmetric | Adult heights (for one sex), repeated measurements of the same quantity, standardized test scores |
+| Skewed right | Household income, home prices, number of social media followers, time spent waiting in line |
+| Skewed left | Scores on an easy exam, age at death in countries with high life expectancy |
+| Bimodal | Customers in a restaurant, shoe sizes of a population not separated by gender |
+
+::: {.callout-important}
+## Why Bimodal?
+
+A bimodal distribution often means the data contains two different groups
+mixed together. For the restaurant example, what are the two groups? Can
+you think of another variable that might be bimodal?
+:::
+
+::: {#exm-plants}
+## Plant Heights
+
+A biology class grew 40 bean plants under identical conditions and measured each plant's height, in centimeters, after six weeks. The histogram below shows the results.
+
+```{r}
+#| echo: false
+#| fig-cap: "Histogram of bean plant heights after six weeks."
+heights <- c(11.2, 11.8,
+             12.5, 13.1, 13.6, 13.9,
+             14.2, 14.5, 14.8, 15.0, 15.3, 15.5, 15.7, 15.9,
+             16.1, 16.3, 16.4, 16.8, 17.0, 17.2, 17.4, 17.5, 17.7, 17.8, 17.9,
+             18.1, 18.3, 18.6, 18.8, 19.0, 19.2, 19.4, 19.6, 19.9,
+             20.3, 20.7, 21.2, 21.8,
+             22.6, 23.4)
+
+hist(heights,
+     breaks = seq(10, 24, 2),
+     labels = TRUE,
+     ylim = c(0, 13),
+     xlab = "Height (cm)",
+     ylab = "Number of plants")
+```
+
+1. What is the bin width of this histogram?
+2. Describe the shape of the distribution. Around what height is the
+   center?
+3. What percentage of plants grew taller than 20 cm?
+4. What percentage of plants had heights between 14 and 20 cm?
+5. Can you tell from the histogram how tall the shortest plant is?
+:::
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+1. Each bin covers 2 cm, for example 16 to 18 cm.
+
+2. The distribution is roughly **symmetric**: the tallest bar is in the middle, at 16–18 cm, and the bars decrease at about the same rate on both sides. The center is around 17 cm.
+
+3. The last two bins contain plants taller than 20 cm: $4 + 2 = 6$ plants.
+   $$\frac{6}{40} \cdot 100 = 15\%$$
+
+4. The bins from 14 to 20 cm contain $8 + 11 + 9 = 28$ plants.
+   $$\frac{28}{40} \cdot 100 = 70\%$$
+
+5. No. We only know the shortest plant is somewhere between 10 and 12 cm. The histogram does not show individual values.
 :::
 
