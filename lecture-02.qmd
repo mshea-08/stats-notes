@@ -19,19 +19,26 @@ $$\bar{x} = \frac{x_1+x_2+ \cdots + x_n}{n}.$$
 * **Median**: The midpoint of the distribution. It is the number such that half the observations fall above and half fall below. 
 
 ::: {#exm-ages}
-A college class has 22 students with the following ages: 18, 22, 21, 21, 21, 18, 20, 42, 23, 44, 18, 18, 21, 18, 22, 18, 22, 23, 20, 38, 20, 34. To compute the mode and median it helps to reorder the data,
+A college class has 22 students with the following ages: 18, 22, 21, 21, 21, 18, 20, 42, 23, 44, 18, 18, 21, 18, 22, 18, 22, 23, 20, 38, 20, 34. Compute the mean, median, and mode. 
+
+[See this data on StatCrunch to perform the computations there.](https://www.statcrunch.com/app/index.html?dataid=5133686){target="_blank"}
+:::
+
+::: {.callout-tip collapse="true"}
+## Answer 
+To compute the mode and median it helps to order the data from smallest to largest. 
 
 $$18, 18, 18, 18, 18, 18, 20, 20, 20, 21, 21, 21, 21, 22, 22, 22, 23, 23, 34, 38, 42, 44$$
 
 The mode is 18, which occurs in the dataset 6 times. 
 
-Since the dataset has size 22 count out (in order) to the 11th and 12th observations. The median is the average of these two "middle" observations. Since they are both 21, the median of the dataset is 21. 
+Since the dataset is 22 students, the median is the value in-between the 11th and 12th observations. The 11th and 12th observation both happen to be 21, therefore the median is 21.
 
-Using the formula in the definition, the mean is $522/22 = 23.73$. 
+The mean is,
+
+$$\frac{6 \cdot 18 + 3 \cdot 20 + 4 \cdot 21 + 3 \cdot 22 + 2 \cdot 23  + 34 + 42 + 44}{22} = \frac{522}{22} = 23.73.$$
 
 Notice that the mean is slightly larger than the median this is because there are a handful of older students with *outlier* ages. The mean gets pulled by outliers more than the median does.
-
-[See this data on StatCrunch to perform the computations there.](https://www.statcrunch.com/app/index.html?dataid=5133686){target="_blank"}
 :::
 
 ::: {.callout-important title="Median on Datasets of Even Size"}
@@ -73,14 +80,39 @@ Using StatCrunch complete the following:
 3. If we increased the size of the dataset to 15 students can you still create a dataset with median 20 *and* no students are 20 years old?
 :::
 
-::: {#exm-createdata2}
-1. Using StatCrunch, create a dataset of 30 non-negative numbers where the mean is less than the median. Plot the histogram of the data. 
+::: {.callout-tip collapse="true"}
+## Answer
 
-2. (Challenge) If I have a dataset of 30 non-negative numbers and the median is 50, what is the smallest possible mean?
+1. A silly answer is all the students are age 20. A more realistic answer is: 18, 18, 18, 19, 20, 20, 20, 21, 22, 23.
+
+2. Yes it is! Since the dataset has an *even* size, we can make it so the 5th entry is 19 and the 6th entry is 21. Such as: 18, 18, 18, 19, 19, 21, 22, 23, 25.
+
+3. This is **not** possible if the dataset has an *odd* size. When there are 15 students, the age of the 8th youngest student is the median--so that student must be 20. 
 :::
 
+::: {#exm-createdata2}
+1. Using StatCrunch or Google Sheets, create a dataset of 25 non-negative integers (e.g. whole numbers) where the mean is less than the median. Plot the histogram of the data. 
+
+2. (Challenge) If I have a dataset of 25 **non-negative integers** and the median is 50, what is the smallest possible mean?
+:::
+
+::: {.callout-tip collapse="true"}
+## Answer
+1. Your dataset should be **skewed to the left** in this example. 
+
+2. The smallest possible mean occurs when 12 data points have value 0 and 13 have the value 50. This guarantees the median is 50. So the mean is 
+
+$$\frac{12 \cdot 0 + 13 \cdot 50}{25} = 26.$$
+
+We can't make any of numbers smaller or else we would either change the median or break the non-negative rule. Making any of the numbers bigger would increase the mean! 
+::: 
+
 ::: {.callout-important title="When to use mode?"}
-What might be a situation where the mode is the most relevant summary statistic to use?
+Discuss: what might be a situation where the mode is the most relevant summary statistic to use?
+:::
+
+::: {.callout-tip collapse="true"}
+Mode is the only measure of center that can be used for categorical data. Also, mode is great for bimodal (or multimodal) distributions!
 :::
 
 ::: {.callout-important title="Nobody's Average"}
@@ -151,7 +183,14 @@ write.csv(commute_data, "commute_times.csv", row.names = FALSE)
 [The commute times data is given here.](https://www.statcrunch.com/app/index.html?dataid=5133808){target="_blank"} Compute the range of the commuting data for each town. 
 :::
 
-Range does give us an initial look at the spread of the distribution, but outliers can obfuscate how range relates to spread. Consider two classes with the following histograms of exam scores:
+::: {.callout-tip collapse="true"}
+## Answer
+For Town A, the longest and shortest commute times are 42 and 18 minutes, respectively. So the range for Town A is $42-18 = 24$.
+
+For Town B, the longest and shortest commute times are 62 and 1 minute, respectively. So the range for Town B is $62-1 = 61$. 
+:::
+
+Range does give us an initial look at the spread of the distribution, but **outliers** can obfuscate how range relates to spread. Consider two classes with the following histograms of exam scores:
 
 ```{r}
 #| label: fig-quiz-spread
