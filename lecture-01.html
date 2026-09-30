@@ -207,8 +207,21 @@ window.Quarto = {
 
 <section id="overview" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">1.1</span> Overview</h2>
-<p>In these notes we will look at a few common methods for visualizing data. There are two main types of data we will be concerned with in this class: <strong>categorical</strong> and <strong>quantatative</strong> data. Categorical data is when the results are descriptive (not numerical) and can be organized into a finite number of answers. Examples of categorical data include: favorite color, blood type, methods of transportation, favorite food, etc. Quantative data is data that is numerical. This can include: weights, heights, times, exam scores, etc.</p>
-<p>The tools we use to visualize data depend on whether the data is catagorical or quantatative.</p>
+<p>In these notes we will look at a few common methods for visualizing data. There are two main types of data we will be concerned with in this class: <strong>categorical</strong> and <strong>quantitative</strong> data. Categorical data is when the results are descriptive and can be organized into a finite number of answers (or categories). Examples of categorical data include: favorite color, blood type, methods of transportation, favorite food, etc. Quantitative data is data that is numerical <em>and the numbers are representative of actual amounts</em>. This can include: weights, heights, times, exam scores, etc.</p>
+<div id="exm-catorquant" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1.1</strong></span> Discuss with a partner whether the following are <strong>categorical</strong> or <strong>quantitative</strong>:</p>
+<ul>
+<li>Age</li>
+<li>Birth month</li>
+<li>Birth year</li>
+<li>Hair color</li>
+<li>Zip code</li>
+<li>Number of siblings</li>
+<li>Jersey numbers (in sports)</li>
+<li>Satisfaction score from 1-5</li>
+</ul>
+</div>
+<p>The tools we use to visualize data depend on whether the data is categorical or quantatative.</p>
 </section>
 <section id="bar-and-pie-charts" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="bar-and-pie-charts"><span class="header-section-number">1.2</span> Bar and Pie Charts</h2>
@@ -254,7 +267,7 @@ Figure&nbsp;1.1: The same data shown as a bar chart (left) and a pie chart (righ
 </div>
 </div>
 </div>
-<p>Creating a bar chart is simple, each <strong>categorical variable</strong> gets a bar where the height is represented by the number of respondents in the dataset. To create a pie chart, we start by computing the percentage of the whole for each category,</p>
+<p>Creating a bar chart is simple, each <strong>categorical variable</strong> gets a bar where the height is represented by the number of respondents in the dataset. To create a pie chart, each category gets a slice of the pie proportional to its percent of the responses.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -286,10 +299,8 @@ Figure&nbsp;1.1: The same data shown as a bar chart (left) and a pie chart (righ
 </tr>
 </tbody>
 </table>
-<p>The angle each pie slice gets corresponds to its percentage. For example, the <em>transit</em> category should have an interior angle that is 23.2% of 360 degrees, or</p>
-<p><span class="math display">\[0.232 \cdot 360 = 83.52 \text{ degrees.}\]</span></p>
 <div id="exm-pie" class="theorem example">
-<p><span class="theorem-title"><strong>Example 1.1</strong></span> A class of 32 students was surveyed about whether they prefer morning, afternoon, or evening classes. The results are given in the table below.</p>
+<p><span class="theorem-title"><strong>Example 1.2</strong></span> A class of 32 students was surveyed about whether they prefer morning, afternoon, or evening classes. The results are given in the table below.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -363,9 +374,46 @@ Figure&nbsp;1.1: The same data shown as a bar chart (left) and a pie chart (righ
 <p>In what ways are bar and pie charts similar and in what ways are they different? What are some benefits to a pie chart over a bar chart (and vice versa)?</p>
 </div>
 </div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A pie chart is better when the main question is about part of a whole, like whether one category is more than half the total.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lecture-01_files/figure-html/food-pie-bar-1-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption>Bar and pie charts showing respondents favorite food.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A bar chart is better when we are comparing many close values. For example consider the favorite food of 100 respondents,</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lecture-01_files/figure-html/food-pie-bar-2-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption>Bar and pie charts showing respondents favorite food.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <p>Don’t worry so much about creating a pie or bar chart by hand as we will use technology in this class. The below example explain how to create the graphs using StatCrunch.</p>
 <div id="exm-statcrunch" class="theorem example">
-<p><span class="theorem-title"><strong>Example 1.2 (Basic Visuals in StatCrunch)</strong></span> A company has collected data on 500 customers. <a href="https://www.statcrunch.com/app/index.html?dataid=5131375" target="_blank">Open this dataset in StatCrunch</a>. Use StatCrunch to create a bar chart of customer satisfaction by doing the following:</p>
+<p><span class="theorem-title"><strong>Example 1.3 (Basic Visuals in StatCrunch)</strong></span> A company has collected data on 500 customers. <a href="https://www.statcrunch.com/app/index.html?dataid=5131375" target="_blank">Open this dataset in StatCrunch</a>. Use StatCrunch to create a bar chart of customer satisfaction by doing the following:</p>
 <ol type="1">
 <li>Under Graph, select Bar Plot, then With Data.</li>
 <li>In the pop up screen, select the column SatisfactionRating. Set Type to Frequency and then hit Compute!</li>
@@ -377,7 +425,7 @@ Figure&nbsp;1.1: The same data shown as a bar chart (left) and a pie chart (righ
 <h2 data-number="1.3" class="anchored" data-anchor-id="misleading-visuals"><span class="header-section-number">1.3</span> Misleading Visuals</h2>
 <p>Some visualizations can be misleading! Sometimes this is just poor judgement, but sometimes this can be done to make a specific point.</p>
 <div id="exm-badviz" class="theorem example">
-<p><span class="theorem-title"><strong>Example 1.3 (Bad Visualizations)</strong></span> Can you determine what makes these visuals misleading? Do you think it was done to make a specific point?</p>
+<p><span class="theorem-title"><strong>Example 1.4 (Bad Visualizations)</strong></span> Can you determine what makes these visuals misleading? Do you think it was done to make a specific point?</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/bad-visual-1.jpeg" class="img-fluid figure-img"></p>
@@ -396,11 +444,11 @@ Figure&nbsp;1.1: The same data shown as a bar chart (left) and a pie chart (righ
 <h2 data-number="1.4" class="anchored" data-anchor-id="histograms"><span class="header-section-number">1.4</span> Histograms</h2>
 <p>Bar and pie charts are a great way to visualize <em>categorical</em> data. Now we want to address ways to visualize <strong>quantitative</strong> data, or data that is in the form of numbers.</p>
 <div id="exm-quantdata" class="theorem example">
-<p><span class="theorem-title"><strong>Example 1.4 (Quantitative Data)</strong></span> Some example of quantitative data include: test scores, age, height, weight, (systolic) blood pressure, etc.</p>
+<p><span class="theorem-title"><strong>Example 1.5 (Quantitative Data)</strong></span> Some example of quantitative data include: test scores, age, height, weight, (systolic) blood pressure, etc.</p>
 </div>
 <p>A good way to look at quantitative data is to use a <strong>histogram</strong>. A histogram breaks the range of all possible values into smaller intervals, then counts how many observation fall into each window. This looks kind of like a bar chart, but the bars sit right next to each other.</p>
 <div id="exm-testscores" class="theorem example">
-<p><span class="theorem-title"><strong>Example 1.5</strong></span> Students in a calculus class obtain the following scores on the midterm exam,</p>
+<p><span class="theorem-title"><strong>Example 1.6</strong></span> Students in a calculus class obtain the following scores on the midterm exam,</p>
 <p><span class="math display">\[100, 85, 91, 76, 88, 82, 95, 62, 84, 79, 90, 73, 87, 81, 92, 77, 86, 83, 80, 89, 74, 93, 85, 79, 82\]</span></p>
 <p>The lowest score is a 62 and the highest score is 100. Let’s break down the range <span class="math inline">\([60,100]\)</span> into intervals of length 5.</p>
 <table class="caption-top table">
@@ -458,6 +506,35 @@ Figure&nbsp;1.1: The same data shown as a bar chart (left) and a pie chart (righ
 </div>
 </div>
 <p>It is typical to call the intervals of a histogram <strong>bins</strong>, although the reading on WAMAP will call them <strong>classes</strong>. A histogram should always have bins of the same length. It can be misleading to use different bin lengths in the same way it is misleading to use breaks on the vertical axis of bar charts.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Histogram Versus Bar Chart">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Histogram Versus Bar Chart
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Histogram “bars” touch, while bar chart bars do not. Why do you think this distinction is made?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Histogram bars touch because the bins cover a continuous range of numbers with no gaps between them. Bar chart bars are separated because each bar is a distinct category, and there’s nothing connecting the categories together.</p>
+</div>
+</div>
+</div>
 <p>Most computer programs will set automatic bin sizes based on the distribution of the data you get it, although you will typically have an option to manually input bin specifications. In StatCrunch you are give the optional inputs of the starting value and the bin width.</p>
 <div class="callout callout-style-default callout-important callout-titled" title="Bin Endpoints">
 <div class="callout-header d-flex align-content-center">
@@ -469,7 +546,7 @@ Figure&nbsp;1.1: The same data shown as a bar chart (left) and a pie chart (righ
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>For whatever computer program you use, make sure you know how the <strong>endpoints</strong> of your bin intervals are treated. In Example <a href="#exm-testscores" class="quarto-xref">Example&nbsp;<span>1.5</span></a>, I wrote intervals like (70,75] which means 70 is excluded from the bin and 75 is included in the bin. The statistical programming language R (what generates the graphs in these notes) uses right inclusive bins, however StatCrunch uses <em>left</em> inclusive bins.</p>
+<p>For whatever computer program you use, make sure you know how the <strong>endpoints</strong> of your bin intervals are treated. In Example <a href="#exm-testscores" class="quarto-xref">Example&nbsp;<span>1.6</span></a>, I wrote intervals like (70,75] which means 70 is excluded from the bin and 75 is included in the bin. The statistical programming language R (what generates the graphs in these notes) uses right inclusive bins, however StatCrunch and Google Sheets use <em>left</em> inclusive bins.</p>
 </div>
 </div>
 <p>The histograms below represent <em>the same</em> data, just with different bin sizes.</p>
@@ -487,12 +564,20 @@ Figure&nbsp;1.2: Histograms of the same dataset with different bin widths.
 </div>
 </div>
 </div>
-<p>From the histogram on the left the data looks <em>uniform</em> across the values 0-4. When we choose a small bin width though, we see a different behavior emerge.</p>
+<div id="exm-binsizes" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1.7</strong></span> Discuss the following with a partner or two:</p>
+<ul>
+<li>Which histogram do you think is better for the above data set and why?</li>
+<li>What goes wrong if bins are too wide? What if bins are too narrow?</li>
+<li>Is there one “correct” bin width?</li>
+<li>Could someone manipulate bin size to mislead the public about a dataset?</li>
+</ul>
+</div>
 <div id="exm-histSC" class="theorem example">
-<p><span class="theorem-title"><strong>Example 1.6 (Histograms on StatCrunch)</strong></span> <a href="https://www.statcrunch.com/app/index.html?dataid=5131375" target="_blank">Reopen the customer dataset in StatCrunch</a>. Create a histogram of customer ages by going to Graph &gt; Histogram.</p>
+<p><span class="theorem-title"><strong>Example 1.8 (Histograms on StatCrunch)</strong></span> <a href="https://www.statcrunch.com/app/index.html?dataid=5131375" target="_blank">Reopen the customer dataset in StatCrunch</a>. Create a histogram of customer ages by going to Graph &gt; Histogram.</p>
 </div>
 <div id="exm-histinfo" class="theorem example">
-<p><span class="theorem-title"><strong>Example 1.7 (High Tide Heights)</strong></span> The following histogram shows high tide heights over the month of July at a beach.</p>
+<p><span class="theorem-title"><strong>Example 1.9 (High Tide Heights)</strong></span> The following histogram shows 60 high tide heights over the month of July at a beach. What <strong>percentage</strong> of high tides were more than 2 meters?</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-tidehist" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -507,8 +592,26 @@ Figure&nbsp;1.3: Histograms of high tide heights in July.
 </div>
 </div>
 </div>
-<p>The number of high tides that were more than 2 meters is given by the total in the last two bins, <span class="math inline">\(6+1=7\)</span>. To compute the percentage of high tides that were more than two meters, note that the total number of high tides is <span class="math inline">\(62\)</span>.</p>
-<p><span class="math display">\[ \frac{7}{62}\cdot 100 \approx 11.29\%\]</span></p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>We want to compute,</p>
+<p><span class="math display">\[\frac{\text{high tides over 2 m}}{\text{total number of high tides}}\cdot 100,\]</span></p>
+<p>where multiply by 100 turns the decimal into a percent. The total number of high tides is 60 as stated in the problem. If not given explicitly, we could carefully sum the quantity in each bin.</p>
+<p>The number of high tides that were more than 2 meters is given by the total in the last two bins, <span class="math inline">\(6+1=7\)</span>.</p>
+<p><span class="math display">\[ \frac{7}{60}\cdot 100 \approx 11.67\%\]</span></p>
+</div>
+</div>
 </div>
 <div class="callout callout-style-default callout-important callout-titled" title="Information Lost">
 <div class="callout-header d-flex align-content-center">
@@ -521,6 +624,113 @@ Figure&nbsp;1.3: Histograms of high tide heights in July.
 </div>
 <div class="callout-body-container callout-body">
 <p>What kinds of information do we lose by only seeing a histogram of the data?</p>
+</div>
+</div>
+<p>We can use words to descibe the shape of distributions. Some common terms are:</p>
+<ul>
+<li>A distribution is <strong>symmetric</strong> if the left and right sides are roughly mirror images of each other.</li>
+<li>A distribution is <strong>skewed right</strong> if it has a long tail stretching to the right. Most values are low, with a few unusually high values.</li>
+<li>A distribution is <strong>skewed left</strong> if it has a long tail stretching to the left. Most values are high, with a few unusually low values.</li>
+</ul>
+<p>The direction of the skew is the direction of the <em>tail</em>, not the direction of the peak. A skewed-right distribution has its peak on the left.</p>
+<p>We also describe distributions by their number of peaks. A distribution with one peak is <strong>unimodal</strong>, and a distribution with two clear peaks is <strong>bimodal</strong>. The symmetric and skewed examples below are all unimodal.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-shapes" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-shapes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lecture-01_files/figure-html/fig-shapes-1.png" class="img-fluid figure-img" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-shapes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.4: Four common distribution shapes.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Shape</th>
+<th>Real World Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Symmetric</td>
+<td>Adult heights (for one sex), repeated measurements of the same quantity, standardized test scores</td>
+</tr>
+<tr class="even">
+<td>Skewed right</td>
+<td>Household income, home prices, number of social media followers, time spent waiting in line</td>
+</tr>
+<tr class="odd">
+<td>Skewed left</td>
+<td>Scores on an easy exam, age at death in countries with high life expectancy</td>
+</tr>
+<tr class="even">
+<td>Bimodal</td>
+<td>Customers in a restaurant, shoe sizes of a population not separated by gender</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Why Bimodal?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A bimodal distribution often means the data contains two different groups mixed together. For the restaurant example, what are the two groups? Can you think of another variable that might be bimodal?</p>
+</div>
+</div>
+<div id="exm-plants" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1.10 (Plant Heights)</strong></span> A biology class grew 40 bean plants under identical conditions and measured each plant’s height, in centimeters, after six weeks. The histogram below shows the results.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lecture-01_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Histogram of bean plant heights after six weeks.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<ol type="1">
+<li>What is the bin width of this histogram?</li>
+<li>Describe the shape of the distribution. Around what height is the center?</li>
+<li>What percentage of plants grew taller than 20 cm?</li>
+<li>What percentage of plants had heights between 14 and 20 cm?</li>
+<li>Can you tell from the histogram how tall the shortest plant is?</li>
+</ol>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>Each bin covers 2 cm, for example 16 to 18 cm.</p></li>
+<li><p>The distribution is roughly <strong>symmetric</strong>: the tallest bar is in the middle, at 16–18 cm, and the bars decrease at about the same rate on both sides. The center is around 17 cm.</p></li>
+<li><p>The last two bins contain plants taller than 20 cm: <span class="math inline">\(4 + 2 = 6\)</span> plants. <span class="math display">\[\frac{6}{40} \cdot 100 = 15\%\]</span></p></li>
+<li><p>The bins from 14 to 20 cm contain <span class="math inline">\(8 + 11 + 9 = 28\)</span> plants. <span class="math display">\[\frac{28}{40} \cdot 100 = 70\%\]</span></p></li>
+<li><p>No.&nbsp;We only know the shortest plant is somewhere between 10 and 12 cm. The histogram does not show individual values.</p></li>
+</ol>
+</div>
 </div>
 </div>
 
