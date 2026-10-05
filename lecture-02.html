@@ -185,7 +185,6 @@ window.Quarto = {
   </ul></li>
   <li><a href="#boxplots" id="toc-boxplots" class="nav-link" data-scroll-target="#boxplots"><span class="header-section-number">2.3</span> Boxplots</a></li>
   <li><a href="#standard-deviation" id="toc-standard-deviation" class="nav-link" data-scroll-target="#standard-deviation"><span class="header-section-number">2.4</span> Standard Deviation</a></li>
-  <li><a href="#extra-practice" id="toc-extra-practice" class="nav-link" data-scroll-target="#extra-practice"><span class="header-section-number">2.5</span> Extra Practice</a></li>
   </ul>
 </nav>
     </div>
@@ -211,17 +210,13 @@ window.Quarto = {
 </header>
 
 
-<p>We’ve given a few examples of ways to visualize data, now we want to talk about some important <strong>summary statistics</strong>. Summary statistics are quantitative values one can use to succintly give an idea for the shape of the distribution. Some questions we try to answer using summary statistics:</p>
-<ol type="1">
-<li>What is a typical value? What range does a typical value fall between?</li>
-<li>What is the range of possible values? What is the range of <em>likely</em> values?</li>
-</ol>
-<p>In this section we will cover different measures of <strong>center</strong> and measures of <strong>spread</strong> to help answer these questions.</p>
+<p>We’ve given a few examples of ways to visualize data, now we want to talk about some important <strong>summary statistics</strong>. Summary statistics are quantitative values one can use help describe the shape of a distribution. We will talk about measures of <strong>center</strong> and measures of <strong>spread</strong>.</p>
+<p>Almost always, summary statistics can only be used on <em>quantitative data</em>.</p>
 <section id="measures-of-center" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="measures-of-center"><span class="header-section-number">2.1</span> Measures of Center</h2>
-<p>There are three measures of center we will cover:</p>
+<p>The goal of measures of <em>center</em> is to describe the value of a typical datapoint. There are three measures of center we will cover:</p>
 <ul>
-<li><strong>Mode</strong>: The value(s) with the highest frequency in the dataset.</li>
+<li><strong>Mode</strong>: The value(s) with the highest frequency in the dataset. Mode is the <em>only</em> measure of center that can be used with categorical data.</li>
 <li><strong>Mean</strong>: The average of the values. If a dataset has <span class="math inline">\(n\)</span> values <span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_2\)</span>, <span class="math inline">\(\dots\)</span>, <span class="math inline">\(x_n\)</span>, then the mean <span class="math inline">\(\bar{x}\)</span> is given by</li>
 </ul>
 <p><span class="math display">\[\bar{x} = \frac{x_1+x_2+ \cdots + x_n}{n}.\]</span></p>
@@ -229,7 +224,7 @@ window.Quarto = {
 <li><strong>Median</strong>: The midpoint of the distribution. It is the number such that half the observations fall above and half fall below.</li>
 </ul>
 <div id="exm-ages" class="theorem example">
-<p><span class="theorem-title"><strong>Example 2.1</strong></span> A college class has 22 students with the following ages: 18, 22, 21, 21, 21, 18, 20, 42, 23, 44, 18, 18, 21, 18, 22, 18, 22, 23, 20, 38, 20, 34. Compute the mean, median, and mode.</p>
+<p><span class="theorem-title"><strong>Example 2.1 (Classroom Ages)</strong></span> A college class has 22 students with the following ages: 18, 22, 21, 21, 21, 18, 20, 42, 23, 44, 18, 18, 21, 18, 22, 18, 22, 23, 20, 38, 20, 34. Compute the mean, median, and mode.</p>
 <p><a href="https://www.statcrunch.com/app/index.html?dataid=5133686" target="_blank">See this data on StatCrunch to perform the computations there.</a></p>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -267,7 +262,7 @@ window.Quarto = {
 <p>For this course, to compute the median when the dataset has an <em>even</em> number of observations average the two observation in the middle. This is a typical convention chosen in statistics.</p>
 </div>
 </div>
-<p>As mentioned in Example <a href="#exm-ages" class="quarto-xref">Example&nbsp;<span>2.1</span></a>, differences in the median and mean can reveal information about the shape of the distribution. A distribution is <strong>skewed</strong> if it has a long tail to one side.</p>
+<p>The difference between the median and mean of a distribution can reveal information about the shape of the distribution. In particular, if a distribution is <strong>skewed</strong> or <strong>symmetric</strong>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-income" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -282,7 +277,21 @@ Figure&nbsp;2.1: Right-skewed household income distribution.
 </div>
 </div>
 </div>
-<p>The above dataset is skewed <em>to the right</em> since it has a long tail on the right side. For a distribution that is skewed to the right (left) the mean will be greater (less) than the median.</p>
+<p>When a distribution is skewed, the mean is pulled more towards the <strong>tail</strong> than the median.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-heights" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-heights-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lecture-02_files/figure-html/fig-heights-1.png" class="img-fluid figure-img" width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-heights-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.2: Approximately symmetric distribution of soccer team heights.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 <div class="callout callout-style-default callout-important callout-titled" title="Mean Versus Median">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -299,7 +308,7 @@ Figure&nbsp;2.1: Right-skewed household income distribution.
 <div id="exm-createdata1" class="theorem example">
 <p><span class="theorem-title"><strong>Example 2.2 (Creating Data)</strong></span> Using StatCrunch complete the following:</p>
 <ol type="1">
-<li><p>Create a dataset of 10 student ages where the median is 20.</p></li>
+<li><p>Create a dataset of 10 student ages where the median is 20 and at least one student is not 20.</p></li>
 <li><p>Is it possible to do this and have no student be 20 years old?</p></li>
 <li><p>If we increased the size of the dataset to 15 students can you still create a dataset with median 20 <em>and</em> no students are 20 years old?</p></li>
 </ol>
@@ -317,7 +326,7 @@ Figure&nbsp;2.1: Right-skewed household income distribution.
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li><p>A silly answer is all the students are age 20. A more realistic answer is: 18, 18, 18, 19, 20, 20, 20, 21, 22, 23.</p></li>
+<li><p>One possible answer: 18, 18, 18, 19, 20, 20, 20, 21, 22, 23.</p></li>
 <li><p>Yes it is! Since the dataset has an <em>even</em> size, we can make it so the 5th entry is 19 and the 6th entry is 21. Such as: 18, 18, 18, 19, 19, 21, 22, 23, 25.</p></li>
 <li><p>This is <strong>not</strong> possible if the dataset has an <em>odd</em> size. When there are 15 students, the age of the 8th youngest student is the median–so that student must be 20.</p></li>
 </ol>
@@ -327,7 +336,7 @@ Figure&nbsp;2.1: Right-skewed household income distribution.
 <div id="exm-createdata2" class="theorem example">
 <p><span class="theorem-title"><strong>Example 2.3</strong></span> &nbsp;</p>
 <ol type="1">
-<li><p>Using StatCrunch or Google Sheets, create a dataset of 25 non-negative integers (e.g.&nbsp;whole numbers) where the mean is less than the median. Plot the histogram of the data.</p></li>
+<li><p>Using StatCrunch or Google Sheets, create a dataset of 25 non-negative integers (e.g.&nbsp;whole numbers 0 and larger) where the mean is less than the median. Plot the histogram of the data.</p></li>
 <li><p>(Challenge) If I have a dataset of 25 <strong>non-negative integers</strong> and the median is 50, what is the smallest possible mean?</p></li>
 </ol>
 </div>
@@ -407,7 +416,7 @@ Tip
 <img src="lecture-02_files/figure-html/fig-commute-spread-1.png" class="img-fluid figure-img" width="864">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-commute-spread-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.2: Commute times in two different towns.
+Figure&nbsp;2.3: Commute times in two different towns.
 </figcaption>
 </figure>
 </div>
@@ -447,7 +456,7 @@ Figure&nbsp;2.2: Commute times in two different towns.
 <img src="lecture-02_files/figure-html/fig-quiz-spread-1.png" class="img-fluid figure-img" width="864">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-quiz-spread-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.3: Scores on Exam 1 in Class A and Class B
+Figure&nbsp;2.4: Scores on Exam 1 in Class A and Class B
 </figcaption>
 </figure>
 </div>
@@ -460,106 +469,179 @@ Figure&nbsp;2.3: Scores on Exam 1 in Class A and Class B
 <p>Recall that the <strong>median</strong> divides the observations into two parts of equal size. This is because we defined the median as the value which half the observations are below and half are above. <strong>Quartiles</strong> divide the data into 4 equal parts. Specifically we define:</p>
 <ul>
 <li>The first quartile (or lower quartile), Q1, is the value such that 25% of the data lies below this value.</li>
-<li>The second quartile (or median), Q2, is value where 50% of the data lies below this value.</li>
+<li>The second quartile (or median), M, is value where 50% of the data lies below this value.</li>
 <li>The third quartile (or upper quartile), Q3, is the value such that 75% of the data lies below this value.</li>
 </ul>
 <p>Computing the min, Q1, Q2, Q3, and max of a data set is known as the <strong>five-number summary</strong>.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that Q1 and Q3 are computed differently on Google Sheets than on StatCrunch (and in this class). While they are effectively the same, it will sometimes cause incorrect homework answers.</p>
+</div>
+</div>
 <div id="exm-5num" class="theorem example">
-<p><span class="theorem-title"><strong>Example 2.6</strong></span> Below are the exact list of Exam 1 scores for Class A and Class B (from the histograms in Figure <a href="#fig-quiz-spread" class="quarto-xref">Figure&nbsp;<span>2.3</span></a>). Compute the five-number summary for each class. What differences do you observe about the distribution from the statistics?</p>
+<p><span class="theorem-title"><strong>Example 2.6</strong></span> Below are the exact list of Exam 1 scores for Class A and Class B (from the histograms in Figure <a href="#fig-quiz-spread" class="quarto-xref">Figure&nbsp;<span>2.4</span></a>). Compute the five-number summary for each class. What differences do you observe about the distribution from the statistics?</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Class A</th>
 <th>Class B</th>
+<th>Position Number</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>10</td>
 <td>10</td>
+<td>1</td>
 </tr>
 <tr class="even">
 <td>44</td>
 <td>34</td>
+<td>2</td>
 </tr>
 <tr class="odd">
 <td>66</td>
 <td>36</td>
+<td>3</td>
 </tr>
 <tr class="even">
 <td>70</td>
 <td>44</td>
+<td>4</td>
 </tr>
 <tr class="odd">
 <td>71</td>
 <td>45</td>
+<td>5</td>
 </tr>
 <tr class="even">
 <td>73</td>
 <td>48</td>
+<td>6</td>
 </tr>
 <tr class="odd">
 <td>74</td>
 <td>50</td>
+<td>7</td>
 </tr>
 <tr class="even">
 <td>76</td>
 <td>56</td>
+<td>8</td>
 </tr>
 <tr class="odd">
 <td>77</td>
 <td>64</td>
+<td>9</td>
 </tr>
 <tr class="even">
 <td>79</td>
 <td>66</td>
+<td>10</td>
 </tr>
 <tr class="odd">
 <td>80</td>
 <td>76</td>
+<td>11</td>
 </tr>
 <tr class="even">
 <td>80</td>
 <td>77</td>
+<td>12</td>
 </tr>
 <tr class="odd">
 <td>80</td>
 <td>80</td>
+<td>13</td>
 </tr>
 <tr class="even">
 <td>82</td>
 <td>82</td>
+<td>14</td>
 </tr>
 <tr class="odd">
 <td>83</td>
 <td>83</td>
+<td>15</td>
 </tr>
 <tr class="even">
 <td>83</td>
 <td>84</td>
+<td>16</td>
 </tr>
 <tr class="odd">
 <td>86</td>
 <td>88</td>
+<td>17</td>
 </tr>
 <tr class="even">
 <td>87</td>
 <td>89</td>
+<td>18</td>
 </tr>
 <tr class="odd">
 <td>91</td>
 <td>91</td>
+<td>19</td>
 </tr>
 <tr class="even">
 <td>96</td>
 <td>95</td>
+<td>20</td>
 </tr>
 </tbody>
 </table>
 </div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Each class list is already ordered for us, so we have:</p>
+<ul>
+<li>Min = 1st grade –&gt; Class A = 10, Class B = 10</li>
+<li>Q1 = between 5th and 6th grade –&gt; Class A = 72, Class B = 46.5</li>
+<li>M = between 10th and 11th grade –&gt; Class A = 79.5, Class B = 71</li>
+<li>Q3 = between 15th and 16th grade –&gt; Class A = 83, Class B = 83.5</li>
+<li>Max = 20th grade –&gt; Class A = 96, Class B = 95</li>
+</ul>
+</div>
+</div>
+</div>
 <p>The <strong>inter-quartile range</strong> (IQR) is defined as Q3-Q1.</p>
 <div id="exm-iqr" class="theorem example">
 <p><span class="theorem-title"><strong>Example 2.7</strong></span> Compute the IQR for the exam scores by class.</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>For Class A, IQR = Q3 - Q1 = 83 - 72 = 11. For Class B, IQR = 83.5 - 46.5 = 47.</p>
+</div>
+</div>
 </div>
 <div class="callout callout-style-default callout-important callout-titled" title="IQR Versus Range">
 <div class="callout-header d-flex align-content-center">
@@ -577,14 +659,67 @@ Figure&nbsp;2.3: Scores on Exam 1 in Class A and Class B
 </section>
 <section id="outliers" class="level3" data-number="2.2.3">
 <h3 data-number="2.2.3" class="anchored" data-anchor-id="outliers"><span class="header-section-number">2.2.3</span> Outliers</h3>
-<p>The general notion of an <strong>outlier</strong> is an oberservation that lies far away from the general distribution. The readings define outliers are points that are:</p>
+<p>An <strong>outlier</strong> is an oberservation that lies far away from the general distribution. The readings define outliers as points that are:</p>
 <ul>
 <li>Smaller than <span class="math inline">\(\text{Q}1 - 1.5 \cdot (\text{IQR})\)</span>, or</li>
 <li>Larger than <span class="math inline">\(\text{Q}3 + 1.5 \cdot (\text{IQR})\)</span>.</li>
 </ul>
-<p><span style="color:red;"><strong>Do not</strong></span> think of this as a set in stone rule. In fact, the multiplier 1.5 was not chosen with any real mathematical theory behind it. Use these values to flag <em>potential</em> outliers in the dataset, but context is an important determining factor when understanding data.</p>
+<p><span style="color:red;"><strong>Do not</strong></span> think of this as a set in stone rule. In fact, the multiplier 1.5 was not chosen with any real mathematical theory behind it. Use these values to flag <em>potential</em> outliers in the dataset, but context is an important factor when determining what is an outlier. Moreover, <span style="color:red;"><strong>do not</strong></span> automatically remove outliers from a dataset</p>
 <div id="exm-commutebimodal" class="theorem example">
-<p><span class="theorem-title"><strong>Example 2.8</strong></span> We have the following list of commute times for a neighborhood: 24, 25, 26, 27, 27, 28, 28, 29, 29, 30, 30, 30, 31, 31, 32, 32, 33, 33, 34, 34, 35, 35, 36, 36, 37, 38, 39, 40, 41, 42, 72, 74, 76, 78, 80, 82. Let’s start by looking at the five-number summary.</p>
+<p><span class="theorem-title"><strong>Example 2.8 (Bimodal Commute Times)</strong></span> We have the following list of commute times for a neighborhood:</p>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td>24</td>
+<td>25</td>
+<td>26</td>
+<td>27</td>
+<td>27</td>
+<td>28</td>
+</tr>
+<tr class="even">
+<td>28</td>
+<td>29</td>
+<td>29</td>
+<td>30</td>
+<td>30</td>
+<td>30</td>
+</tr>
+<tr class="odd">
+<td>31</td>
+<td>31</td>
+<td>32</td>
+<td>32</td>
+<td>33</td>
+<td>33</td>
+</tr>
+<tr class="even">
+<td>34</td>
+<td>34</td>
+<td>35</td>
+<td>35</td>
+<td>36</td>
+<td>36</td>
+</tr>
+<tr class="odd">
+<td>37</td>
+<td>38</td>
+<td>39</td>
+<td>40</td>
+<td>41</td>
+<td>42</td>
+</tr>
+<tr class="even">
+<td>72</td>
+<td>74</td>
+<td>76</td>
+<td>78</td>
+<td>80</td>
+<td>82</td>
+</tr>
+</tbody>
+</table>
+<p>Let’s start by looking at the five-number summary.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 24.0 29.5 33.5 39.5 82.0</code></pre>
@@ -601,13 +736,13 @@ Figure&nbsp;2.3: Scores on Exam 1 in Class A and Class B
 <img src="lecture-02_files/figure-html/fig-bimodal-commute-1.png" class="img-fluid figure-img" width="576">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bimodal-commute-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.4: Histogram of neighborhood commute times.
+Figure&nbsp;2.5: Histogram of neighborhood commute times.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>What we see from the histogram is a <strong>bimodal</strong> distribution. There is one subset of the neighborhood that commutes a shorter distance (think across town), while a small subset of the neighborhood commutes to a different city. Thus the 1.5 IQR outlier rule is a bad fit here.</p>
+<p>What we see from the histogram is a <strong>bimodal</strong> distribution. There is one subset of the neighborhood that commutes a shorter distance (think across town), while a small subset of the neighborhood commutes to a different city. This is an example where the <span class="math inline">\(1.5 \times \text{IQR}\)</span> rule is a bad fit.</p>
 </div>
 <div class="callout callout-style-default callout-important callout-titled" title="Removing Data">
 <div class="callout-header d-flex align-content-center">
@@ -647,6 +782,22 @@ Figure&nbsp;2.4: Histogram of neighborhood commute times.
 </figure>
 </div>
 </div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The median support agent is a faster typer than the median software engineer. Software engineers have a much larger <em>variation</em> in typing speeds then support agents.</p>
+</div>
+</div>
+</div>
 </section>
 <section id="standard-deviation" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="standard-deviation"><span class="header-section-number">2.4</span> Standard Deviation</h2>
@@ -654,9 +805,22 @@ Figure&nbsp;2.4: Histogram of neighborhood commute times.
 <p><span class="math display">\[SD = \sqrt{\frac{(x_1-\bar{x})^2 + (x_2-\bar{x})^2 + \cdots + (x_n - \bar{x})^2}{n-1}}\]</span></p>
 <p>where <span class="math inline">\(\bar{x}\)</span> denotes the mean of the dataset. Let’s see this formula in action with a small example,</p>
 <div id="exm-sdsmall" class="theorem example">
-<p><span class="theorem-title"><strong>Example 2.11</strong></span> Anna denotes how many Reese’s Peanutbutter Cups her 10 friends eat at a party. She gets the following amounts:</p>
+<p><span class="theorem-title"><strong>Example 2.14</strong></span> Anna denotes how many Reese’s Peanutbutter Cups her 10 friends eat at a party. She gets the following amounts:</p>
 <p><span class="math display">\[3, 4, 3, 6, 6, 2, 1, 8, 5, 5.\]</span></p>
-<p>To compute the standard deviation, we first need to compute the mean,</p>
+<p>Compute the mean and standard deviation of the dataset.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Let’s compute the mean,</p>
 <p><span class="math display">\[\bar{x} = \frac{3+4+3+6+6+2+1+8+5+5}{10} = \frac{43}{10} = 4.3.\]</span></p>
 <p>Next compute the differences,</p>
 <p><span class="math display">\[-1.3,-0.3,-1.3,1.7,1.7,-2.3,-3.3,3.7,0.7,0.7.\]</span></p>
@@ -665,17 +829,80 @@ Figure&nbsp;2.4: Histogram of neighborhood commute times.
 <p>Now divide by <span class="math inline">\(n-1 = 10-1 = 9\)</span> and take the square root,</p>
 <p><span class="math display">\[SD = \sqrt{\frac{40.1}{9}} = \sqrt{4.456} \approx 2.11.\]</span></p>
 </div>
+</div>
+</div>
 <p>We claim that standard deviation is telling us <em>something</em> about the spread of the distribution, but we can be more precise than that. The standard deviation tell us the average distance from an given datapoint to the mean. A larger standard deviation means the data is more spread out, while a smaller standard deviation tells us the data is compact.</p>
 <div id="exm-sd" class="theorem example">
-<p><span class="theorem-title"><strong>Example 2.12 (Standard Deviation in StatCrunch)</strong></span> <a href="https://www.statcrunch.com/app/index.html?dataid=5141492" target="_blank">For this example use this data on StatCrunch.</a> Compute the standard deviation of the income dataset.</p>
+<p><span class="theorem-title"><strong>Example 2.11 (Standard Deviation in StatCrunch)</strong></span> <a href="https://www.statcrunch.com/app/index.html?dataid=5141492" target="_blank">For this example use this data on StatCrunch.</a> Compute the standard deviation of the income dataset.</p>
 </div>
-<p>Just like the mean, the sample standard deviation is heavily influenced by outliers.</p>
+<div id="exm-varyingstd" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2.12</strong></span> Which histogram has the smallest standard deviation? The largest?</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lecture-02_files/figure-html/std-data-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Histograms of data with similar mean and different standard deviations.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<section id="normal-distribution-and-the-68-95-99.7" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="normal-distribution-and-the-68-95-99.7"><span class="header-section-number">2.5</span> Normal Distribution and the 68-95-99.7</h2>
+<p>Quantitative data is <strong>normally</strong> distributed when its distribution looks like a symmetric “mound” or “bell” shape.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lecture-02_files/figure-html/normal-data-1.png" class="img-fluid figure-img" width="576"></p>
+<figcaption>Histogram of approximately normal data.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Things that are approximately normal in distribution include:</p>
+<ul>
+<li>Baby birth weights</li>
+<li>Heights of adults by sex</li>
+<li>Blood pressure of adults</li>
+<li>Standardized testing scores</li>
+</ul>
+<p>Statistics over time may have you thinking everything is normal, but this is not true! You should always question whether a distribution is normal or has some other distribution. Things that are <em>not</em> normal include:</p>
+<ul>
+<li>Income</li>
+<li>Time between earthquakes in a given region</li>
+<li>Number of shots taken in a soccer game</li>
+<li>Amount of time someone waits in a line</li>
+</ul>
+<p>If a distribution is normal though, the <strong>empirical rule</strong> (or 68-95-99.7 rule) gives us a rough estimate of what percentage of the data falls withing 1, 2, and 3 standard deviations of the mean. We have:</p>
+<ul>
+<li>68% of the data falls within 1 standard deviation of the mean</li>
+<li>95% of the data falls within 2 standard deviations of the mean</li>
+<li>99.7% falls within 3 standard deviations of the mean</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lecture-02_files/figure-html/empirical-rule-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="exm-babywts" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2.13 (Baby Weights)</strong></span> The mean birth weight at a hospital is 7.3 lbs with a standard deviation of 1.1 lbs. Assume that the birth weight is approximately normally distributed.</p>
+<ol type="1">
+<li>What percentage of babies weigh between 6.2 lbs and 8.4 lbs?</li>
+<li>What percentage of babies weigh less than 4.0 lbs?</li>
+</ol>
+</div>
 </section>
-<section id="extra-practice" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="extra-practice"><span class="header-section-number">2.5</span> Extra Practice</h2>
+<section id="extra-practice" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="extra-practice"><span class="header-section-number">2.6</span> Extra Practice</h2>
 <ol type="1">
 <li><p>Compute the mean and median for the annual income dataset. Based on these values is the data skewed to thee right or left? Generate a histogram of the data to confirm your thoughts. <a href="https://www.statcrunch.com/app/index.html?dataid=5141492" target="_blank">Data</a></p></li>
-<li><p>A survey recorded the time spent on homework in two different grades. The five-number summaries are recorded below. Compute the IQR for each grade and sketch the boxplots (by hand). What are the main differences in the distributions?</p></li>
+<li><p>A survey recorded the time spent on homework in two different grades. The five-number summaries are recorded below. Compute the IQR for each grade. What are the main differences in the distributions?</p></li>
 </ol>
 <table class="caption-top table">
 <thead>
@@ -715,11 +942,34 @@ Figure&nbsp;2.4: Histogram of neighborhood commute times.
 </table>
 <ol start="3" type="1">
 <li><p>The principal tells you that, based on the above sumamary data, 9th graders and 11th graders spend a similar amount of time on homework. How might you respond to the principal?</p></li>
-<li><p>A group of 6 people were asked how many minutes they worked out for yesterday and the following results were obtained: 30, 60, 75, 0, 60, 45. Compute the mean and standard deviation by hand (calculator okay).</p></li>
+<li><p>The box plot shows commute times (in minutes) for 36 employees.</p></li>
+</ol>
+<ol type="a">
+<li><p>Estimate the median, Q1, and Q3. What is the IQR?</p></li>
+<li><p>Would the mean be larger or smaller than the median? Why?</p></li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lecture-02_files/figure-html/commute-box-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="5" type="1">
 <li><p>A news article reports: “The mean commute time is 25 minutes with a standard deviation of 40 minutes.” What does this suggest about the shape of the distribution? Why might this statement be misleading?</p></li>
+<li><p>Heights of adult women in the U.S. are approximately normal, with a mean of 64 inches and a standard deviation of 2.5 inches.</p></li>
+</ol>
+<ol type="a">
+<li><p>What percentage of women are between 61.5 and 66.5 inches tall?</p></li>
+<li><p>What percentage of women are taller than 69 inches?</p></li>
+<li><p>What percentage of women are between 59 and 66.5 inches tall?</p></li>
 </ol>
 
 
+</section>
+</div>
 </section>
 
 </main> <!-- /main -->
