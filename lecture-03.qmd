@@ -1,17 +1,33 @@
 # Examining Relationships 
 
-In this section we want to learn ways to examine the relationship between two variables. Typically, we are asking research questions about whether one variable impacts the other. The **response variable** or dependent variable is the variable that gives the outcome of the study. The **explanatory variable** is the variable that claims to impact the response variable. 
+In Topic 1 we looked at ways to visualize data about a single variable. Now we want to learn ways to examine the relationship between *two variables*.
 
-Just like in Topic 1, these variables can be **quantitative** or **categorical**. In these notes we will spend some time looking at examples and the ways we can visualize and interpret relationships.
+When we look at two variable we are interested in how one impacts the other. The **response variable** or dependent variable is the variable that gives the outcome of the study. The **explanatory variable** is the variable that claims to impact the response variable. 
+
+::: {#exm-twovariables}
+Identify what is the explanatory and response variable in the following study questions:
+
+1. Does the amount of fertilizer affect how tall tomato plants grow?
+2. Does a car's weight impact its mileage?
+3. Do people who sleep more have lower stress levels?
+:::
+
+::: {.callout-important}
+## Identifying Response and Explanatory
+The roles aren't always clear-cut: sometimes either variable could reasonably influence the other. In these cases, the study design is key in dictating which is the explanatory and which is the response variable. 
+:::
 
 ## Side-by-Side Boxplots (C -> Q)
 
 If the explanatory variable is catagorical and the response variable is quantatative, then one way to visualize the potential differences in distribution is by using side-by-side boxplots. 
 
 ::: {#exm-systolicBP}
-[Dataset.](https://www.statcrunch.com/app/?dataid=5143558){target="blank"} This dataset shows the race/ethnicity, age, and systolic BP for 360 patients (this data is simulated and not real). We would like to analyze if race/ethnicity impact patients BP. 
+[Dataset.](https://www.statcrunch.com/app/?dataid=5143558){target="blank"} This dataset shows the race/ethnicity, age, and systolic BP for 360 patients. We would like to analyze if race/ethnicity impact patients BP.
 
-To graph side-by-side boxplots in StatCrunch first select Graph > Boxplot. Next, select the column systolic_BP_mmHg and "group by" race_ethnicity. 
+*Note: this is a synthetic dataset based off US data trends. For real data, I recommend checking out [NHANES data](https://wwwn.cdc.gov/nchs/nhanes/){target="blank"} from the CDC (this data needs to be cleaned a bit though so I have not used it here).*
+
+Below are side-by-side boxplots of systolic BP by race and ethnicity. What differences do you notice between the different racial and ethnic groups?
+
 ```{r}
 #| label: fig-sbp
 #| fig-cap: "Side-by-side histogram of systolic BP."
@@ -38,13 +54,14 @@ mtext("Race/Ethnicity", side = 1, line = 12)
 ```
 :::
 
-Based on the graph, it looks like the race Black/African American has a higher Q1 and median than the other categories. We should be careful qualifying claims with just the above plots though! 
+
 
 ::: {.callout-important}
-What could be other reasons the population of black patients appear to have a higher systolic BP that isn't related to their race?
+## Association does not equal causation!
+There may be a **lurking variable** which affects both the explanatory and response variable. In the example above lurking variables could include: age distributions, socioeconomic status, and access to healthcare. 
 :::
 
-Another method of visualizing relationships between a catagorical explanatory variable and a quantitative response variable is by using a stacked histogram. This can be done in StatCrunch as well. 
+Another method of visualizing relationships between a catagorical explanatory variable and a quantitative response variable is by using a stacked histogram. 
 
 ```{r}
 #| label: fig-stackedhist
@@ -102,7 +119,45 @@ ggplot(data, aes(x = goals, fill = position)) +
 
 Here we see that the histogram is colored by player position. From this visualization we can see that defenders typically don't score much. 
 
+StatCrunch will let you do something similar, although it won't let you exactly stack the bars like above. In StatCrunch you can choose Graph > Histogram. Then you can select your response variable and group by your explanatory variable. Scroll all the way down to the multiple graph section and select the same X and Y axis. You can also use the rows and columns per page to change how many histograms are viewed at once. 
+
 ## Contingency Tables (C -> C)
+
+::: {#exm-conttable}
+A college polls 200 students to determine whether there is a relationship between a student's class year (freshman, sophomore, junior, or senior) and whether or not they live off campus. This data is shown in the **contingency table** below.
+
+a) What percentage of freshmen live off campus?
+b) What percentage of seniors live off campus?
+
+| Class Year | On Campus | Off Campus | Total |
+|:-----------|----------:|-----------:|------:|
+| **Freshman**   | 42        | 13          | 55    |
+| **Sophomore**  | 35        | 15         | 50    |
+| **Junior**     | 18        | 30         | 48    |
+| **Senior**     | 9         | 38         | 47    |
+| **Total**  | 104  | 96    | 200 |
+:::
+
+::: {.callout-tip collapse="true"}
+## Answer 
+
+a) $(13/55)\times 100 = 23.6 \%$
+b) $(38/47)\times 100 = 80.9\%$ 
+:::
+
+We can convert a contingency table to percents. To do this we convert counts to percentages when restricting to a single explanatory variable.  For example the row 
+
+| Class Year | On Campus | Off Campus | Total |
+|:------|----------:|-----------:|------:|
+| **Freshman**   | 42        | 13          | 55    |
+
+becomes
+
+| Class Year | On Campus | Off Campus | Total |
+|:------|----------:|-----------:|------:|
+| **Freshman**   | $(42/55)\times 100 = \mathbf{76.4\%}$        | $(13/55)\times 100 = \mathbf{23.6\%}$          | 100%    |
+
+In this case the rows should each add up to 100%. If our explanatory variables were in the columns, then we would make the columns sum to 100%. 
 
 ## Scatterplots (Q -> Q)
 

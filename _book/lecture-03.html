@@ -75,6 +75,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -174,14 +203,36 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>In this section we want to learn ways to examine the relationship between two variables. Typically, we are asking research questions about whether one variable impacts the other. The <strong>response variable</strong> or dependent variable is the variable that gives the outcome of the study. The <strong>explanatory variable</strong> is the variable that claims to impact the response variable.</p>
-<p>Just like in Topic 1, these variables can be <strong>quantitative</strong> or <strong>categorical</strong>. In these notes we will spend some time looking at examples and the ways we can visualize and interpret relationships.</p>
+<p>In Topic 1 we looked at ways to visualize data about a single variable. Now we want to learn ways to examine the relationship between <em>two variables</em>.</p>
+<p>When we look at two variable we are interested in how one impacts the other. The <strong>response variable</strong> or dependent variable is the variable that gives the outcome of the study. The <strong>explanatory variable</strong> is the variable that claims to impact the response variable.</p>
+<div id="exm-twovariables" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3.1</strong></span> Identify what is the explanatory and response variable in the following study questions:</p>
+<ol type="1">
+<li>Does the amount of fertilizer affect how tall tomato plants grow?</li>
+<li>Does a car’s weight impact its mileage?</li>
+<li>Do people who sleep more have lower stress levels?</li>
+</ol>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Identifying Response and Explanatory
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The roles aren’t always clear-cut: sometimes either variable could reasonably influence the other. In these cases, the study design is key in dictating which is the explanatory and which is the response variable.</p>
+</div>
+</div>
 <section id="side-by-side-boxplots-c---q" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="side-by-side-boxplots-c---q"><span class="header-section-number">3.1</span> Side-by-Side Boxplots (C -&gt; Q)</h2>
 <p>If the explanatory variable is catagorical and the response variable is quantatative, then one way to visualize the potential differences in distribution is by using side-by-side boxplots.</p>
 <div id="exm-systolicBP" class="theorem example">
-<p><span class="theorem-title"><strong>Example 3.1</strong></span> <a href="https://www.statcrunch.com/app/?dataid=5143558" target="blank">Dataset.</a> This dataset shows the race/ethnicity, age, and systolic BP for 360 patients (this data is simulated and not real). We would like to analyze if race/ethnicity impact patients BP.</p>
-<p>To graph side-by-side boxplots in StatCrunch first select Graph &gt; Boxplot. Next, select the column systolic_BP_mmHg and “group by” race_ethnicity.</p>
+<p><span class="theorem-title"><strong>Example 3.2</strong></span> <a href="https://www.statcrunch.com/app/?dataid=5143558" target="blank">Dataset.</a> This dataset shows the race/ethnicity, age, and systolic BP for 360 patients. We would like to analyze if race/ethnicity impact patients BP.</p>
+<p><em>Note: this is a synthetic dataset based off US data trends. For real data, I recommend checking out <a href="https://wwwn.cdc.gov/nchs/nhanes/" target="blank">NHANES data</a> from the CDC (this data needs to be cleaned a bit though so I have not used it here).</em></p>
+<p>Below are side-by-side boxplots of systolic BP by race and ethnicity. What differences do you notice between the different racial and ethnic groups?</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-sbp" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -197,21 +248,20 @@ Figure&nbsp;3.1: Side-by-side histogram of systolic BP.
 </div>
 </div>
 </div>
-<p>Based on the graph, it looks like the race Black/African American has a higher Q1 and median than the other categories. We should be careful qualifying claims with just the above plots though!</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Important
+<span class="screen-reader-only">Important</span>Association does not equal causation!
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>What could be other reasons the population of black patients appear to have a higher systolic BP that isn’t related to their race?</p>
+<p>There may be a <strong>lurking variable</strong> which affects both the explanatory and response variable. In the example above lurking variables could include: age distributions, socioeconomic status, and access to healthcare.</p>
 </div>
 </div>
-<p>Another method of visualizing relationships between a catagorical explanatory variable and a quantitative response variable is by using a stacked histogram. This can be done in StatCrunch as well.</p>
+<p>Another method of visualizing relationships between a catagorical explanatory variable and a quantitative response variable is by using a stacked histogram.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-stackedhist" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -227,14 +277,128 @@ Figure&nbsp;3.2: Stacked histogram of goals scored by different positions.
 </div>
 </div>
 <p>Here we see that the histogram is colored by player position. From this visualization we can see that defenders typically don’t score much.</p>
+<p>StatCrunch will let you do something similar, although it won’t let you exactly stack the bars like above. In StatCrunch you can choose Graph &gt; Histogram. Then you can select your response variable and group by your explanatory variable. Scroll all the way down to the multiple graph section and select the same X and Y axis. You can also use the rows and columns per page to change how many histograms are viewed at once.</p>
 </section>
 <section id="contingency-tables-c---c" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="contingency-tables-c---c"><span class="header-section-number">3.2</span> Contingency Tables (C -&gt; C)</h2>
+<div id="exm-conttable" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3.3</strong></span> A college polls 200 students to determine whether there is a relationship between a student’s class year (freshman, sophomore, junior, or senior) and whether or not they live off campus. This data is shown in the <strong>contingency table</strong> below.</p>
+<ol type="a">
+<li>What percentage of freshmen live off campus?</li>
+<li>What percentage of seniors live off campus?</li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Class Year</th>
+<th style="text-align: right;">On Campus</th>
+<th style="text-align: right;">Off Campus</th>
+<th style="text-align: right;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Freshman</strong></td>
+<td style="text-align: right;">42</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">55</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Sophomore</strong></td>
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Junior</strong></td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">48</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Senior</strong></td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">38</td>
+<td style="text-align: right;">47</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Total</strong></td>
+<td style="text-align: right;">104</td>
+<td style="text-align: right;">96</td>
+<td style="text-align: right;">200</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><span class="math inline">\((13/55)\times 100 = 23.6 \%\)</span></li>
+<li><span class="math inline">\((38/47)\times 100 = 80.9\%\)</span></li>
+</ol>
+</div>
+</div>
+</div>
+<p>We can convert a contingency table to percents. To do this we convert counts to percentages when restricting to a single explanatory variable. For example the row</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Class Year</th>
+<th style="text-align: right;">On Campus</th>
+<th style="text-align: right;">Off Campus</th>
+<th style="text-align: right;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Freshman</strong></td>
+<td style="text-align: right;">42</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">55</td>
+</tr>
+</tbody>
+</table>
+<p>becomes</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 29%">
+<col style="width: 32%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Class Year</th>
+<th style="text-align: right;">On Campus</th>
+<th style="text-align: right;">Off Campus</th>
+<th style="text-align: right;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Freshman</strong></td>
+<td style="text-align: right;"><span class="math inline">\((42/55)\times 100 = \mathbf{76.4\%}\)</span></td>
+<td style="text-align: right;"><span class="math inline">\((13/55)\times 100 = \mathbf{23.6\%}\)</span></td>
+<td style="text-align: right;">100%</td>
+</tr>
+</tbody>
+</table>
+<p>In this case the rows should each add up to 100%. If our explanatory variables were in the columns, then we would make the columns sum to 100%.</p>
 </section>
 <section id="scatterplots-q---q" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="scatterplots-q---q"><span class="header-section-number">3.3</span> Scatterplots (Q -&gt; Q)</h2>
 <div id="exm-study" class="theorem example">
-<p><span class="theorem-title"><strong>Example 3.2</strong></span> We want to determine if more time spent studying improves the score received on an exam. The amount of time spent studying was self reported by students. <a href="https://www.statcrunch.com/app/?dataid=5143819" target="blank">Open the data in StatCrunch.</a></p>
+<p><span class="theorem-title"><strong>Example 3.4</strong></span> We want to determine if more time spent studying improves the score received on an exam. The amount of time spent studying was self reported by students. <a href="https://www.statcrunch.com/app/?dataid=5143819" target="blank">Open the data in StatCrunch.</a></p>
 <p>Since we want to know if study time improves exam score, the explanatory variable is study time and the reesponse variable is exam score. We can plot these using a scatter plot (Graph &gt; Scatter Plot). We should set the study time as the x variable and the exam score as the y variable.</p>
 </div>
 <div class="cell">
