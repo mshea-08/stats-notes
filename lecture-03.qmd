@@ -17,51 +17,56 @@ Identify what is the explanatory and response variable in the following study qu
 The roles aren't always clear-cut: sometimes either variable could reasonably influence the other. In these cases, the study design is key in dictating which is the explanatory and which is the response variable. 
 :::
 
-## Side-by-Side Boxplots (C -> Q)
+## Side-by-Side Boxplots (C $\to$ Q)
 
-If the explanatory variable is catagorical and the response variable is quantatative, then one way to visualize the potential differences in distribution is by using side-by-side boxplots. 
+If the explanatory variable is categorical and the response variable is quantitative, then one way to visualize the potential differences in distribution is by using side-by-side boxplots. 
 
-::: {#exm-systolicBP}
-[Dataset.](https://www.statcrunch.com/app/?dataid=5143558){target="blank"} This dataset shows the race/ethnicity, age, and systolic BP for 360 patients. We would like to analyze if race/ethnicity impact patients BP.
-
-*Note: this is a synthetic dataset based off US data trends. For real data, I recommend checking out [NHANES data](https://wwwn.cdc.gov/nchs/nhanes/){target="blank"} from the CDC (this data needs to be cleaned a bit though so I have not used it here).*
-
-Below are side-by-side boxplots of systolic BP by race and ethnicity. What differences do you notice between the different racial and ethnic groups?
+::: {#exm-smokeBW}
+Below is a dataset of 189 births from a 1986 study at Baystate Medical Center (in Massachusetts). What similarities and differences do you notice between babies born from smokers versus nonsmokers? What can you not tell by the boxplots that you might be interested in knowing about the data?
 
 ```{r}
 #| label: fig-sbp
-#| fig-cap: "Side-by-side histogram of systolic BP."
+#| fig-cap: "Side-by-side boxplots of birth weight based on mother's smoking status."
 #| echo: false
 #| fig-width: 6
 #| fig-height: 8
 
-# Read the data
-df <- read.csv("datasets/race_systolic_bp.csv")
-
-# Make sure race_ethnicity is treated as a factor
-df$race_ethnicity <- as.factor(df$race_ethnicity)
-
-par(mar = c(14, 4, 4, 2))  # bottom, left, top, right
-
-boxplot(systolic_bp_mmHg ~ race_ethnicity, data = df,
-        main = "Systolic Blood Pressure by Race/Ethnicity",
-        ylab = "Systolic BP (mmHg)",
-        col = "lightblue",
-        las = 2,
-        xlab = "")  
-
-mtext("Race/Ethnicity", side = 1, line = 12)
+library(MASS)
+boxplot(bwt ~ smoke, data = birthwt,
+        names = c("Nonsmoker", "Smoker"),
+        xlab = "Mother's Smoking Status", 
+        ylab = "Birth Weight (g)")
 ```
 :::
 
+::: {.callout-tip collapse="true"}
+## Answer
 
+From the bokplot it looks like the average baby weight is higher for nonsmoking mothers, however there is a large overlap in the IQR. The lower end of the boxplots look similar. 
+
+I would be interesting in learning how many participants were smokers/nonsmokers, which we cannot tell from the boxplots. 
+:::
 
 ::: {.callout-important}
 ## Association does not equal causation!
-There may be a **lurking variable** which affects both the explanatory and response variable. In the example above lurking variables could include: age distributions, socioeconomic status, and access to healthcare. 
+There may be a **lurking variable** which affects both the explanatory and response variable. This is why you should be careful about drawing conclusions just from statistical data. 
+
+Good study design should help eliminate potential lurking variables, however they are impossible to completely eliminate.
 :::
 
-Another method of visualizing relationships between a catagorical explanatory variable and a quantitative response variable is by using a stacked histogram. 
+::: {#exm-lurking}
+What are potential lurking variables that could impact the study in Example @exm-smokeBW?
+:::
+
+::: {#exm-morebbydata}
+[The above data is available for you to manipulate on StatCrunch here. ](https://statcrunch.pearson.com/app/?dataid=5160725){target="blank"} Use the data to answer the following questions:
+
+1. How many mothers were smokers/nonsmokers?
+2. Is there a difference between the mother's weight for smokers/nonsmokers?
+3. Is there a difference in the mother's age for smokers/nonsmokers?
+:::
+
+Another method of visualizing relationships between a categorical explanatory variable and a quantitative response variable is by using a stacked histogram. 
 
 ```{r}
 #| label: fig-stackedhist
@@ -121,7 +126,7 @@ Here we see that the histogram is colored by player position. From this visualiz
 
 StatCrunch will let you do something similar, although it won't let you exactly stack the bars like above. In StatCrunch you can choose Graph > Histogram. Then you can select your response variable and group by your explanatory variable. Scroll all the way down to the multiple graph section and select the same X and Y axis. You can also use the rows and columns per page to change how many histograms are viewed at once. 
 
-## Contingency Tables (C -> C)
+## Contingency Tables (C $\to$ C)
 
 ::: {#exm-conttable}
 A college polls 200 students to determine whether there is a relationship between a student's class year (freshman, sophomore, junior, or senior) and whether or not they live off campus. This data is shown in the **contingency table** below.
@@ -159,12 +164,19 @@ becomes
 
 In this case the rows should each add up to 100%. If our explanatory variables were in the columns, then we would make the columns sum to 100%. 
 
+::: {#exm-smokecont}
+Using the data from the baby weight study above, create a contingency table on StatCrunch of the mother's smoking status and race. [Data](https://statcrunch.pearson.com/app/?dataid=5160725){target="blank"}
+
+1. For the mother's at the hospital, does race impact whether or not they smoke? Use data from the table to support your answer. 
+2. Does smoking impact whether the mother's are diagnosed with hypertension?
+:::
+
 ## Scatterplots (Q -> Q)
 
 ::: {#exm-study}
 We want to determine if more time spent studying improves the score received on an exam. The amount of time spent studying was self reported by students. [Open the data in StatCrunch.](https://www.statcrunch.com/app/?dataid=5143819){target="blank"}
 
-Since we want to know if study time improves exam score, the explanatory variable is study time and the reesponse variable is exam score. We can plot these using a scatter plot (Graph > Scatter Plot). We should set the study time as the x variable and the exam score as the y variable. 
+Since we want to know if study time improves exam score, the explanatory variable is study time and the response variable is exam score. We can plot these using a scatter plot (Graph > Scatter Plot). We should set the study time as the x variable and the exam score as the y variable. 
 :::
 
 ```{r}
@@ -206,6 +218,156 @@ resting_hr <- pmin(pmax(resting_hr, 45), 100)
 plot(exercise_hours, resting_hr,
      xlab = "Average Hours Exercised per Week",
      ylab = "Resting Heart Rate (bpm)",
-     pch = 19,
-     col = "#2A9D8F")
+     pch = 19)
 ```
+
+We use the words **strong**, **moderate** and **weak** to describe how linearly correlated the data is. Below is an example of each, 
+
+```{r}
+#| label: fig-corrstrength
+#| fig-cap: "Strength of correlation."
+#| echo: false
+#| fig-width: 9
+#| fig-height: 4
+
+set.seed(42)
+x <- rnorm(100)
+strong   <- x + rnorm(100, sd = 0.5)   # little noise  -> strong correlation
+moderate <- x + rnorm(100, sd = 1)     # some noise    -> moderate correlation
+weak     <- x + rnorm(100, sd = 3)   # lots of noise -> weak correlation
+par(mfrow = c(1, 3))
+plot(x, strong,   main = paste("Strong: r = ",   round(cor(x, strong), 2)),   pch = 19, col = "darkgreen")
+plot(x, moderate, main = paste("Moderate: r = ", round(cor(x, moderate), 2)), pch = 19, col = "orange")
+plot(x, weak,     main = paste("Weak: r = ",     round(cor(x, weak), 2)),     pch = 19, col = "red")
+par(mfrow = c(1, 1))
+```
+
+Above the value $r$ is the **correlation coefficient** for the data. Don't worry about the formula for computing r as we will use StatCrunch for this computation. See how to use it below, 
+
+::: {#exm-rcoef}
+## Correlation Coefficient
+
+[Open this data in StatCrunch.](https://statcrunch.pearson.com/app/index.html?dataid=1518728){target="blank"} Make a scatter plot with longevity as the explanatory variable and gestation period as the response variable. Then compute the correlation coefficient of the data. 
+:::
+
+The correlation coefficient $r$ can measure the strength of the correlation, but only after we use the scatterplot to justify that it is linear! If our data is approximately linear, then the sign of the correlation coefficient tells us whether it is positive or negatively correlated. The magnitude of the correlation coefficient tells us the strength. There are a lot of different bench marks you will see for what $r$ value is "moderate" versus "strong." You should think of these benchmarks as a guideline and that they are context dependent. 
+
+Plenty of data is not linearly correlated! Let's see some examples. 
+
+```{r}
+#| label: fig-energy
+#| fig-cap: "Daily home energy use is highest on cold and hot days and lowest at mild temperatures."
+#| echo: false
+#| width: 6
+
+set.seed(1)
+temp   <- runif(150, 20, 110)                           # daily high temp (°F)
+energy <- 25 + 0.012 * (temp - 65)^2 + rnorm(150, 0, 3) # daily energy use (kWh)
+
+plot(temp, energy,
+     pch = 19, 
+     xlab = "Daily High Temperature (°F)",
+     ylab = "Energy Use (kWh)",
+     main = paste("Temperature vs. Energy Use (r =", round(cor(temp, energy), 2), ")"))
+```
+
+```{r}
+#| label: fig-dose
+#| fig-cap: "Response stays low at small doses, rises steeply, then plateaus near the maximum effect."
+#| echo: false
+#| width: 6
+
+set.seed(2)
+dose     <- runif(150, 0, 100)                                   # dose (mg)
+response <- 100 / (1 + exp(-(dose - 50) / 8)) + rnorm(150, 0, 5) # % of max effect
+
+plot(dose, response,
+     pch = 19,
+     xlab = "Dose (mg)",
+     ylab = "Response (% of Maximum Effect)",
+     main = paste("Drug Dose vs. Response (r =", round(cor(dose, response), 2), ")"))
+```
+
+::: {.callout-important}
+## Don't Over-Value $r$
+
+The correlation coefficient should only be used as *supporting evidence* alongside the scatter plot. When a scatter plot looks linear, then $r$ can tell us the strength and direction of that linearity. We cannot use $r$ alone to justify linearity!!
+:::
+
+## Linear Regression
+
+If we do feel a line is linear we can perform **least-squares linear regression**. This creates a line that best fits the data. We will not do this by hand, we will use StatCrunch. It is important to be able to interpret the StatCrunch output though. 
+
+::: {#exm-linearreg}
+[Open this data in StatCrunch.](https://statcrunch.pearson.com/app/index.html?dataid=1518728){target="blank"} Perform the linear regression on the data. What is the equation for the line of best fit? Write a sentence to interpret the slope in the context of the explanatory and response variables.
+
+```{r}
+#| label: fig-animal
+#| fig-cap: "Longevity and gestation period for a variety of animals."
+#| echo: false
+#| width: 6
+
+gest <- c(187, 219, 225, 240, 122, 278, 406, 63, 231, 31,
+       284, 201, 61, 365, 645, 250, 52, 425, 151, 257,
+       68, 238, 330, 42, 98, 100, 164, 240, 21, 15,
+       112, 90, 31, 450, 350, 154, 44, 105, 63, 365)
+
+long <- c(20, 18, 25, 20, 5, 15, 12, 12, 20, 6,
+       15, 8, 12, 12, 40, 15, 7, 10, 8, 20,
+       4, 25, 20, 7, 12, 15, 15, 12, 3, 1,
+       10, 12, 5, 15, 12, 12, 10, 16, 5, 15)
+
+plot(long, gest,
+     pch = 19,
+     xlab = "Longevity (years)",
+     ylab = "Gestation Period (days)")
+abline(a = 21.71, b = 13.13,
+      col="red")
+```
+:::
+
+::: {.callout-tip collapse="true"}
+## Answer 
+
+Under the table **Parameter Estimates** we want to look at the **intercept** and **slope** estimate values to generate the line of best fit.
+
+Intercept: 21.71
+
+Slope: 13.13
+
+Recall that longevity is our response variable--this means for our line it is the *input* (x variable). Gestation will be the *output* (y variable). So our line has the form,
+
+$$\text{gestation} = 13.13\times(\text{longevity}) + 21.71$$
+
+The slope tells us that, on average, each year of longevity amounts to an additional 13.13 days of gestation. The intercept tells us for a animal with a longevity of 0 years, the gestation period is, on average, 21.71 days. This is an impossible scenario though, so it is outside of our domain of interest. 
+:::
+
+::: {#exm-linearreg2}
+Use the line of best fit computed in Example @exm-linearreg to approximate the gestation period of a North American river otter, which has a typical lifespan of 12 years.
+:::
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+Using our line, we estimate that the North American river otter will have a gestation period of $13.13\times 12 + 21.71 = 179.27$ months. 
+
+According the the internet, the river otters have a gestation period of 285-375 days due to a process called delayed implantation. The more you know, eh?!
+:::
+
+::: {.callout-important}
+## Estimation
+
+You should avoid using linear regression to estimate values that fall outside of the range of your data. When we zoom in on functions they almost always look linear, but zooming out can reveal more complicated behavior. Just because a line fits the data you have, doesn't mean it will still look linear when we "zoom out."
+
+For example, the line in Example @exm-linearreg should *not* be used to approximate the gestation time of an ORca, which averages 90 years of life. Plugging this in gives an approximate gestation period of 1,203 days or ~40 months--much longer than their actual gestation period of 15-18 months. 
+:::
+
+::: {#exm-carwt}
+[Data.](https://statcrunch.pearson.com/app/?dataid=5160759){target="blank"} Using the provided dataset, answer the following: 
+
+1. Describe the relationship in words between the car's weight and its miles per gallon. Use the weight as the explanatory variable.
+2. Compute the correlation coefficient.
+3. Use linear regression to write a line that estimates the car's mpg from it weight. 
+4. Estimate the mpg of a car that weighs 4250 lbs.
+
+:::
