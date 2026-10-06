@@ -175,9 +175,10 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#side-by-side-boxplots-c---q" id="toc-side-by-side-boxplots-c---q" class="nav-link active" data-scroll-target="#side-by-side-boxplots-c---q"><span class="header-section-number">3.1</span> Side-by-Side Boxplots (C -&gt; Q)</a></li>
-  <li><a href="#contingency-tables-c---c" id="toc-contingency-tables-c---c" class="nav-link" data-scroll-target="#contingency-tables-c---c"><span class="header-section-number">3.2</span> Contingency Tables (C -&gt; C)</a></li>
+  <li><a href="#side-by-side-boxplots-c-to-q" id="toc-side-by-side-boxplots-c-to-q" class="nav-link active" data-scroll-target="#side-by-side-boxplots-c-to-q"><span class="header-section-number">3.1</span> Side-by-Side Boxplots (C <span class="math inline">\(\to\)</span> Q)</a></li>
+  <li><a href="#contingency-tables-c-to-c" id="toc-contingency-tables-c-to-c" class="nav-link" data-scroll-target="#contingency-tables-c-to-c"><span class="header-section-number">3.2</span> Contingency Tables (C <span class="math inline">\(\to\)</span> C)</a></li>
   <li><a href="#scatterplots-q---q" id="toc-scatterplots-q---q" class="nav-link" data-scroll-target="#scatterplots-q---q"><span class="header-section-number">3.3</span> Scatterplots (Q -&gt; Q)</a></li>
+  <li><a href="#linear-regression" id="toc-linear-regression" class="nav-link" data-scroll-target="#linear-regression"><span class="header-section-number">3.4</span> Linear Regression</a></li>
   </ul>
 </nav>
     </div>
@@ -226,13 +227,11 @@ window.Quarto = {
 <p>The roles aren’t always clear-cut: sometimes either variable could reasonably influence the other. In these cases, the study design is key in dictating which is the explanatory and which is the response variable.</p>
 </div>
 </div>
-<section id="side-by-side-boxplots-c---q" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="side-by-side-boxplots-c---q"><span class="header-section-number">3.1</span> Side-by-Side Boxplots (C -&gt; Q)</h2>
-<p>If the explanatory variable is catagorical and the response variable is quantatative, then one way to visualize the potential differences in distribution is by using side-by-side boxplots.</p>
-<div id="exm-systolicBP" class="theorem example">
-<p><span class="theorem-title"><strong>Example 3.2</strong></span> <a href="https://www.statcrunch.com/app/?dataid=5143558" target="blank">Dataset.</a> This dataset shows the race/ethnicity, age, and systolic BP for 360 patients. We would like to analyze if race/ethnicity impact patients BP.</p>
-<p><em>Note: this is a synthetic dataset based off US data trends. For real data, I recommend checking out <a href="https://wwwn.cdc.gov/nchs/nhanes/" target="blank">NHANES data</a> from the CDC (this data needs to be cleaned a bit though so I have not used it here).</em></p>
-<p>Below are side-by-side boxplots of systolic BP by race and ethnicity. What differences do you notice between the different racial and ethnic groups?</p>
+<section id="side-by-side-boxplots-c-to-q" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="side-by-side-boxplots-c-to-q"><span class="header-section-number">3.1</span> Side-by-Side Boxplots (C <span class="math inline">\(\to\)</span> Q)</h2>
+<p>If the explanatory variable is categorical and the response variable is quantitative, then one way to visualize the potential differences in distribution is by using side-by-side boxplots.</p>
+<div id="exm-smokeBW" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3.2</strong></span> Below is a dataset of 189 births from a 1986 study at Baystate Medical Center (in Massachusetts). What similarities and differences do you notice between babies born from smokers versus nonsmokers? What can you not tell by the boxplots that you might be interested in knowing about the data?</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-sbp" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -241,10 +240,27 @@ window.Quarto = {
 <img src="lecture-03_files/figure-html/fig-sbp-1.png" class="img-fluid figure-img" width="576">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sbp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.1: Side-by-side histogram of systolic BP.
+Figure&nbsp;3.1: Side-by-side boxplots of birth weight based on mother’s smoking status.
 </figcaption>
 </figure>
 </div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>From the bokplot it looks like the average baby weight is higher for nonsmoking mothers, however there is a large overlap in the IQR. The lower end of the boxplots look similar.</p>
+<p>I would be interesting in learning how many participants were smokers/nonsmokers, which we cannot tell from the boxplots.</p>
 </div>
 </div>
 </div>
@@ -258,10 +274,22 @@ Figure&nbsp;3.1: Side-by-side histogram of systolic BP.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>There may be a <strong>lurking variable</strong> which affects both the explanatory and response variable. In the example above lurking variables could include: age distributions, socioeconomic status, and access to healthcare.</p>
+<p>There may be a <strong>lurking variable</strong> which affects both the explanatory and response variable. This is why you should be careful about drawing conclusions just from statistical data.</p>
+<p>Good study design should help eliminate potential lurking variables, however they are impossible to completely eliminate.</p>
 </div>
 </div>
-<p>Another method of visualizing relationships between a catagorical explanatory variable and a quantitative response variable is by using a stacked histogram.</p>
+<div id="exm-lurking" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3.3</strong></span> What are potential lurking variables that could impact the study in Example <a href="#exm-smokeBW" class="quarto-xref">Example&nbsp;<span>3.2</span></a>?</p>
+</div>
+<div id="exm-morebbydata" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3.4</strong></span> <a href="https://statcrunch.pearson.com/app/?dataid=5160725" target="blank">The above data is available for you to manipulate on StatCrunch here.</a> Use the data to answer the following questions:</p>
+<ol type="1">
+<li>How many mothers were smokers/nonsmokers?</li>
+<li>Is there a difference between the mother’s weight for smokers/nonsmokers?</li>
+<li>Is there a difference in the mother’s age for smokers/nonsmokers?</li>
+</ol>
+</div>
+<p>Another method of visualizing relationships between a categorical explanatory variable and a quantitative response variable is by using a stacked histogram.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-stackedhist" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -279,10 +307,10 @@ Figure&nbsp;3.2: Stacked histogram of goals scored by different positions.
 <p>Here we see that the histogram is colored by player position. From this visualization we can see that defenders typically don’t score much.</p>
 <p>StatCrunch will let you do something similar, although it won’t let you exactly stack the bars like above. In StatCrunch you can choose Graph &gt; Histogram. Then you can select your response variable and group by your explanatory variable. Scroll all the way down to the multiple graph section and select the same X and Y axis. You can also use the rows and columns per page to change how many histograms are viewed at once.</p>
 </section>
-<section id="contingency-tables-c---c" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="contingency-tables-c---c"><span class="header-section-number">3.2</span> Contingency Tables (C -&gt; C)</h2>
+<section id="contingency-tables-c-to-c" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="contingency-tables-c-to-c"><span class="header-section-number">3.2</span> Contingency Tables (C <span class="math inline">\(\to\)</span> C)</h2>
 <div id="exm-conttable" class="theorem example">
-<p><span class="theorem-title"><strong>Example 3.3</strong></span> A college polls 200 students to determine whether there is a relationship between a student’s class year (freshman, sophomore, junior, or senior) and whether or not they live off campus. This data is shown in the <strong>contingency table</strong> below.</p>
+<p><span class="theorem-title"><strong>Example 3.5</strong></span> A college polls 200 students to determine whether there is a relationship between a student’s class year (freshman, sophomore, junior, or senior) and whether or not they live off campus. This data is shown in the <strong>contingency table</strong> below.</p>
 <ol type="a">
 <li>What percentage of freshmen live off campus?</li>
 <li>What percentage of seniors live off campus?</li>
@@ -331,7 +359,7 @@ Figure&nbsp;3.2: Stacked histogram of goals scored by different positions.
 </table>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -340,7 +368,7 @@ Figure&nbsp;3.2: Stacked histogram of goals scored by different positions.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><span class="math inline">\((13/55)\times 100 = 23.6 \%\)</span></li>
@@ -394,12 +422,19 @@ Figure&nbsp;3.2: Stacked histogram of goals scored by different positions.
 </tbody>
 </table>
 <p>In this case the rows should each add up to 100%. If our explanatory variables were in the columns, then we would make the columns sum to 100%.</p>
+<div id="exm-smokecont" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3.6</strong></span> Using the data from the baby weight study above, create a contingency table on StatCrunch of the mother’s smoking status and race. <a href="https://statcrunch.pearson.com/app/?dataid=5160725" target="blank">Data</a></p>
+<ol type="1">
+<li>For the mother’s at the hospital, does race impact whether or not they smoke? Use data from the table to support your answer.</li>
+<li>Does smoking impact whether the mother’s are diagnosed with hypertension?</li>
+</ol>
+</div>
 </section>
 <section id="scatterplots-q---q" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="scatterplots-q---q"><span class="header-section-number">3.3</span> Scatterplots (Q -&gt; Q)</h2>
 <div id="exm-study" class="theorem example">
-<p><span class="theorem-title"><strong>Example 3.4</strong></span> We want to determine if more time spent studying improves the score received on an exam. The amount of time spent studying was self reported by students. <a href="https://www.statcrunch.com/app/?dataid=5143819" target="blank">Open the data in StatCrunch.</a></p>
-<p>Since we want to know if study time improves exam score, the explanatory variable is study time and the reesponse variable is exam score. We can plot these using a scatter plot (Graph &gt; Scatter Plot). We should set the study time as the x variable and the exam score as the y variable.</p>
+<p><span class="theorem-title"><strong>Example 3.7</strong></span> We want to determine if more time spent studying improves the score received on an exam. The amount of time spent studying was self reported by students. <a href="https://www.statcrunch.com/app/?dataid=5143819" target="blank">Open the data in StatCrunch.</a></p>
+<p>Since we want to know if study time improves exam score, the explanatory variable is study time and the response variable is exam score. We can plot these using a scatter plot (Graph &gt; Scatter Plot). We should set the study time as the x variable and the exam score as the y variable.</p>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -430,6 +465,153 @@ Figure&nbsp;3.4: Scatter plot of weekly exercise hours and resting heart rate.
 </figure>
 </div>
 </div>
+</div>
+<p>We use the words <strong>strong</strong>, <strong>moderate</strong> and <strong>weak</strong> to describe how linearly correlated the data is. Below is an example of each,</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-corrstrength" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corrstrength-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lecture-03_files/figure-html/fig-corrstrength-1.png" class="img-fluid figure-img" width="864">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corrstrength-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.5: Strength of correlation.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Above the value <span class="math inline">\(r\)</span> is the <strong>correlation coefficient</strong> for the data. Don’t worry about the formula for computing r as we will use StatCrunch for this computation. See how to use it below,</p>
+<div id="exm-rcoef" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3.8 (Correlation Coefficient)</strong></span> <a href="https://statcrunch.pearson.com/app/index.html?dataid=1518728" target="blank">Open this data in StatCrunch.</a> Make a scatter plot with longevity as the explanatory variable and gestation period as the response variable. Then compute the correlation coefficient of the data.</p>
+</div>
+<p>The correlation coefficient <span class="math inline">\(r\)</span> can measure the strength of the correlation, but only after we use the scatterplot to justify that it is linear! If our data is approximately linear, then the sign of the correlation coefficient tells us whether it is positive or negatively correlated. The magnitude of the correlation coefficient tells us the strength. There are a lot of different bench marks you will see for what <span class="math inline">\(r\)</span> value is “moderate” versus “strong.” You should think of these benchmarks as a guideline and that they are context dependent.</p>
+<p>Plenty of data is not linearly correlated! Let’s see some examples.</p>
+<div class="cell" width="6">
+<div class="cell-output-display">
+<div id="fig-energy" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-energy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lecture-03_files/figure-html/fig-energy-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-energy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.6: Daily home energy use is highest on cold and hot days and lowest at mild temperatures.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" width="6">
+<div class="cell-output-display">
+<div id="fig-dose" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dose-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lecture-03_files/figure-html/fig-dose-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dose-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.7: Response stays low at small doses, rises steeply, then plateaus near the maximum effect.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Don’t Over-Value <span class="math inline">\(r\)</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The correlation coefficient should only be used as <em>supporting evidence</em> alongside the scatter plot. When a scatter plot looks linear, then <span class="math inline">\(r\)</span> can tell us the strength and direction of that linearity. We cannot use <span class="math inline">\(r\)</span> alone to justify linearity!!</p>
+</div>
+</div>
+</section>
+<section id="linear-regression" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="linear-regression"><span class="header-section-number">3.4</span> Linear Regression</h2>
+<p>If we do feel a line is linear we can perform <strong>least-squares linear regression</strong>. This creates a line that best fits the data. We will not do this by hand, we will use StatCrunch. It is important to be able to interpret the StatCrunch output though.</p>
+<div id="exm-linearreg" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3.9</strong></span> <a href="https://statcrunch.pearson.com/app/index.html?dataid=1518728" target="blank">Open this data in StatCrunch.</a> Perform the linear regression on the data. What is the equation for the line of best fit? Write a sentence to interpret the slope in the context of the explanatory and response variables.</p>
+<div class="cell" width="6">
+<div class="cell-output-display">
+<div id="fig-animal" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-animal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lecture-03_files/figure-html/fig-animal-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-animal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.8: Longevity and gestation period for a variety of animals.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Under the table <strong>Parameter Estimates</strong> we want to look at the <strong>intercept</strong> and <strong>slope</strong> estimate values to generate the line of best fit.</p>
+<p>Intercept: 21.71</p>
+<p>Slope: 13.13</p>
+<p>Recall that longevity is our response variable–this means for our line it is the <em>input</em> (x variable). Gestation will be the <em>output</em> (y variable). So our line has the form,</p>
+<p><span class="math display">\[\text{gestation} = 13.13\times(\text{longevity}) + 21.71\]</span></p>
+<p>The slope tells us that, on average, each year of longevity amounts to an additional 13.13 days of gestation. The intercept tells us for a animal with a longevity of 0 years, the gestation period is, on average, 21.71 days. This is an impossible scenario though, so it is outside of our domain of interest.</p>
+</div>
+</div>
+</div>
+<div id="exm-linearreg2" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3.10</strong></span> Use the line of best fit computed in Example <a href="#exm-linearreg" class="quarto-xref">Example&nbsp;<span>3.9</span></a> to approximate the gestation period of a North American river otter, which has a typical lifespan of 12 years.</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Using our line, we estimate that the North American river otter will have a gestation period of <span class="math inline">\(13.13\times 12 + 21.71 = 179.27\)</span> months.</p>
+<p>According the the internet, the river otters have a gestation period of 285-375 days due to a process called delayed implantation. The more you know, eh?!</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Estimation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You should avoid using linear regression to estimate values that fall outside of the range of your data. When we zoom in on functions they almost always look linear, but zooming out can reveal more complicated behavior. Just because a line fits the data you have, doesn’t mean it will still look linear when we “zoom out.”</p>
+<p>For example, the line in Example <a href="#exm-linearreg" class="quarto-xref">Example&nbsp;<span>3.9</span></a> should <em>not</em> be used to approximate the gestation time of an ORca, which averages 90 years of life. Plugging this in gives an approximate gestation period of 1,203 days or ~40 months–much longer than their actual gestation period of 15-18 months.</p>
+</div>
+</div>
+<div id="exm-carwt" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3.11</strong></span> <a href="https://statcrunch.pearson.com/app/?dataid=5160759" target="blank">Data.</a> Using the provided dataset, answer the following:</p>
+<ol type="1">
+<li>Describe the relationship in words between the car’s weight and its miles per gallon. Use the weight as the explanatory variable.</li>
+<li>Compute the correlation coefficient.</li>
+<li>Use linear regression to write a line that estimates the car’s mpg from it weight.</li>
+<li>Estimate the mpg of a car that weighs 4250 lbs.</li>
+</ol>
 </div>
 
 
