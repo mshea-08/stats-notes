@@ -1,0 +1,135 @@
+# Basics of Probability
+
+The **probability** of an event is the likelihood of the event occurring. If we denote an event by $E$ then we write 
+
+$$P(E)$$
+
+to denote the probability that event $E$ happens. Probabilities should be numbers between 0 and 1. 
+
+$$E \text{ is impossible} \implies P(E) = 0.$$
+$$E \text{ always occurs} \implies P(E) = 1.$$
+
+::: {.callout-important}
+## Zero Probability
+
+The *converse* of the above statements are not true. Meaning that if an event has probability 0 it does not mean it is impossible. This only happens in cases of infinite *sample space* though, so don't worry about it. :)
+:::
+
+An event has a **theoretical** probability, where we infer the probability from the nature of the situation. 
+
+::: {#exm-theoretical}
+If I flip a **fair coin** there probability it lands on heads is 0.5. 
+
+If I roll a fair **6-sided** dice, the probability it lands on any of the numbers is $1/6 \approx 0.1667$. 
+
+These are a **theoretical probability**.
+:::
+
+We can also use data to conjecture probabilities. We will call this an **empirical probability**. 
+
+::: {#exm-empirical}
+Flip a (fair) coin 30 times and record the number of times it lands on heads. Dividing this number by 30 will give an empirical probability. 
+:::
+
+The coin flip example is silly because the theoretical probability is easily attainable. Empirical probability are useful when the actually theoretical probabilities are not attainable. 
+
+::: {#exm-empirical2}
+Suppose I want to know the probability of a penalty kick being scored amongst international mens soccer teams. A theoretical probability would be impossible to compute here, but I could use historical data to get an empirical probability. 
+:::
+
+::: {#exm-empirical3}
+## Empirical Probability
+
+A school surveyed 200 randomly selected students about how they usually get to school. The results are shown below.
+
+| Transportation | Number of Students |
+|----------------|:------------------:|
+| Car            | 84                 |
+| Bus            | 56                 |
+| Walk           | 36                 |
+| Bike           | 16                 |
+| Other          | 8                  |
+| **Total**      | **200**            |
+
+Suppose a student from this school is selected at random. Use the data to find each probability.
+
+1. The student rides the bus.
+2. The student bikes to school.
+3. The student walks or bikes to school.
+4. The student does **not** get to school by car.
+5. If the school has 1,500 students, about how many would you expect to ride the bus?
+:::
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+1. $56/200 = 0.28$
+2. $16/200 = 0.08$
+3. $52/200 = 0.26$
+4. $116/200 = 0.58$
+5. $0.28 \times 1500 = 420$.
+:::
+
+## Random Experiments, Sample Space, and Outcomes
+
+A **random experiment** is a process that can be repeated under the same conditions, where all possible outcomes are known in advance but the outcome of any single trial cannot be predicted. Examples include, 
+
+* Flipping a coin X amount of times.
+* Choosing a random person and checking their eye color. 
+* Rolling two dice until you get a pair. 
+
+An **outcome** is any possible result of the experiment. The **sample space** of a random experiment is the set of all possible outcomes. 
+
+::: {#exm-samplespace}
+Todd rolls a dice and records the outcome. The sample space is, 
+
+$$\{1, 2, 3, 4, 5, 6\}$$
+:::
+
+::: {#exm-samplespace2}
+Julia flips a coin twice and records the results. The sample space is,
+
+$$\{HH, TT, HT, TH\}$$
+:::
+
+Notice that $TH$ and $HT$ are two different outcome--order matters in this experiment. 
+
+::: {#exm-samplespace3}
+Dr. Gordo randomly selects a patient file and checks their blood type. The sample space is,
+
+$$\{O,A,B,AB\}$$
+:::
+
+::: {#exm-samplespace4}
+Julia flips a coin three times and records the results. What is the sample space?
+:::
+
+::: {.callout-tip collapse="true"}
+HHH, TTT, HTT, THH, HHT, TTH, HTH, THT. 
+:::
+
+With our definition of sample space, we can redefine an **event** as a subset of the sample space. 
+
+::: {#exm-event1}
+Julia flips a coin three times. Let $A$ be the event that there is at least two tails flipped. Which outcomes are included in this event? 
+:::
+
+::: {.callout-tip collapse="true"}
+TTT, HTT, TTH, THT. 
+:::
+
+::: {#exm-event2}
+Margot rolls a 6-sided dice twice and records the outcomes in order. What is the sample space?
+
+Let $A$ be the event that the sum of the two rolls is at least 8. What outcomes are included in this event?
+:::
+
+::: {.callout-tip collapse="true"}
+The sample space is: 11, 12, 13, 14, 15, 16, 21, 22, 23, 24, 25, 26, 31, 32, 33, 34, 35, 36, 41, 42, 43, 44, 45, 46, 51, 52, 53, 54, 55, 56, 61, 62, 63, 64, 65, 66. 
+
+The outcomes where the sum is at least 8 are: 26, 35, 36, 44, 45, 46, 53, 54, 55, 56, 62, 63, 64, 65, 66. 
+:::
+
+
+## Naive Probability 
+

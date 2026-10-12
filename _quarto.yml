@@ -13,10 +13,12 @@ book:
     - lecture-01.qmd
     - lecture-02.qmd
     - lecture-03.qmd
+    - lecture-04.qmd
+    - lecture-05.qmd
 
 format:
   html:
-    theme: cosmo
+    theme: [cosmo, custom.scss]
     toc: true
     number-sections: true
     code-fold: show
