@@ -422,6 +422,7 @@ Anna denotes how many Reese's Peanutbutter Cups her 10 friends eat at a party. S
 $$3, 4, 3, 6, 6, 2, 1, 8, 5, 5.$$
 
 Compute the mean and standard deviation of the dataset. 
+:::
 
 ::: {.callout-tip collapse="true"}
 ## Answer 
