@@ -189,6 +189,7 @@ window.Quarto = {
   <ul>
   <li><a href="#random-experiments-sample-space-and-outcomes" id="toc-random-experiments-sample-space-and-outcomes" class="nav-link active" data-scroll-target="#random-experiments-sample-space-and-outcomes"><span class="header-section-number">5.1</span> Random Experiments, Sample Space, and Outcomes</a></li>
   <li><a href="#naive-probability" id="toc-naive-probability" class="nav-link" data-scroll-target="#naive-probability"><span class="header-section-number">5.2</span> Naive Probability</a></li>
+  <li><a href="#rules-of-probability" id="toc-rules-of-probability" class="nav-link" data-scroll-target="#rules-of-probability"><span class="header-section-number">5.3</span> Rules of Probability</a></li>
   </ul>
 </nav>
     </div>
@@ -240,10 +241,106 @@ window.Quarto = {
 <p>We can also use data to conjecture probabilities. We will call this an <strong>empirical probability</strong>.</p>
 <div id="exm-empirical" class="theorem example">
 <p><span class="theorem-title"><strong>Example 5.2</strong></span> Flip a (fair) coin 30 times and record the number of times it lands on heads. Dividing this number by 30 will give an empirical probability.</p>
+<div class="coinflip" id="coinflip">
+  <div class="cf-coin" id="cf-coin" aria-live="polite">?</div>
+  <div class="cf-buttons">
+    <button type="button" id="cf-flip">Flip coin</button>
+    <button type="button" id="cf-clear" class="cf-secondary">Clear</button>
+  </div>
+  <div class="cf-counts">
+    <div><span class="cf-label">Heads</span><span id="cf-heads">0</span></div>
+    <div><span class="cf-label">Tails</span><span id="cf-tails">0</span></div>
+    <div><span class="cf-label">Total</span><span id="cf-total">0</span></div>
+  </div>
 </div>
+
+<style>
+  .coinflip {
+    max-width: 360px; margin: 1.5rem auto; padding: 1.25rem;
+    border: 1px solid #ddd; border-radius: 12px; text-align: center;
+    font-family: system-ui, sans-serif;
+  }
+  .cf-coin {
+    width: 110px; height: 110px; margin: 0 auto 1rem; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; font-weight: 700; color: #5a4300;
+    background: radial-gradient(circle at 35% 30%, #ffe680, #d4a017);
+    border: 4px solid #b8860b; user-select: none;
+  }
+  .cf-coin.cf-spin { animation: cf-spin 0.6s ease-in-out; }
+  @keyframes cf-spin {
+    0% { transform: rotateY(0); } 100% { transform: rotateY(1080deg); }
+  }
+  .cf-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 1rem; }
+  .cf-buttons button {
+    padding: 0.5rem 1.1rem; border-radius: 8px; border: none; cursor: pointer;
+    font-size: 1rem; background: #2c6bed; color: #fff;
+  }
+  .cf-buttons button:disabled { opacity: 0.6; cursor: default; }
+  .cf-buttons .cf-secondary { background: #e5e7eb; color: #222; }
+  .cf-counts { display: flex; justify-content: space-around; font-size: 1.3rem; font-weight: 600; }
+  .cf-counts div { display: flex; flex-direction: column; }
+  .cf-label { font-size: 0.8rem; font-weight: 400; color: #666; }
+  .cf-note { font-size: 0.8rem; color: #888; margin: 1rem 0 0; }
+</style>
+
+<script>
+(function () {
+  var KEY = "quarto-coinflip-counts";
+  var counts = { heads: 0, tails: 0 };
+
+  try {
+    var saved = JSON.parse(localStorage.getItem(KEY));
+    if (saved && typeof saved.heads === "number" && typeof saved.tails === "number") {
+      counts = saved;
+    }
+  } catch (e) {}
+
+  var coin = document.getElementById("cf-coin");
+  var flipBtn = document.getElementById("cf-flip");
+  var clearBtn = document.getElementById("cf-clear");
+
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(counts)); } catch (e) {}
+  }
+
+  function render() {
+    document.getElementById("cf-heads").textContent = counts.heads;
+    document.getElementById("cf-tails").textContent = counts.tails;
+    document.getElementById("cf-total").textContent = counts.heads + counts.tails;
+  }
+
+  flipBtn.addEventListener("click", function () {
+    flipBtn.disabled = true;
+    coin.classList.remove("cf-spin");
+    void coin.offsetWidth;
+    coin.classList.add("cf-spin");
+    coin.textContent = "…";
+
+    setTimeout(function () {
+      if (Math.random() < 0.5) { counts.heads++; coin.textContent = "Heads"; }
+      else { counts.tails++; coin.textContent = "Tails"; }
+      save();
+      render();
+      flipBtn.disabled = false;
+    }, 600);
+  });
+
+  clearBtn.addEventListener("click", function () {
+    counts = { heads: 0, tails: 0 };
+    coin.textContent = "?";
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    render();
+  });
+
+  render();
+})();
+</script>
+</div>
+<p>According to the <strong>Law of Large Numbers</strong> the empirical probability should be close to the theoretical probability if the number of random experiments is large.</p>
 <p>The coin flip example is silly because the theoretical probability is easily attainable. Empirical probability are useful when the actually theoretical probabilities are not attainable.</p>
 <div id="exm-empirical2" class="theorem example">
-<p><span class="theorem-title"><strong>Example 5.3</strong></span> Suppose I want to know the probability of a penalty kick being scored amongst international mens soccer teams. A theoretical probability would be impossible to compute here, but I could use historical data to get an empirical probability.</p>
+<p><span class="theorem-title"><strong>Example 5.3</strong></span> Suppose I want to know the probability of a penalty kick being scored amongst international mens soccer teams. A theoretical probability would be impossible to compute here, but I could use historical data, <a href="https://www.transfermarkt.us/premier-league/topErhalteneElfmeter/wettbewerb/GB1" target="blank">like the data found here</a>, to get an empirical probability.</p>
 </div>
 <div id="exm-empirical3" class="theorem example">
 <p><span class="theorem-title"><strong>Example 5.4 (Empirical Probability)</strong></span> A school surveyed 200 randomly selected students about how they usually get to school. The results are shown below.</p>
@@ -355,7 +452,7 @@ Tip
 </div>
 <p>With our definition of sample space, we can redefine an <strong>event</strong> as a subset of the sample space.</p>
 <div id="exm-event1" class="theorem example">
-<p><span class="theorem-title"><strong>Example 5.9</strong></span> Julia flips a coin three times. Let <span class="math inline">\(A\)</span> be the event that there is at least two tails flipped. Which outcomes are included in this event?</p>
+<p><span class="theorem-title"><strong>Example 5.9</strong></span> Julia flips a coin three times. Let <span class="math inline">\(A\)</span> be the event that there is at least two tails flipped. Which outcomes from the sample space above are included in this event?</p>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
@@ -374,7 +471,7 @@ Tip
 </div>
 </div>
 <div id="exm-event2" class="theorem example">
-<p><span class="theorem-title"><strong>Example 5.10</strong></span> Margot rolls a 6-sided dice twice and records the outcomes in order. What is the sample space?</p>
+<p><span class="theorem-title"><strong>Example 5.10</strong></span> Margot rolls two 6-sided dice and records the outcomes. What is the sample space?</p>
 <p>Let <span class="math inline">\(A\)</span> be the event that the sum of the two rolls is at least 8. What outcomes are included in this event?</p>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -397,6 +494,220 @@ Tip
 </section>
 <section id="naive-probability" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="naive-probability"><span class="header-section-number">5.2</span> Naive Probability</h2>
+<p>If all outcomes in the sample space are equally likely, then the problem of an event is</p>
+<p><span class="math display">\[P(E) = \frac{\text{number of outcomes in the event}}{\text{size of the sample space}}.\]</span></p>
+<div id="exm-coinsprob" class="theorem example">
+<p><span class="theorem-title"><strong>Example 5.11</strong></span> What is the probability of flipping a coin three times and getting exactly 1 head?</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>From earlier we know the sample space has 8 events. All of these events are equally likely. The outcomes with exactly one head are:: HTT, THT, TTH. So the probability is <span class="math inline">\(3/8 = 0.375\)</span>.</p>
+</div>
+</div>
+</div>
+<div id="exm-coinprob2" class="theorem example">
+<p><span class="theorem-title"><strong>Example 5.12</strong></span> A coin is flip 3 times or until a head is flipped. What is the sample space? Can I use the naive probability definition to compute the probability of flipping at least 1 tail? Explain.</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The sample space is,</p>
+<p><span class="math display">\[\{H, TH, TTH \}.\]</span></p>
+<p>I cannot use the naive definition because the three outcomes are <em>not</em> equally likely.</p>
+</div>
+</div>
+</div>
+<div id="exm-diceroll" class="theorem example">
+<p><span class="theorem-title"><strong>Example 5.13</strong></span> Two 6-sided dice are rolled. What is the probability that the sum of the two numbers is less than 6?</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The sample space is the same as in the solution to Example <a href="#exm-event2" class="quarto-xref">Example&nbsp;<span>5.10</span></a>. All of these events are equally likely, so we can compute the probability by denoting how many outcomes have sum less than 6:</p>
+<p><span class="math display">\[11, \, 12, \, 13, \, 14, \, 21, \, 22, \, 23, \, 31, \, 32, \, 41.\]</span></p>
+<p>So the probability is <span class="math inline">\(10/36 = 0.278\)</span>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="rules-of-probability" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="rules-of-probability"><span class="header-section-number">5.3</span> Rules of Probability</h2>
+<p>The <strong>complement</strong> of an event <span class="math inline">\(A\)</span> is all outcomes where <span class="math inline">\(A\)</span> does not happen.</p>
+<div id="exm-comp" class="theorem example">
+<p><span class="theorem-title"><strong>Example 5.14 (Complement)</strong></span> Suppose I roll a 6-sided dice. Let <span class="math inline">\(A\)</span> be the event that I roll a number divisible by 3. Therefore</p>
+<p><span class="math display">\[P(A) = \frac{2}{6} \approx 0.33.\]</span></p>
+<p>The complement of <span class="math inline">\(A\)</span>, denoted <span class="math inline">\(A^c\)</span> is the event that I roll a number <em>not</em> divisible by three, e.g.&nbsp;1, 2, 4, or 5. Thus,</p>
+<p><span class="math display">\[P(A^c) = \frac{4}{6} \approx 0.67.\]</span></p>
+</div>
+<p>For an event and its complement, the following relationship holds</p>
+<p><span class="math display">\[\boxed{P(A) = 1 - P(A^c)}\]</span></p>
+<div id="exm-comp2" class="theorem example">
+<p><span class="theorem-title"><strong>Example 5.15</strong></span> State the complement of the following events. You do not need to compute any probabilities.</p>
+<ol type="1">
+<li>The event that a randomly selected patient has blood type O.</li>
+<li>I roll two 6-sided dice. Let <span class="math inline">\(A\)</span> be the event that the sum of the roll is at least 10.</li>
+<li>A flip a coin until I flip heads. Let <span class="math inline">\(A\)</span> be the event that I get heads by the 10th flip.</li>
+<li>I roll two 6-sided dice. Let <span class="math inline">\(A\)</span> be the event that neither roll is a 6.</li>
+</ol>
+</div>
+<p>In some instances, it is easier to compute the probability of the complement. Thus we can use the boxed relationship to speed up the problem.</p>
+<div id="exm-probdicewhatever" class="theorem example">
+<p><span class="theorem-title"><strong>Example 5.16</strong></span> I roll two 6-sided dice. Compute the probability that the sum of the two dice is at least 3.</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>We know that there are 36 outcomes when rolling a dice twice. Three of those outcomes sum to <em>less than</em> 3: 11, 12, 21. So the probability of rolling <em>at least</em> a 3 is,</p>
+<p><span class="math display">\[1 - \frac{3}{36}  = \frac{33}{36} \approx 0.92.\]</span></p>
+</div>
+</div>
+</div>
+<p>Let <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> be events. The <strong>union</strong> of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, <span class="math inline">\(A \cup B\)</span>, is the event where at least one of the happens. For example, suppose I randomly select a person on the street and let</p>
+<p><span class="math display">\[A = \text{the person has a dog}, \; B = \text{the person has a cat}.\]</span></p>
+<p>Then the union is</p>
+<p><span class="math display">\[A \cup B = \text{the person has a dog \textbf{or} a cat}.\]</span></p>
+<p>The <strong>intersection</strong> of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, <span class="math inline">\(A \cap B\)</span>, is the event where they both happen. So in the example above,</p>
+<p><span class="math display">\[A \cup B = \text{the person has a dog \textbf{and} a cat}.\]</span></p>
+<p>Two events are <strong>disjoint</strong> if it is impossible to satisfy both at the same time. Mathematically, they are disjoint if <span class="math inline">\(A \cap B\)</span> is impossible (e.g.&nbsp;contains no outcomes).</p>
+<div id="exm-disjoint" class="theorem example">
+<p><span class="theorem-title"><strong>Example 5.17</strong></span> Determine whether or not the following events are disjoint.</p>
+<ol type="1">
+<li>Roll a dice. <span class="math inline">\(A\)</span> = the dice shows an even number, <span class="math inline">\(B\)</span> = the dice shows an odd number.</li>
+<li>Roll a dice. <span class="math inline">\(A\)</span> = the dice shows an even number, <span class="math inline">\(B\)</span> = the dice shows a number greater than 3.</li>
+<li>Flip a coin twice. <span class="math inline">\(A\)</span> = both flips are heads, <span class="math inline">\(B\)</span> = at least one flip is tails.</li>
+<li>Roll two dice. <span class="math inline">\(A\)</span> = the sum is 8, <span class="math inline">\(B\)</span> = both dice show the same number.</li>
+<li>Randomly select a high school student. <span class="math inline">\(A\)</span> = the student is a freshman, <span class="math inline">\(B\)</span> = the student is a senior.</li>
+<li>Randomly select a high school student. <span class="math inline">\(A\)</span> = the student plays a sport, <span class="math inline">\(B\)</span> = the student is in band.</li>
+</ol>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Disjoint, a number cannot be both even and odd.</li>
+<li>Not disjoint, for example a roll of 4 satisfies both.</li>
+<li>Disjoint.</li>
+<li>Not disjoint.</li>
+<li>Disjoint.</li>
+<li>Not disjoint.</li>
+</ol>
+</div>
+</div>
+</div>
+<p>If events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are disjoint, we can add their probabilities to compute the probability of the union</p>
+<p><span class="math display">\[P(A \cup B) = P(A) + P(B)\]</span></p>
+<p>But if two events are not disjoint, we should use the principle of <strong>inclusion-exclusion</strong></p>
+<p><span class="math display">\[P(A \cup B) = P(A) + P(B) - P(A \cap B)\]</span></p>
+<div id="exm-inclusion-exclusion" class="theorem example">
+<p><span class="theorem-title"><strong>Example 5.18</strong></span> A high school has 400 students. Of these, 180 play a sport, 90 are in band, and 40 do both. A student is selected at random.</p>
+<ol type="1">
+<li>What is the probability the student plays a sport?</li>
+<li>What is the probability that a student is in the band?</li>
+<li>What is the probability that a student plays a sport and is in the band?</li>
+<li>What is the probability that a student is in the band or plays a sport?</li>
+<li>What is the probability a student does neither?</li>
+</ol>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><span class="math inline">\(180/400=0.45\)</span>.</li>
+<li><span class="math inline">\(90/400=0.225\)</span></li>
+<li><span class="math inline">\(40/400 = 0.1\)</span></li>
+<li>Let <span class="math inline">\(S\)</span> = plays a sport and <span class="math inline">\(B\)</span> = in the band. Use inclusion-exclusion,</li>
+</ol>
+<p><span class="math display">\[P(S \cup B) = 0.45 + 0.225 - 0.1 = 0.165.\]</span></p>
+<ol start="5" type="1">
+<li>Doing neither is the complement of being in band or playing a sport,</li>
+</ol>
+<p><span class="math display">\[P((S \cup B)^c) = 1 - P(S \cup B) = 1 - 0.165 = 0.835.\]</span></p>
+</div>
+</div>
+</div>
+<p>Two events are <strong>independent</strong> if one event happening does not change the probability of the other event happening.</p>
+<div id="exm-ind" class="theorem example">
+<p><span class="theorem-title"><strong>Example 5.19</strong></span> Consider the events:</p>
+<ul>
+<li>It rains today.</li>
+<li>It is cloudy today.</li>
+</ul>
+<p>These events are not independent, because if we know it is cloudy this increases the chance that it is going to rain. We say these events are <strong>dependent</strong>.</p>
+</div>
+<div id="exm-ind2" class="theorem example">
+<p><span class="theorem-title"><strong>Example 5.20</strong></span> Consider the events:</p>
+<ul>
+<li>A couples first baby is a girl.</li>
+<li>A couples second baby is a girl.</li>
+</ul>
+<p>These events are independent, because the sex of the first child has no impact on the sex of the second child.</p>
+</div>
+<div id="exm-ind3" class="theorem example">
+<p><span class="theorem-title"><strong>Example 5.21</strong></span> Determine whether the following events are independent:</p>
+<ol type="1">
+<li>A coin is flipped twice. <span class="math inline">\(A\)</span>: the first flip is heads. <span class="math inline">\(B\)</span>: the second flip is heads.</li>
+<li>A coin is flipped twice. <span class="math inline">\(A\)</span>: the first flip is heads. <span class="math inline">\(B\)</span>: at least one flip is heads.</li>
+<li>A dice is rolled twice. <span class="math inline">\(A\)</span>: the first roll is even. <span class="math inline">\(B\)</span>: the sum of the two rolls is 7.</li>
+<li>A dice is rolled twice. <span class="math inline">\(A\)</span>: the first roll is a 6. <span class="math inline">\(B\)</span>: the sum of the two rolls is at least 10.</li>
+<li><span class="math inline">\(A\)</span>: a patient has blood type O. <span class="math inline">\(B\)</span>: their child has blood type O.</li>
+<li><span class="math inline">\(A\)</span>: the Seattle Mariners win. <span class="math inline">\(B\)</span>: the average on the exam is more than 70%.</li>
+</ol>
+</div>
 
 
 </section>
