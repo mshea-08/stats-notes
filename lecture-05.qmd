@@ -29,12 +29,113 @@ We can also use data to conjecture probabilities. We will call this an **empiric
 
 ::: {#exm-empirical}
 Flip a (fair) coin 30 times and record the number of times it lands on heads. Dividing this number by 30 will give an empirical probability. 
+
+```{=html}
+<div class="coinflip" id="coinflip">
+  <div class="cf-coin" id="cf-coin" aria-live="polite">?</div>
+  <div class="cf-buttons">
+    <button type="button" id="cf-flip">Flip coin</button>
+    <button type="button" id="cf-clear" class="cf-secondary">Clear</button>
+  </div>
+  <div class="cf-counts">
+    <div><span class="cf-label">Heads</span><span id="cf-heads">0</span></div>
+    <div><span class="cf-label">Tails</span><span id="cf-tails">0</span></div>
+    <div><span class="cf-label">Total</span><span id="cf-total">0</span></div>
+  </div>
+</div>
+
+<style>
+  .coinflip {
+    max-width: 360px; margin: 1.5rem auto; padding: 1.25rem;
+    border: 1px solid #ddd; border-radius: 12px; text-align: center;
+    font-family: system-ui, sans-serif;
+  }
+  .cf-coin {
+    width: 110px; height: 110px; margin: 0 auto 1rem; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; font-weight: 700; color: #5a4300;
+    background: radial-gradient(circle at 35% 30%, #ffe680, #d4a017);
+    border: 4px solid #b8860b; user-select: none;
+  }
+  .cf-coin.cf-spin { animation: cf-spin 0.6s ease-in-out; }
+  @keyframes cf-spin {
+    0% { transform: rotateY(0); } 100% { transform: rotateY(1080deg); }
+  }
+  .cf-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 1rem; }
+  .cf-buttons button {
+    padding: 0.5rem 1.1rem; border-radius: 8px; border: none; cursor: pointer;
+    font-size: 1rem; background: #2c6bed; color: #fff;
+  }
+  .cf-buttons button:disabled { opacity: 0.6; cursor: default; }
+  .cf-buttons .cf-secondary { background: #e5e7eb; color: #222; }
+  .cf-counts { display: flex; justify-content: space-around; font-size: 1.3rem; font-weight: 600; }
+  .cf-counts div { display: flex; flex-direction: column; }
+  .cf-label { font-size: 0.8rem; font-weight: 400; color: #666; }
+  .cf-note { font-size: 0.8rem; color: #888; margin: 1rem 0 0; }
+</style>
+
+<script>
+(function () {
+  var KEY = "quarto-coinflip-counts";
+  var counts = { heads: 0, tails: 0 };
+
+  try {
+    var saved = JSON.parse(localStorage.getItem(KEY));
+    if (saved && typeof saved.heads === "number" && typeof saved.tails === "number") {
+      counts = saved;
+    }
+  } catch (e) {}
+
+  var coin = document.getElementById("cf-coin");
+  var flipBtn = document.getElementById("cf-flip");
+  var clearBtn = document.getElementById("cf-clear");
+
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(counts)); } catch (e) {}
+  }
+
+  function render() {
+    document.getElementById("cf-heads").textContent = counts.heads;
+    document.getElementById("cf-tails").textContent = counts.tails;
+    document.getElementById("cf-total").textContent = counts.heads + counts.tails;
+  }
+
+  flipBtn.addEventListener("click", function () {
+    flipBtn.disabled = true;
+    coin.classList.remove("cf-spin");
+    void coin.offsetWidth;
+    coin.classList.add("cf-spin");
+    coin.textContent = "…";
+
+    setTimeout(function () {
+      if (Math.random() < 0.5) { counts.heads++; coin.textContent = "Heads"; }
+      else { counts.tails++; coin.textContent = "Tails"; }
+      save();
+      render();
+      flipBtn.disabled = false;
+    }, 600);
+  });
+
+  clearBtn.addEventListener("click", function () {
+    counts = { heads: 0, tails: 0 };
+    coin.textContent = "?";
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    render();
+  });
+
+  render();
+})();
+</script>
+```
+
 :::
+
+According to the **Law of Large Numbers** the empirical probability should be close to the theoretical probability if the number of random experiments is large. 
 
 The coin flip example is silly because the theoretical probability is easily attainable. Empirical probability are useful when the actually theoretical probabilities are not attainable. 
 
 ::: {#exm-empirical2}
-Suppose I want to know the probability of a penalty kick being scored amongst international mens soccer teams. A theoretical probability would be impossible to compute here, but I could use historical data to get an empirical probability. 
+Suppose I want to know the probability of a penalty kick being scored amongst international mens soccer teams. A theoretical probability would be impossible to compute here, but I could use historical data, [like the data found here](https://www.transfermarkt.us/premier-league/topErhalteneElfmeter/wettbewerb/GB1){target="blank"}, to get an empirical probability. 
 :::
 
 ::: {#exm-empirical3}
@@ -111,7 +212,7 @@ HHH, TTT, HTT, THH, HHT, TTH, HTH, THT.
 With our definition of sample space, we can redefine an **event** as a subset of the sample space. 
 
 ::: {#exm-event1}
-Julia flips a coin three times. Let $A$ be the event that there is at least two tails flipped. Which outcomes are included in this event? 
+Julia flips a coin three times. Let $A$ be the event that there is at least two tails flipped. Which outcomes from the sample space above are included in this event? 
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -119,7 +220,7 @@ TTT, HTT, TTH, THT.
 :::
 
 ::: {#exm-event2}
-Margot rolls a 6-sided dice twice and records the outcomes in order. What is the sample space?
+Margot rolls two 6-sided dice and records the outcomes. What is the sample space?
 
 Let $A$ be the event that the sum of the two rolls is at least 8. What outcomes are included in this event?
 :::
@@ -132,4 +233,195 @@ The outcomes where the sum is at least 8 are: 26, 35, 36, 44, 45, 46, 53, 54, 55
 
 
 ## Naive Probability 
+
+If all outcomes in the sample space are equally likely, then the problem of an event is
+
+$$P(E) = \frac{\text{number of outcomes in the event}}{\text{size of the sample space}}.$$
+
+::: {#exm-coinsprob}
+What is the probability of flipping a coin three times and getting exactly 1 head?
+:::
+
+::: {.callout-tip collapse="true"}
+## Answer 
+
+From earlier we know the sample space has 8 events. All of these events are equally likely. The outcomes with exactly one head are:: HTT, THT, TTH. So the probability is $3/8 = 0.375$.
+:::
+
+::: {#exm-coinprob2}
+A coin is flip 3 times or until a head is flipped. What is the sample space? Can I use the naive probability definition to compute the probability of flipping at least 1 tail? Explain.
+:::
+
+::: {.callout-tip collapse="true"}
+The sample space is, 
+
+$$\{H, TH, TTH \}.$$
+
+I cannot use the naive definition because the three outcomes are *not* equally likely. 
+::: 
+
+::: {#exm-diceroll}
+Two 6-sided dice are rolled. What is the probability that the sum of the two numbers is less than 6?
+:::
+
+::: {.callout-tip collapse="true"}
+## Answer 
+
+The sample space is the same as in the solution to Example @exm-event2. All of these events are equally likely, so we can compute the probability by denoting how many outcomes have sum less than 6:
+
+$$11, \, 12, \, 13, \, 14, \, 21, \, 22, \, 23, \, 31, \, 32, \, 41.$$
+
+So the probability is $10/36 = 0.278$. 
+:::
+
+## Rules of Probability
+
+The **complement** of an event $A$ is all outcomes where $A$ does not happen. 
+
+::: {#exm-comp}
+## Complement
+Suppose I roll a 6-sided dice. Let $A$ be the event that I roll a number divisible by 3. Therefore 
+
+$$P(A) = \frac{2}{6} \approx 0.33.$$
+
+The complement of $A$, denoted $A^c$ is the event that I roll a number *not* divisible by three, e.g. 1, 2, 4, or 5. Thus,
+
+$$P(A^c) = \frac{4}{6} \approx 0.67.$$
+:::
+
+For an event and its complement, the following relationship holds
+
+$$\boxed{P(A) = 1 - P(A^c)}$$
+
+::: {#exm-comp2}
+State the complement of the following events. You do not need to compute any probabilities. 
+
+1. The event that a randomly selected patient has blood type O. 
+2. I roll two 6-sided dice. Let $A$ be the event that the sum of the roll is at least 10.
+3. A flip a coin until I flip heads. Let $A$ be the event that I get heads by the 10th flip. 
+4. I roll two 6-sided dice. Let $A$ be the event that neither roll is a 6. 
+:::
+
+In some instances, it is easier to compute the probability of the complement. Thus we can use the boxed relationship to speed up the problem.
+
+::: {#exm-probdicewhatever}
+I roll two 6-sided dice. Compute the probability that the sum of the two dice is at least 3.
+:::
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+We know that there are 36 outcomes when rolling a dice twice. Three of those outcomes sum to *less than* 3: 11, 12, 21. So the probability of rolling *at least* a 3 is, 
+
+$$1 - \frac{3}{36}  = \frac{33}{36} \approx 0.92.$$
+:::
+
+Let $A$ and $B$ be events. The **union** of $A$ and $B$, $A \cup B$, is the event where at least one of the happens. For example, suppose I randomly select a person on the street and let
+
+$$A = \text{the person has a dog}, \; B = \text{the person has a cat}.$$
+
+Then the union is
+
+$$A \cup B = \text{the person has a dog \textbf{or} a cat}.$$
+
+The **intersection** of $A$ and $B$, $A \cap B$, is the event where they both happen. So in the example above,
+
+$$A \cup B = \text{the person has a dog \textbf{and} a cat}.$$
+
+Two events are **disjoint** if it is impossible to satisfy both at the same time. Mathematically, they are disjoint if $A \cap B$ is impossible (e.g. contains no outcomes).
+
+::: {#exm-disjoint}
+Determine whether or not the following events are disjoint. 
+
+1. Roll a dice. $A$ = the dice shows an even number, $B$ = the dice shows an odd number.
+2. Roll a dice. $A$ = the dice shows an even number, $B$ = the dice shows a number greater than 3.
+3. Flip a coin twice. $A$ = both flips are heads, $B$ = at least one flip is tails.
+4. Roll two dice. $A$ = the sum is 8, $B$ = both dice show the same number.
+5. Randomly select a high school student. $A$ = the student is a freshman, $B$ = the student is a senior.
+6. Randomly select a high school student. $A$ = the student plays a sport, $B$ = the student is in band.
+:::
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+1. Disjoint, a number cannot be both even and odd. 
+2. Not disjoint, for example a roll of 4 satisfies both. 
+3. Disjoint. 
+4. Not disjoint.
+5. Disjoint.
+6. Not disjoint.
+:::
+
+If events $A$ and $B$ are disjoint, we can add their probabilities to compute the probability of the union
+
+$$P(A \cup B) = P(A) + P(B)$$
+
+But if two events are not disjoint, we should use the principle of **inclusion-exclusion**
+
+$$P(A \cup B) = P(A) + P(B) - P(A \cap B)$$
+
+::: {#exm-inclusion-exclusion}
+A high school has 400 students. Of these, 180 play a sport, 90 are in band, and 40 do both. A student is selected at random.
+
+1. What is the probability the student plays a sport?
+2. What is the probability that a student is in the band?
+3. What is the probability that a student plays a sport and is in the band?
+4. What is the probability that a student is in the band or plays a sport?
+5. What is the probability a student does neither?
+:::
+
+::: {.callout-tip collapse="true"}
+## Answer 
+
+1. $180/400=0.45$.
+2. $90/400=0.225$
+3. $40/400 = 0.1$
+4. Let $S$ = plays a sport and $B$ = in the band. Use inclusion-exclusion,
+
+$$P(S \cup B) = 0.45 + 0.225 - 0.1 = 0.165.$$
+
+5. Doing neither is the complement of being in band or playing a sport,
+
+$$P((S \cup B)^c) = 1 - P(S \cup B) = 1 - 0.165 = 0.835.$$
+:::
+
+Two events are **independent** if one event happening does not change the probability of the other event happening. 
+
+::: {#exm-ind}
+Consider the events:
+
+* It rains today.
+* It is cloudy today.
+
+These events are not independent, because if we know it is cloudy this increases the chance that it is going to rain. We say these events are **dependent**.
+:::
+
+
+::: {#exm-ind2}
+Consider the events:
+
+* A couples first baby is a girl.
+* A couples second baby is a girl. 
+
+These events are independent, because the sex of the first child has no impact on the sex of the second child.
+:::
+
+::: {#exm-ind3}
+Determine whether the following events are independent:
+
+1. A coin is flipped twice. $A$: the first flip is heads. $B$: the second flip is heads.
+2. A coin is flipped twice. $A$: the first flip is heads. $B$: at least one flip is heads.
+3. A dice is rolled twice. $A$: the first roll is even. $B$: the sum of the two rolls is 7.
+4. A dice is rolled twice. $A$: the first roll is a 6. $B$: the sum of the two rolls is at least 10.
+5. $A$: a patient has blood type O. $B$: their child has blood type O. 
+6. $A$: the Seattle Mariners win. $B$: the average on the exam is more than 70%. 
+:::
+
+
+
+
+
+
+
+
 

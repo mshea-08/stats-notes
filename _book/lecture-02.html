@@ -197,6 +197,8 @@ window.Quarto = {
   </ul></li>
   <li><a href="#boxplots" id="toc-boxplots" class="nav-link" data-scroll-target="#boxplots"><span class="header-section-number">2.3</span> Boxplots</a></li>
   <li><a href="#standard-deviation" id="toc-standard-deviation" class="nav-link" data-scroll-target="#standard-deviation"><span class="header-section-number">2.4</span> Standard Deviation</a></li>
+  <li><a href="#normal-distribution-and-the-68-95-99.7" id="toc-normal-distribution-and-the-68-95-99.7" class="nav-link" data-scroll-target="#normal-distribution-and-the-68-95-99.7"><span class="header-section-number">2.5</span> Normal Distribution and the 68-95-99.7</a></li>
+  <li><a href="#extra-practice" id="toc-extra-practice" class="nav-link" data-scroll-target="#extra-practice"><span class="header-section-number">2.6</span> Extra Practice</a></li>
   </ul>
 </nav>
     </div>
@@ -817,9 +819,10 @@ Figure&nbsp;2.5: Histogram of neighborhood commute times.
 <p><span class="math display">\[SD = \sqrt{\frac{(x_1-\bar{x})^2 + (x_2-\bar{x})^2 + \cdots + (x_n - \bar{x})^2}{n-1}}\]</span></p>
 <p>where <span class="math inline">\(\bar{x}\)</span> denotes the mean of the dataset. Let’s see this formula in action with a small example,</p>
 <div id="exm-sdsmall" class="theorem example">
-<p><span class="theorem-title"><strong>Example 2.14</strong></span> Anna denotes how many Reese’s Peanutbutter Cups her 10 friends eat at a party. She gets the following amounts:</p>
+<p><span class="theorem-title"><strong>Example 2.11</strong></span> Anna denotes how many Reese’s Peanutbutter Cups her 10 friends eat at a party. She gets the following amounts:</p>
 <p><span class="math display">\[3, 4, 3, 6, 6, 2, 1, 8, 5, 5.\]</span></p>
 <p>Compute the mean and standard deviation of the dataset.</p>
+</div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -845,10 +848,10 @@ Figure&nbsp;2.5: Histogram of neighborhood commute times.
 </div>
 <p>We claim that standard deviation is telling us <em>something</em> about the spread of the distribution, but we can be more precise than that. The standard deviation tell us the average distance from an given datapoint to the mean. A larger standard deviation means the data is more spread out, while a smaller standard deviation tells us the data is compact.</p>
 <div id="exm-sd" class="theorem example">
-<p><span class="theorem-title"><strong>Example 2.11 (Standard Deviation in StatCrunch)</strong></span> <a href="https://www.statcrunch.com/app/index.html?dataid=5141492" target="_blank">For this example use this data on StatCrunch.</a> Compute the standard deviation of the income dataset.</p>
+<p><span class="theorem-title"><strong>Example 2.12 (Standard Deviation in StatCrunch)</strong></span> <a href="https://www.statcrunch.com/app/index.html?dataid=5141492" target="_blank">For this example use this data on StatCrunch.</a> Compute the standard deviation of the income dataset.</p>
 </div>
 <div id="exm-varyingstd" class="theorem example">
-<p><span class="theorem-title"><strong>Example 2.12</strong></span> Which histogram has the smallest standard deviation? The largest?</p>
+<p><span class="theorem-title"><strong>Example 2.13</strong></span> Which histogram has the smallest standard deviation? The largest?</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -860,6 +863,7 @@ Figure&nbsp;2.5: Histogram of neighborhood commute times.
 </div>
 </div>
 </div>
+</section>
 <section id="normal-distribution-and-the-68-95-99.7" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="normal-distribution-and-the-68-95-99.7"><span class="header-section-number">2.5</span> Normal Distribution and the 68-95-99.7</h2>
 <p>Quantitative data is <strong>normally</strong> distributed when its distribution looks like a symmetric “mound” or “bell” shape.</p>
@@ -903,7 +907,7 @@ Figure&nbsp;2.5: Histogram of neighborhood commute times.
 </div>
 </div>
 <div id="exm-babywts" class="theorem example">
-<p><span class="theorem-title"><strong>Example 2.13 (Baby Weights)</strong></span> The mean birth weight at a hospital is 7.3 lbs with a standard deviation of 1.1 lbs. Assume that the birth weight is approximately normally distributed.</p>
+<p><span class="theorem-title"><strong>Example 2.14 (Baby Weights)</strong></span> The mean birth weight at a hospital is 7.3 lbs with a standard deviation of 1.1 lbs. Assume that the birth weight is approximately normally distributed.</p>
 <ol type="1">
 <li>What percentage of babies weigh between 6.2 lbs and 8.4 lbs?</li>
 <li>What percentage of babies weigh less than 4.0 lbs?</li>
@@ -980,8 +984,6 @@ Figure&nbsp;2.5: Histogram of neighborhood commute times.
 </ol>
 
 
-</section>
-</div>
 </section>
 
 </main> <!-- /main -->

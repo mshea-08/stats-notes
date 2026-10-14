@@ -6,3 +6,5 @@ Lecture numbers will not exactly correspond to the numbers in the navigation. He
 
 1. <u>Wed, Sept 30:</u> Went through **Exploring Data** notes. 
 2. <u>Mon, Oct 5:</u> Went through **Summary Statistics** notes. Also worked on **Topic 1 Check In** (worksheet available with solutions on WAMAP under Additional Class Resources). See additional practice problems at the end of **Summary Statistics** for more practice. 
+3. <u>Wed, Oct 7:</u> Covered **Examining Relationships**. 
+4. <u>Mon, Oct 12:</u> Covered **Sample and Study Design**. Additionally completed the **Topic 2 Check In**, which is available on WAMAP.
