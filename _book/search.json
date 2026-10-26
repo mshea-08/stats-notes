@@ -290,16 +290,6 @@
     ]
   },
   {
-    "objectID": "lecture-06.html#probability-mass-functions-discrete",
-    "href": "lecture-06.html#probability-mass-functions-discrete",
-    "title": "6  Random Variables and Probability Distributions",
-    "section": "6.2 Probability Mass Functions (Discrete)",
-    "text": "6.2 Probability Mass Functions (Discrete)\nIf we have a discrete random variable, we can describe the probability of each possible outcome with a probability mass function.\n\nExample 6.3 Consider the random experiment when a flip a coin three times. Let \\(X\\) be the random variable that counts the number of heads that appear.\n\n\n\n\\(x\\)\n\\(P(X = x)\\)\n\n\n\n\n0\n\\(1/8\\)\n\n\n1\n\\(3/8\\)\n\n\n2\n\\(3/8\\)\n\n\n3\n\\(1/8\\)\n\n\n\nWe read this as, \\(P(X = 0) = 1/8\\), \\(P(X=1)=3/8\\), etc.",
-    "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Random Variables and Probability Distributions</span>"
-    ]
-  },
-  {
     "objectID": "lecture-06.html#discrete-probability-distributions",
     "href": "lecture-06.html#discrete-probability-distributions",
     "title": "6  Random Variables and Probability Distributions",
