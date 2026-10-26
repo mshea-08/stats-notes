@@ -268,5 +268,45 @@
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Basics of Probability</span>"
     ]
+  },
+  {
+    "objectID": "lecture-06.html",
+    "href": "lecture-06.html",
+    "title": "6  Random Variables and Probability Distributions",
+    "section": "",
+    "text": "6.1 Random Variables\nA random variable is an assignment of a numerical value to each possible outcome. We can then compute the probability of a random variable being equal to some value, or falling in a range of some values.\nThe above is an example of a discrete random variable. If I can list out all the possible values of the random variable, then it is discrete.\nA random variable is a continuous random variable if the possible values include any number in some interval.\nIn general, discrete random variables are things we count, while continuous random variables are things we measure. some examples of discrete random variable are:\nThe following are continuous random variables:\nNote that sometimes the above can appear discrete, because we often round values. However, they are in fact continuous. The following variables are technically discrete, but they are frequently approximated as continuous:\nWe will discuss later when approximation is useful and appropriate.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Random Variables and Probability Distributions</span>"
+    ]
+  },
+  {
+    "objectID": "lecture-06.html#random-variables",
+    "href": "lecture-06.html#random-variables",
+    "title": "6  Random Variables and Probability Distributions",
+    "section": "",
+    "text": "Example 6.1 Consider the random experiment when a flip a coin three times. Let \\(X\\) be the random variable that counts the number of heads that appear. There are four possible values \\(X\\) could be: 0, 1, 2, or 3.\n\n\n\n\nExample 6.2 I randomly pick up a pile of sand at the beach. How much that piles weighs is a continuous random variable, since it can take a range of numbers.\n\n\n\nThe number of coin flips until I flip a heads.\nThe number of shots in a soccer game.\nThe number of cars caught speeding at an intersection.\nThe number of students who receive an A on an exam.\n\n\n\nThe weights of wrestlers.\nThe height of skyscrapers.\nThe temperature at the top of Mount Washington.\n\n\n\nSAT, or other exam, scores.\nAnnual salary of employees.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Random Variables and Probability Distributions</span>"
+    ]
+  },
+  {
+    "objectID": "lecture-06.html#discrete-probability-distributions",
+    "href": "lecture-06.html#discrete-probability-distributions",
+    "title": "6  Random Variables and Probability Distributions",
+    "section": "6.2 Discrete Probability Distributions",
+    "text": "6.2 Discrete Probability Distributions\nIf we have a discrete random variable, we can describe the probability of each possible outcome with a probability mass function, also known as a probability distribution.\n\nExample 6.3 Consider the random experiment when a flip a coin three times. Let \\(X\\) be the random variable that counts the number of heads that appear. We can write down the sample space to determine the probability of each possible value for \\(X\\), since each outcome in the sample space is equally likely. Sample space:\n\\[HHH, TTT, HTH, THT, HTT, THH, HHT, TTH.\\]\nNow we can count the probability for each possible value of \\(X\\).\n\n\n\n\\(x\\)\n\\(P(X = x)\\)\n\n\n\n\n0\n\\(1/8\\)\n\n\n1\n\\(3/8\\)\n\n\n2\n\\(3/8\\)\n\n\n3\n\\(1/8\\)\n\n\n\nWe read this as, \\(P(X = 0) = 1/8\\), \\(P(X=1)=3/8\\), etc.\n\nWe use capital letters, like \\(X\\), to represent random variables and we use lowercase letters, like \\(x\\), to represent placeholders for potential values.\n\nExample 6.4 A random variable \\(Y\\) has the following probability distribution,\n\n\n\n\\(y\\)\n\\(P(Y=y)\\)\n\n\n\n\n1\n\\(0.1\\)\n\n\n2\n\\(0.3\\)\n\n\n3\n\\(0.3\\)\n\n\n4\n\\(0.2\\)\n\n\n5\n\\(0.1\\)\n\n\n\nWhat is the probability that \\(X=2\\)? What is the probability that \\(X \\geq 3\\)?\n\n\n\n\n\n\n\nTipAnswer\n\n\n\n\n\nFrom reading the table we see that,\n\\[P(X=2) = 0.3.\\]\nNote the the probability that \\(X \\geq 3\\) is the same as the probability that \\(X\\) is 3, 4, or 5. So,\n\\[P(X \\geq 3) = P(X=3)+P(X=4)+P(X=5) = 0.3+0.2+0.1=0.6.\\]\n\n\n\nA probability distribution should satisfy the following conditions:\n\nFor any \\(x\\), \\(0 \\leq P(X=x) \\leq 1\\).\nWhen we sum over all possible values, the probability must equal 1.\n\n\nExample 6.5 Does the following table represent a valid probability distribution?\n\n\n\n\\(x\\)\n\\(P(X=x)\\)\n\n\n\n\n1\n\\(0.1\\)\n\n\n2\n\\(0.3\\)\n\n\n3\n\\(0.7\\)\n\n\n\n\n\n\n\n\n\n\nTipAnswer\n\n\n\n\n\nNo. When we add up all the probabilities, the sum is 1.1 not 1.\n\n\n\n\nExample 6.6 Does the following table represent a valid probability distribution?\n\n\n\n\\(x\\)\n\\(P(X=x)\\)\n\n\n\n\n-2\n\\(0.25\\)\n\n\n-1\n\\(0.2\\)\n\n\n0\n\\(0.05\\)\n\n\n1\n\\(0.3\\)\n\n\n2\n\\(0.2\\)\n\n\n\n\n\n\n\n\n\n\nTipAnswer\n\n\n\n\n\nYes!\n\n\n\n\nExample 6.7 Does the following table represent a valid probability distribution?\n\n\n\n\\(x\\)\n\\(P(X=x)\\)\n\n\n\n\n1\n\\(0.3\\)\n\n\n2\n\\(0.3\\)\n\n\n3\n\\(0.3\\)\n\n\n4\n\\(0.3\\)\n\n\n5\n\\(-0.2\\)\n\n\n\n\n\n\n\n\n\n\nTipAnswer\n\n\n\n\n\nNo, we cannot have negative probabilities.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Random Variables and Probability Distributions</span>"
+    ]
+  },
+  {
+    "objectID": "lecture-06.html#continuous-probability-distributions",
+    "href": "lecture-06.html#continuous-probability-distributions",
+    "title": "6  Random Variables and Probability Distributions",
+    "section": "6.3 Continuous Probability Distributions",
+    "text": "6.3 Continuous Probability Distributions\nTo understand continuous distributions, it will help to start with a histogram. The following is a histogram of 1,000 adult female heights,\n\n\n\n\n\n\n\n\nFigure 6.1: Histogram of 100 female heights.\n\n\n\n\n\n\nExample 6.8 What is the probability of selecting a random person with a height of at least 170 cm?\n\n\n\n\n\n\n\nTipAnswer\n\n\n\n\n\n\\((89+16+5+1)/1000 = 111/1000 = 0.111\\)\n\n\n\nWe divide by 1000 to get the correct probability. Instead of doing this, what if we rescaled the graph so the probability for each bar was equal to its area. Since each bar has width 5, we need to divide the heights by 200. This is known as a density histogram. Above the bars below I am showing the area of each bar not the height.\n\n\n\n\n\n\n\n\nFigure 6.2: Density Histogram of 100 female heights.\n\n\n\n\n\nWhen a random variable is continuous we extend this idea to a continuous function known as a probability density function. The following density curve represents the heights,\n\n\n\n\n\n\n\n\nFigure 6.3: Distribution plot for female heights.\n\n\n\n\n\nAgain, if I wanted to know the probability that a randomly selected female has a height of at least 170 cm I would compute the area under the density curve.\n\n\n\n\n\n\n\n\nFigure 6.4: Distribution plot for female heights. The area of the shaded region is the probability of a random female having a height of at least 170 cm.\n\n\n\n\n\nSimilarly, if I wanted to compute the probability that someone has a height between 145 cm and 162 cm I would compute the following area.\n\n\n\n\n\n\n\n\nFigure 6.5: Distribution plot for female heights.\n\n\n\n\n\nWe actually saw this idea with our image of the Empirical Rule, although we didn’t explicitly say it. The areas under the curve were (approximately) the proportions we stated!\nFor a discrete random variable, whether or not the inequality is strict makes a difference.\n\nExample 6.9 Roll two dice and let \\(X\\) denote the sum of the rolls. What is \\(P(X &gt; 10)\\)? What is \\(P(X \\geq 10)\\)?\n\n\n\n\n\n\n\nTipAnswer\n\n\n\n\n\nThe sample space is 36 outcomes that are all equally likely. There is 1 outcome that sums to 12 (66), 2 outcomes that sum to 11 (56, 65), and 3 outcomes that sum to 10 (46, 55, 64). So,\n\\[P(X &gt; 10) = \\frac{3}{36} = \\frac{1}{12}\\]\nand\n\\[P(X \\geq 10) = \\frac{6}{36} = \\frac{1}{6}.\\]\n\n\n\n\n\n\n\n\n\nImportantInequalities and Cont. RVs\n\n\n\nFor continuous random variables whether or not the inequality is strict does not change the probability! If \\(X\\) is a continuous random variable, then\n\\[P(X &gt; 5) = P(X \\geq 5).\\]",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Random Variables and Probability Distributions</span>"
+    ]
   }
 ]
