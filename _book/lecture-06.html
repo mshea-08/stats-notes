@@ -36,6 +36,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./lecture-07.html" rel="next">
 <link href="./lecture-05.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -183,6 +184,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Random Variables and Probability Distributions</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Normal Random Variables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Sampling</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -320,7 +333,7 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<p>What is the probability that <span class="math inline">\(X=2\)</span>? What is the probability that <span class="math inline">\(X \geq 3\)</span>?</p>
+<p>What is the probability that <span class="math inline">\(Y=2\)</span>? What is the probability that <span class="math inline">\(Y \geq 3\)</span>?</p>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
@@ -335,9 +348,9 @@ window.Quarto = {
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>From reading the table we see that,</p>
-<p><span class="math display">\[P(X=2) = 0.3.\]</span></p>
-<p>Note the the probability that <span class="math inline">\(X \geq 3\)</span> is the same as the probability that <span class="math inline">\(X\)</span> is 3, 4, or 5. So,</p>
-<p><span class="math display">\[P(X \geq 3) = P(X=3)+P(X=4)+P(X=5) = 0.3+0.2+0.1=0.6.\]</span></p>
+<p><span class="math display">\[P(Y=2) = 0.3.\]</span></p>
+<p>Note the the probability that <span class="math inline">\(Y \geq 3\)</span> is the same as the probability that <span class="math inline">\(Y\)</span> is 3, 4, or 5. So,</p>
+<p><span class="math display">\[P(Y \geq 3) = P(Y=3)+P(Y=4)+P(Y=5) = 0.3+0.2+0.1=0.6.\]</span></p>
 </div>
 </div>
 </div>
@@ -552,6 +565,7 @@ Figure&nbsp;6.3: Distribution plot for female heights.
 </div>
 </div>
 </div>
+<p>The above is the probability density function of the <strong>Normal distribution</strong> with mean 161.5 and standard deviation 7. We have seen this curve before, when we learned the Empirical rule.</p>
 <p>Again, if I wanted to know the probability that a randomly selected female has a height of at least 170 cm I would compute the area under the density curve.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -582,7 +596,7 @@ Figure&nbsp;6.5: Distribution plot for female heights.
 </div>
 </div>
 </div>
-<p>We actually saw this idea with our image of the <strong>Empirical Rule</strong>, although we didn’t explicitly say it. The areas under the curve were (approximately) the proportions we stated!</p>
+<p>To compute the actual area, we need to set up an integral. For us, we can use the <strong>Normal Calculator</strong> in StatCrunch. This will be our go to method for computing normal probabilities.</p>
 <p>For a discrete random variable, whether or not the inequality is strict makes a difference.</p>
 <div id="exm-discrete-inequality" class="theorem example">
 <p><span class="theorem-title"><strong>Example 6.9</strong></span> Roll two dice and let <span class="math inline">\(X\)</span> denote the sum of the rolls. What is <span class="math inline">\(P(X &gt; 10)\)</span>? What is <span class="math inline">\(P(X \geq 10)\)</span>?</p>
@@ -1032,6 +1046,9 @@ Figure&nbsp;6.5: Distribution plot for female heights.
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./lecture-07.html" class="pagination-link" aria-label="Normal Random Variables">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Normal Random Variables</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

@@ -70,18 +70,18 @@ $y$ | $P(Y=y)$ |
 4 | $0.2$ |
 5 | $0.1$ |
 
-What is the probability that $X=2$? What is the probability that $X \geq 3$?
+What is the probability that $Y=2$? What is the probability that $Y \geq 3$?
 :::
 
 ::: {.callout-tip collapse="true"}
 ## Answer 
 From reading the table we see that, 
 
-$$P(X=2) = 0.3.$$
+$$P(Y=2) = 0.3.$$
 
-Note the the probability that $X \geq 3$ is the same as the probability that $X$ is 3, 4, or 5. So,
+Note the the probability that $Y \geq 3$ is the same as the probability that $Y$ is 3, 4, or 5. So,
 
-$$P(X \geq 3) = P(X=3)+P(X=4)+P(X=5) = 0.3+0.2+0.1=0.6.$$
+$$P(Y \geq 3) = P(Y=3)+P(Y=4)+P(Y=5) = 0.3+0.2+0.1=0.6.$$
 :::
 
 A probability distribution should satisfy the following conditions:
@@ -189,7 +189,6 @@ We divide by 1000 to get the correct probability. Instead of doing this, what if
 #| echo: false
 #| fig-width: 7
 #| fig-height: 5
-#| 
 
 set.seed(42)     # remove or change for a different random sample
 

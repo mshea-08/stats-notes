@@ -1,0 +1,157 @@
+# Normal Random Variables
+
+## Practice Computing Normal Probabilities
+Use the *Normal Calculator* on StatCrunch to compute the normal probability. Sketch the appropriate area related to the probability. 
+
+1. A citrus farmer grows mandarin oranges. The diameter of the harvested oranges follow a normal distribution with a mean of 5.85 cm and a standard deviation of 0.24 cm. Find the probability that a random orange has a diameter that is at least 6.0 cms.
+
+2. Using the same distribution from above, what is the probability that a random orange has a diameter between 3 and 4 cms?
+
+3. The lifespan of a fitness tracking device follows a normal distribution with a mean of 4.1 years and a standard deviation of 1.8 years. What is the probability that a random fitness tracker lasts less than 2.5 years?
+
+4. Suppose $X$ follows a normal distribution with mean $14$ and standard deviation $3.6$. Find $c$ such that $P(X > c) = 0.456$.
+
+## Z-Scores
+
+For a random variable with any distribution, we can compute the **z-score**. To compute the z-score of a datapoint $x$ we compute, 
+
+$$z = \frac{x-\mu}{\sigma}$$
+
+where $\mu$ is the mean of the distribution and $\sigma$ is the standard deviation. Z-scores are a useful tool for standardizing data and comparing variables from different distributions. 
+
+If the distribution is normal, then the z-score is a **standard normal** random variable. The standard normal distribution is a normal distribution with mean 0 and standard deviation 1. 
+
+::: {#exm-std-norm}
+Scores on a standardized test are approximately normally distributed with mean 150 and standard deviation 20. What is the **z-score** of someone who scored a 164?
+:::
+
+::: {.callout-tip collapse="true"}
+## Answer 
+
+To compute the z-score we subtract the mean and divide by the standard deviation. 
+
+$$z = \frac{164 - 150}{20} = \frac{14}{20} = 0.7.$$
+:::
+
+A z-score tells us how many standard deviations a random variable is away from the mean. In the above example, a test score of 164 is 0.7 standard deviations *above average*. 
+
+Z-score are useful to compare statistics that come from different distributions. Consider the following example,
+
+::: {#exm-baseball}
+## Comparing Home Run totals across eras
+
+In 1920, Babe Ruth hit a record 54 home runs. In 2001, Barry Bonds hit a record 73 home runs. Who was a better hitter for their time (ignoring the steroid controversy of course)?
+
+In 1920, the league mean was only 5 home runs with a standard deviation of 6, so Ruth's z-score was
+
+$$z = \frac{54-5}{6} = 8.2.$$
+
+In 2001, the league mean was 20 home runs with a standard deviation of 11, ao Bonds's z-score was
+
+$$z = \frac{73-20}{11} = 4.8.$$
+
+This is one argument that suggests that Ruth was the better hitter for his era. Using z-scores here is useful because it accounts for the fact that in 2001 there were a lot more home runs across the league, as opposed to in 1920. 
+:::
+
+::: {.callout-important}
+## Z-Scores for Any Distribution
+
+We can compute a z-score even if our distribution is not normal in shape. However, we should be careful in relating this to probability or percentiles. In the above example, we know that Ruth was further from the mean (when measured in standard deviations), but we cannot put a specific value to how much better he was because we don't know what the distribution looks like. 
+:::
+
+::: {#exm-test}
+SAT and ACT scores are approximately normal. The SAT has a mean score of 1030 with a standard deviation of 210, while the ACT has a mean of 19.5 and a standard deviation of 6. 
+
+If Priya got a 1300 on the SAT and Marcus had an ACT score of 28, who performed better?
+:::
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+Priya has a z-score of 1.29 and Marcus has a z-score of 1.42, which means Marcus scored more standard deviations above the tests average. 
+:::
+
+## Practice Problems
+
+1. Scores on a stats exam have a mean of 72 and a standard deviation of 8. Find the z-score for a student who scored 84, and interpret it in context (with a sentence).
+
+::: {.callout-tip collapse="true"}
+## Answer
+$$z = \frac{x - \mu}{\sigma} = \frac{84 - 72}{8} = 1.50$$
+The student scored 1.5 standard deviations above the class mean.
+:::
+
+2. Using the same exam, a student's z-score was $-1.25$. What was their score on the test?
+
+::: {.callout-tip collapse="true"}
+## Answer
+$$-1.25 = \frac{x - 72}{8}$$
+
+$$-1.25\times 8 = x - 72$$
+
+$$-10 = x - 72$$
+
+$$x = 62$$
+:::
+
+3. Ana scored 1350 on a test with mean 1050 and SD 200. Ben scored 28 on a different test with mean 21 and SD 5. Who did better relative to the test they took?
+
+::: {.callout-tip collapse="true"}
+## Answer
+$$z_{\text{Ana}} = \frac{1350 - 1050}{200} = 1.50 \qquad z_{\text{Ben}} = \frac{28 - 21}{5} = 1.40$$
+Ana did slightly better relative to her group, since her z-score is higher.
+:::
+
+4. What does a z-score of 0 mean?
+
+::: {.callout-tip collapse="true"}
+## Answer
+A z-score of 0 means the value equals the mean. 
+:::
+
+
+Let $Z$ be a **standard normal random variable**. 
+
+5. Find $P(Z < 1.28)$.
+
+::: {.callout-tip collapse="true"}
+## Answer
+Using StatCrunch's normal calculator: $P(Z < 1.28) = 0.8997$
+:::
+
+6. Find $P(Z > -0.75)$.
+
+::: {.callout-tip collapse="true"}
+## Answer
+$$P(Z > -0.75) = 0.7734$$
+:::
+
+7. Find the value $c$ such that $P(Z > c) = 0.05$.
+
+::: {.callout-tip collapse="true"}
+## Answer
+$c = 1.645$.
+:::
+
+8. Adult female heights are approximately normal with mean 64.5 in and SD 2.5 in. What proportion of women are taller than 68 in?
+
+::: {.callout-tip collapse="true"}
+## Answer
+$$P(X > 68) = 0.0808$$
+About 8.1% of women are taller than 68 in.
+:::
+
+9. Using the same distribution, what proportion of women are between 60 and 67 inches tall?
+
+::: {.callout-tip collapse="true"}
+## Answer
+$$P(60 < X < 67) = 0.8054$$
+:::
+
+10. A battery's lifetime is normal with mean 500 hours and SD 40 hours. The manufacturer wants to set a warranty so that only 2% of batteries fail before it expires. How many hours should the warranty cover?
+
+::: {.callout-tip collapse="true"}
+## Answer
+We want $c$ such that, $P(X<c) = 0.02$. Using the normal calculator we get, $c = 417.8$ hours. 
+:::
+
