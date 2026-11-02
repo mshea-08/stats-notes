@@ -132,7 +132,7 @@ plot(x, y1, type = "l", lwd = 2, col = "steelblue",
      xlab = "x", ylab = "Density", las = 1)
 lines(x, y2, lwd = 2, col = "firebrick")
 abline(v = mu, lty = 2, col = "grey50")
-legend("topright", legend = c("N = 100", "N = 200"),
+legend("topright", legend = c("n = 100", "n = 200"),
        col = c("steelblue", "firebrick"), lwd = 2, bty = "n")
 ```
 
@@ -193,3 +193,13 @@ In other words, there is a 95% chance that the sample proportion will fall betwe
 :::
 
 We can also use the StatCrunch normal calculator above. On the **Between** setting set the probability to 0.95--this will always give an interval that is centered around the mean. 
+
+
+::: {.callout-important}
+## What if the population proportion is unknown?
+
+A more relevant question to researchers is: Given a sample proportion $\hat{p}$, how close should we expect the population proportion to be? 
+
+This is something we cannot answer yet! But we will address in Topic 6. 
+
+:::

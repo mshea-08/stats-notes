@@ -54,12 +54,9 @@ Now we can use the normal calculator to compute $P(34 <\bar{x} < 38) = 0.8876$.
 
 If our sample size is *not* at least 30, then we can use the normal approximation only if our *population* is distributed normally. We should not assume that our *population* distribution is normal unless we are told it is. 
 
-Note that this reveals an important and some times confusing fact: the population may have any distribution, but as long as our sample size is large enough the sample mean is **always** normal. This is again thanks to the **Central Limit Theorem**! Let's use a simulation to see this in action. 
+Note that this reveals an important and some times confusing fact: the population may have any distribution, but as long as our sample size is large enough the sample mean is **always** normal. This is again thanks to the **Central Limit Theorem**! 
 
-::: {#exm-sim}
-
-:::
-
+[We can explore the central limit theorem here.](https://central-limit-visualizer.replit.app/){target="blank"}
 
 ::: {#exm-sample-mean3}
 The average number of pets in a household is 1.4. If I randomly sample 8 households, what is the probability that the sample mean is less than 1?
