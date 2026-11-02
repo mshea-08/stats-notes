@@ -62,10 +62,24 @@ Standard Deviation | $\sigma$ | $s$ |
 
 A principle question we want to answer is *how close are the statistics to the parameters?* For example, how close are the nurse's means to the actual population mean (a parameter).
 
+
+::: {.callout-important}
+## Categorical Versus Quantitative
+
+A **proportion** is the statistic of interest when our data is *categorical*. For example, we might want to know what proportion of the population is left-handed, allergic to peanuts, or has type A blood. 
+
+**Mean** and **standard deviation** are relevant when the data is quantitative. 
+:::
+
+
 ## Sample Proportion
 
+We will start off by talking about sample proportions and categorical data. Consider the following examples...
+
 ::: {#exm-sample-proportion}
-A college wants to know what proportion of their most recent graduates have a job six months after graduating. The college randomly samples 500 graduates and finds that 64% of graduates in the sample have a job, so $\hat{p} = 0.64$.
+A college wants to know what proportion of their most recent graduates have a job six months after graduating.<sup>†</sup> The college randomly samples 500 graduates and finds that 64% of graduates in the sample have a job, so $\hat{p} = 0.64$.
+
+<sup>†</sup>This is categorical because we just want to know if they have a job after 6 months (yes/no). 
 :::
 
 We can think of the sample proportion as a *random variable* that changes depending on the sample I take. 
@@ -81,21 +95,21 @@ $$\sigma_{\hat{p}} = \sqrt{\frac{p(1-p)}{n}}$$
 where $n$ is the size of the sample we take. 
 
 ::: {#exm-sample-prop-dist}
-The proportion of left-handed people in the population is approximately 0.1. Suppose we wish to take a sample of 30 people, what would be the mean and standard deviation of the sample proportion?
+The proportion of left-handed people in the population is approximately 0.1. Suppose we wish to take a sample of 100 people, what would be the mean and standard deviation of the sample proportion?
 
-What if we took a sample of 100 people?
+What if we took a sample of 200 people?
 :::
 
 ::: {.callout-tip collapse="true"}
 ## Answer 
 
-The mean is 0.1, since this is the population proportion. The sample proportion standard deviation is, 
-
-$$\sigma_{\hat{p}} = \sqrt{\frac{p(1-p)}{n}} = \sqrt{\frac{0.1(0.9)}{30}} = 0.055.$$
-
-If we too a sample of 100 people the mean would be the same, but the standard deviation would get smaller,
+The mean is 0.1, since this is the population proportion. If we too a sample of 100 people the sample standard deviation would be
 
 $$\sigma_{\hat{p}} = \sqrt{\frac{0.1(0.9)}{100}} = 0.03.$$
+
+If we took a sample of 200 people, the sample standard deviation would shrink,
+$$\sigma_{\hat{p}} = \sqrt{\frac{0.1(0.9)}{200}} = 0.0212.$$
+
 :::
 
 The more people we sample, the less likely our sample proportion will be far from the population proportion! 
@@ -106,8 +120,8 @@ The more people we sample, the less likely our sample proportion will be far fro
 #| echo: false
 
 mu  <- 0.1
-sd1 <- 0.055
-sd2 <- 0.03
+sd1 <- 0.03
+sd2 <- 0.0212
 
 x <- seq(mu - 4 * sd1, mu + 4 * sd1, length.out = 500)
 y1 <- dnorm(x, mean = mu, sd = sd1)
@@ -118,33 +132,35 @@ plot(x, y1, type = "l", lwd = 2, col = "steelblue",
      xlab = "x", ylab = "Density", las = 1)
 lines(x, y2, lwd = 2, col = "firebrick")
 abline(v = mu, lty = 2, col = "grey50")
-legend("topright", legend = c("SD = 0.055", "SD = 0.03"),
+legend("topright", legend = c("N = 100", "N = 200"),
        col = c("steelblue", "firebrick"), lwd = 2, bty = "n")
 ```
 
 ::: {#exm-sample-prob}
-If I sample 30 people about their handedness, what is the probability that more than 20% of them will be left-handed?
+If I sample 100 people about their handedness, what is the probability that more than 15% of them will be left-handed?
 :::
 
 ::: {.callout-tip collapse="true"}
 ## Answer 
 
-The sample proportion is approximately normal with mean 0.1 and standard deviation 0.055. We can use the normal calculator on StatCrunch to compute $P(\hat{p} > 0.2)$. We get, 
+The sample proportion is approximately normal with mean 0.1 and standard deviation 0.055. We can use the normal calculator on StatCrunch to compute $P(\hat{p} > 0.15)$. We get, 
 
-$$P(\hat{p} > 0.2) = 0.03451817.$$
+$$P(\hat{p} > 0.15) = 0.0478.$$
 :::
 
 ::: {#exm-sample-prob2}
-If I sample 100 people about their handedness, what is the probability that more than 20% of them will be left-handed?
+If I sample 200 people about their handedness, what is the probability that more than 15% of them will be left-handed?
 :::
 
 ::: {.callout-tip collapse="true"}
 ## Answer 
 
-The sample proportion is approximately normal with mean 0.1 and standard deviation 0.03. We can use the normal calculator on StatCrunch to compute $P(\hat{p} > 0.2)$. We get, 
+The sample proportion is approximately normal with mean 0.1 and standard deviation 0.0212. We can use the normal calculator on StatCrunch to compute $P(\hat{p} > 0.15)$. We get, 
 
-$$P(\hat{p} > 0.2) = 0.00042906.$$
+$$P(\hat{p} > 0.15) = 0.0092$$
 :::
+
+We said that the sample proportion is *approximately* normal and we should be cautious under what conditions it is appropriate to use this approximation. If our sample is genuinely random, we can apply this normal approximation if $np \geq 10$ and $n(1-p) \geq 10$. 
 
 ::: {#exm-prop-ex}
 According to the CDC National Diabetes Statistic Report, 11.6% of the U.S. population has diabetes. If I sample 125 people, how likely is my sample proportion to be between 10.6% and 12.6%?

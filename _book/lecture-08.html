@@ -310,11 +310,27 @@ Figure&nbsp;8.1: Records of patient BP by four different nurses.
 </tbody>
 </table>
 <p>A principle question we want to answer is <em>how close are the statistics to the parameters?</em> For example, how close are the nurse’s means to the actual population mean (a parameter).</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Categorical Versus Quantitative
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>proportion</strong> is the statistic of interest when our data is <em>categorical</em>. For example, we might want to know what proportion of the population is left-handed, allergic to peanuts, or has type A blood.</p>
+<p><strong>Mean</strong> and <strong>standard deviation</strong> are relevant when the data is quantitative.</p>
+</div>
+</div>
 </section>
 <section id="sample-proportion" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="sample-proportion"><span class="header-section-number">8.2</span> Sample Proportion</h2>
+<p>We will start off by talking about sample proportions and categorical data. Consider the following examples…</p>
 <div id="exm-sample-proportion" class="theorem example">
-<p><span class="theorem-title"><strong>Example 8.5</strong></span> A college wants to know what proportion of their most recent graduates have a job six months after graduating. The college randomly samples 500 graduates and finds that 64% of graduates in the sample have a job, so <span class="math inline">\(\hat{p} = 0.64\)</span>.</p>
+<p><span class="theorem-title"><strong>Example 8.5</strong></span> A college wants to know what proportion of their most recent graduates have a job six months after graduating.<sup>†</sup> The college randomly samples 500 graduates and finds that 64% of graduates in the sample have a job, so <span class="math inline">\(\hat{p} = 0.64\)</span>.</p>
+<p><sup>†</sup>This is categorical because we just want to know if they have a job after 6 months (yes/no).</p>
 </div>
 <p>We can think of the sample proportion as a <em>random variable</em> that changes depending on the sample I take.</p>
 <div id="exm-sample-proportion-2" class="theorem example">
@@ -324,11 +340,11 @@ Figure&nbsp;8.1: Records of patient BP by four different nurses.
 <p><span class="math display">\[\sigma_{\hat{p}} = \sqrt{\frac{p(1-p)}{n}}\]</span></p>
 <p>where <span class="math inline">\(n\)</span> is the size of the sample we take.</p>
 <div id="exm-sample-prop-dist" class="theorem example">
-<p><span class="theorem-title"><strong>Example 8.7</strong></span> The proportion of left-handed people in the population is approximately 0.1. Suppose we wish to take a sample of 30 people, what would be the mean and standard deviation of the sample proportion?</p>
-<p>What if we took a sample of 100 people?</p>
+<p><span class="theorem-title"><strong>Example 8.7</strong></span> The proportion of left-handed people in the population is approximately 0.1. Suppose we wish to take a sample of 100 people, what would be the mean and standard deviation of the sample proportion?</p>
+<p>What if we took a sample of 200 people?</p>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -337,12 +353,11 @@ Figure&nbsp;8.1: Records of patient BP by four different nurses.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>The mean is 0.1, since this is the population proportion. The sample proportion standard deviation is,</p>
-<p><span class="math display">\[\sigma_{\hat{p}} = \sqrt{\frac{p(1-p)}{n}} = \sqrt{\frac{0.1(0.9)}{30}} = 0.055.\]</span></p>
-<p>If we too a sample of 100 people the mean would be the same, but the standard deviation would get smaller,</p>
+<p>The mean is 0.1, since this is the population proportion. If we too a sample of 100 people the sample standard deviation would be</p>
 <p><span class="math display">\[\sigma_{\hat{p}} = \sqrt{\frac{0.1(0.9)}{100}} = 0.03.\]</span></p>
+<p>If we took a sample of 200 people, the sample standard deviation would shrink, <span class="math display">\[\sigma_{\hat{p}} = \sqrt{\frac{0.1(0.9)}{200}} = 0.0212.\]</span></p>
 </div>
 </div>
 </div>
@@ -362,27 +377,7 @@ Figure&nbsp;8.2: Two normal distributions with mean 0.1
 </div>
 </div>
 <div id="exm-sample-prob" class="theorem example">
-<p><span class="theorem-title"><strong>Example 8.8</strong></span> If I sample 30 people about their handedness, what is the probability that more than 20% of them will be left-handed?</p>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Answer
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>The sample proportion is approximately normal with mean 0.1 and standard deviation 0.055. We can use the normal calculator on StatCrunch to compute <span class="math inline">\(P(\hat{p} &gt; 0.2)\)</span>. We get,</p>
-<p><span class="math display">\[P(\hat{p} &gt; 0.2) = 0.03451817.\]</span></p>
-</div>
-</div>
-</div>
-<div id="exm-sample-prob2" class="theorem example">
-<p><span class="theorem-title"><strong>Example 8.9</strong></span> If I sample 100 people about their handedness, what is the probability that more than 20% of them will be left-handed?</p>
+<p><span class="theorem-title"><strong>Example 8.8</strong></span> If I sample 100 people about their handedness, what is the probability that more than 15% of them will be left-handed?</p>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
@@ -396,13 +391,13 @@ Figure&nbsp;8.2: Two normal distributions with mean 0.1
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>The sample proportion is approximately normal with mean 0.1 and standard deviation 0.03. We can use the normal calculator on StatCrunch to compute <span class="math inline">\(P(\hat{p} &gt; 0.2)\)</span>. We get,</p>
-<p><span class="math display">\[P(\hat{p} &gt; 0.2) = 0.00042906.\]</span></p>
+<p>The sample proportion is approximately normal with mean 0.1 and standard deviation 0.055. We can use the normal calculator on StatCrunch to compute <span class="math inline">\(P(\hat{p} &gt; 0.15)\)</span>. We get,</p>
+<p><span class="math display">\[P(\hat{p} &gt; 0.15) = 0.0478.\]</span></p>
 </div>
 </div>
 </div>
-<div id="exm-prop-ex" class="theorem example">
-<p><span class="theorem-title"><strong>Example 8.10</strong></span> According to the CDC National Diabetes Statistic Report, 11.6% of the U.S. population has diabetes. If I sample 125 people, how likely is my sample proportion to be between 10.6% and 12.6%?</p>
+<div id="exm-sample-prob2" class="theorem example">
+<p><span class="theorem-title"><strong>Example 8.9</strong></span> If I sample 200 people about their handedness, what is the probability that more than 15% of them will be left-handed?</p>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
@@ -416,15 +411,14 @@ Figure&nbsp;8.2: Two normal distributions with mean 0.1
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>First we must compute the standard deviation,</p>
-<p><span class="math display">\[\sigma = \sqrt{\frac{p(1-p)}{n}} = \sqrt{\frac{0.116(0.884)}{125}} = 0.0286.\]</span></p>
-<p>Now we want to compute, <span class="math inline">\(P(0.106 &lt; \hat{p} &lt; 0.126) = 0.27339888\)</span>.</p>
+<p>The sample proportion is approximately normal with mean 0.1 and standard deviation 0.0212. We can use the normal calculator on StatCrunch to compute <span class="math inline">\(P(\hat{p} &gt; 0.15)\)</span>. We get,</p>
+<p><span class="math display">\[P(\hat{p} &gt; 0.15) = 0.0092\]</span></p>
 </div>
 </div>
 </div>
+<p>We said that the sample proportion is <em>approximately</em> normal and we should be cautious under what conditions it is appropriate to use this approximation. If our sample is genuinely random, we can apply this normal approximation if <span class="math inline">\(np \geq 10\)</span> and <span class="math inline">\(n(1-p) \geq 10\)</span>.</p>
 <div id="exm-prop-ex" class="theorem example">
-<p><span class="theorem-title"><strong>Example 8.11</strong></span> Using the same set up as <a href="#exm-prop-ex" class="quarto-xref">Example&nbsp;<span>8.11</span></a>, find <span class="math inline">\(c\)</span> such that <span class="math inline">\(P(0.116-c &lt; \hat{p} &lt; 0.116+c) = 0.95\)</span>.</p>
-<p>I’m looking for an interval that is centered around the mean (0.116), such that the is a 95% chance of my sample proportion being within this interval.</p>
+<p><span class="theorem-title"><strong>Example 8.10</strong></span> According to the CDC National Diabetes Statistic Report, 11.6% of the U.S. population has diabetes. If I sample 125 people, how likely is my sample proportion to be between 10.6% and 12.6%?</p>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
@@ -437,6 +431,28 @@ Figure&nbsp;8.2: Two normal distributions with mean 0.1
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>First we must compute the standard deviation,</p>
+<p><span class="math display">\[\sigma = \sqrt{\frac{p(1-p)}{n}} = \sqrt{\frac{0.116(0.884)}{125}} = 0.0286.\]</span></p>
+<p>Now we want to compute, <span class="math inline">\(P(0.106 &lt; \hat{p} &lt; 0.126) = 0.27339888\)</span>.</p>
+</div>
+</div>
+</div>
+<div id="exm-prop-ex" class="theorem example">
+<p><span class="theorem-title"><strong>Example 8.11</strong></span> Using the same set up as <a href="#exm-prop-ex" class="quarto-xref">Example&nbsp;<span>8.11</span></a>, find <span class="math inline">\(c\)</span> such that <span class="math inline">\(P(0.116-c &lt; \hat{p} &lt; 0.116+c) = 0.95\)</span>.</p>
+<p>I’m looking for an interval that is centered around the mean (0.116), such that the is a 95% chance of my sample proportion being within this interval.</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>We can use the Empirical rule: 95% of the data should fall within two standard deviations of the mean. That means,</p>
 <p><span class="math display">\[c = 2 \times 0.0286 = 0.0572\]</span>.</p>
