@@ -1,0 +1,93 @@
+# Sample Mean and SD 
+
+## Sample Mean
+
+::: {#exm-sample-mean}
+A deli wants to know how long customers typically wait in line for their order. To measure this, the deli randomly samples 50 customers throughout the week. They find that the average wait time of these 50 customers was 7.25 minutes. This is the **sample mean**, e.g. $\bar{x} = 7.5$ minutes. 
+
+The question of interest is how close is the sample mean to the **population mean** $\mu$. In this example, $\mu$ is the average wait time of *all* the customers. 
+:::
+
+Like the sample proportion, the sample mean is a random variable. If I choose a different sample of customers in the example above, I should not expect the sample mean to be the same.
+
+Under the *right conditions*. We should expect the sample mean to be approximately normally distributed with mean $\mu$ and standard deviation $\sigma/\sqrt{n}$, where $\sigma$ is the population standard deviation and $n$ is the sample size. 
+
+
+<p style="color: red;">What do we mean by *right conditions*?</p>
+
+If our random sample size is large enough, then we can assume the distribution of sample means is approximately normal. The general rule of thumb is if $n \geq 30$ we can assume the distribution is normal. 
+
+::: {#exm-sample-mean2}
+In a certain state, the average teacher salary is $54,000 with a standard deviation of $5,000. If I sample 50 teachers randomly, what is the probability that my sample mean is greater than $56,000?
+
+Before we compute the answer, we should recognize that $\mu = 54,000$ and $\sigma = 5,000$ are the population mean and standard deviation, respectively. Additionally, the sample size $n = 50$. 
+:::
+
+
+::: {.callout-tip collapse="true"}
+## Answer 
+
+Since my sample size is 50, this is large enough to assume the sample mean is distributed normally. 
+
+The standard deviation is then:
+
+$$ \sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}} = \frac{5000}{\sqrt{50}} = 707.107$$
+
+Now we can use the normal calculator to compute $P(\bar{x} > 56,000) = 0.0023$. 
+:::
+
+::: {#exm-sample-mean3}
+The average time for pizza delivery at a pizzeria is 36 minutes with a standard deviation of 8 minutes. If 30 customers are sampled, what is the probability that the average wait time of those customers will be between 34 and 38 minutes?
+:::
+
+::: {.callout-tip collapse="true"}
+## Answer 
+
+Since my sample size is 30, this is large enough to assume the sample mean is distributed normally. 
+
+The standard deviation is then:
+
+$$ \sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}} = \frac{8}{\sqrt{30}} = 1.26$$
+
+Now we can use the normal calculator to compute $P(34 <\bar{x} < 38) = 0.8876$. 
+:::
+
+If our sample size is *not* at least 30, then we can use the normal approximation only if our *population* is distributed normally. We should not assume that our *population* distribution is normal unless we are told it is. 
+
+Note that this reveals an important and some times confusing fact: the population may have any distribution, but as long as our sample size is large enough the sample mean is **always** normal. This is again thanks to the **Central Limit Theorem**! Let's use a simulation to see this in action. 
+
+::: {#exm-sim}
+
+:::
+
+
+::: {#exm-sample-mean3}
+The average number of pets in a household is 1.4. If I randomly sample 8 households, what is the probability that the sample mean is less than 1?
+:::
+
+::: {.callout-tip collapse="true"}
+## Answer 
+
+**We do not have enough information to answer this!** 
+
+We should not assume the number of pets in a household is normally distributed. In fact, we would expect it to be a skewed distribution. 
+:::
+
+::: {#exm-sample-mean4}
+The weight of a newborn baby is approximately normally distributed with a mean of 3.4 kg and a standard deviation of 0.5 kg. 
+
+If I sample 4 newborn babies, what is the probability their average weight is between 3.3 and 3.5 kg?
+:::
+
+::: {.callout-tip collapse="true"}
+## Answer 
+
+While our sample size is small, since the weight of newborns is approximately normal we are okay to use a normal approximation for the sample mean. 
+
+First we compute the standard deviation:
+
+$$ \sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}} = \frac{0.5}{\sqrt{4}} = 0.25$$
+
+Now use the normal calculator to compute, $P(3.3 < \bar{x} < 3.5) = 0.3108$.
+:::
+
