@@ -36,6 +36,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./lecture-09.html" rel="next">
 <link href="./lecture-07.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -195,6 +196,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Sampling</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sample Mean and SD</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -313,7 +320,131 @@ Figure&nbsp;8.1: Records of patient BP by four different nurses.
 <div id="exm-sample-proportion-2" class="theorem example">
 <p><span class="theorem-title"><strong>Example 8.6</strong></span> Claudia and Joey want to know what proportion of their classmates have already finished Homework 4. Claudia samples 20 peers and finds that 32% of them have finished Homework 4. Joey samples a different 20 peers and finds that 39% of them have finished Homework 4.</p>
 </div>
-<p>If we collected a bunch of sample proportions from different random samples, the distribution of these values would be <em>approximately normal</em>. This is a result of the <strong>Central Limit Theorem</strong>.</p>
+<p>If we collected a bunch of sample proportions from different random samples, the distribution of these values would be <em>approximately normal</em>. This is a result of the <strong>Central Limit Theorem</strong>. The mean of all the sample proportions <span class="math inline">\(\hat{p}\)</span> is the population proportion <span class="math inline">\(p\)</span> and the standard deviation is,</p>
+<p><span class="math display">\[\sigma_{\hat{p}} = \sqrt{\frac{p(1-p)}{n}}\]</span></p>
+<p>where <span class="math inline">\(n\)</span> is the size of the sample we take.</p>
+<div id="exm-sample-prop-dist" class="theorem example">
+<p><span class="theorem-title"><strong>Example 8.7</strong></span> The proportion of left-handed people in the population is approximately 0.1. Suppose we wish to take a sample of 30 people, what would be the mean and standard deviation of the sample proportion?</p>
+<p>What if we took a sample of 100 people?</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The mean is 0.1, since this is the population proportion. The sample proportion standard deviation is,</p>
+<p><span class="math display">\[\sigma_{\hat{p}} = \sqrt{\frac{p(1-p)}{n}} = \sqrt{\frac{0.1(0.9)}{30}} = 0.055.\]</span></p>
+<p>If we too a sample of 100 people the mean would be the same, but the standard deviation would get smaller,</p>
+<p><span class="math display">\[\sigma_{\hat{p}} = \sqrt{\frac{0.1(0.9)}{100}} = 0.03.\]</span></p>
+</div>
+</div>
+</div>
+<p>The more people we sample, the less likely our sample proportion will be far from the population proportion!</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-normals" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-normals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lecture-08_files/figure-html/fig-normals-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.2: Two normal distributions with mean 0.1
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div id="exm-sample-prob" class="theorem example">
+<p><span class="theorem-title"><strong>Example 8.8</strong></span> If I sample 30 people about their handedness, what is the probability that more than 20% of them will be left-handed?</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The sample proportion is approximately normal with mean 0.1 and standard deviation 0.055. We can use the normal calculator on StatCrunch to compute <span class="math inline">\(P(\hat{p} &gt; 0.2)\)</span>. We get,</p>
+<p><span class="math display">\[P(\hat{p} &gt; 0.2) = 0.03451817.\]</span></p>
+</div>
+</div>
+</div>
+<div id="exm-sample-prob2" class="theorem example">
+<p><span class="theorem-title"><strong>Example 8.9</strong></span> If I sample 100 people about their handedness, what is the probability that more than 20% of them will be left-handed?</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The sample proportion is approximately normal with mean 0.1 and standard deviation 0.03. We can use the normal calculator on StatCrunch to compute <span class="math inline">\(P(\hat{p} &gt; 0.2)\)</span>. We get,</p>
+<p><span class="math display">\[P(\hat{p} &gt; 0.2) = 0.00042906.\]</span></p>
+</div>
+</div>
+</div>
+<div id="exm-prop-ex" class="theorem example">
+<p><span class="theorem-title"><strong>Example 8.10</strong></span> According to the CDC National Diabetes Statistic Report, 11.6% of the U.S. population has diabetes. If I sample 125 people, how likely is my sample proportion to be between 10.6% and 12.6%?</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>First we must compute the standard deviation,</p>
+<p><span class="math display">\[\sigma = \sqrt{\frac{p(1-p)}{n}} = \sqrt{\frac{0.116(0.884)}{125}} = 0.0286.\]</span></p>
+<p>Now we want to compute, <span class="math inline">\(P(0.106 &lt; \hat{p} &lt; 0.126) = 0.27339888\)</span>.</p>
+</div>
+</div>
+</div>
+<div id="exm-prop-ex" class="theorem example">
+<p><span class="theorem-title"><strong>Example 8.11</strong></span> Using the same set up as <a href="#exm-prop-ex" class="quarto-xref">Example&nbsp;<span>8.11</span></a>, find <span class="math inline">\(c\)</span> such that <span class="math inline">\(P(0.116-c &lt; \hat{p} &lt; 0.116+c) = 0.95\)</span>.</p>
+<p>I’m looking for an interval that is centered around the mean (0.116), such that the is a 95% chance of my sample proportion being within this interval.</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>We can use the Empirical rule: 95% of the data should fall within two standard deviations of the mean. That means,</p>
+<p><span class="math display">\[c = 2 \times 0.0286 = 0.0572\]</span>.</p>
+<p>In other words, there is a 95% chance that the sample proportion will fall between <span class="math inline">\(0.116-0.0572 = 0.0588\)</span> and <span class="math inline">\(0.116+0.0572 = 0.1732\)</span>.</p>
+</div>
+</div>
+</div>
+<p>We can also use the StatCrunch normal calculator above. On the <strong>Between</strong> setting set the probability to 0.95–this will always give an interval that is centered around the mean.</p>
 
 
 </section>
@@ -726,6 +857,9 @@ Figure&nbsp;8.1: Records of patient BP by four different nurses.
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./lecture-09.html" class="pagination-link" aria-label="Sample Mean and SD">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sample Mean and SD</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
