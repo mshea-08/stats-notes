@@ -1,11 +1,62 @@
 # Sample Mean and SD 
 
+## Sample Proportion Review
+
+:::  {#exm-sample-prop1}
+A researcher randomly surveys 200 college students and finds that 64 of them own a car. Which of the following statements is correct?
+
+(a) The sample proportion $\hat{p} = 0.32$. 
+(b) The population proportion is $p = 0.32$. 
+:::
+
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+(a) is correct since we have taken a sample.
+:::
+
+
+:::  {#exm-sample-prop2}
+Suppose 40% of all adults in a large city use public transit at least once a week. You take a random sample of 150 adults and let $\hat{p}$ be the proportion in the sample who use public transit weekly. Which correctly describes the distribution of $\hat{p}$?
+
+(a) Approximately Normal, mean $= 0.40$, standard deviation $= 0.04$
+(b) Approximately Normal, mean $= 0.40$, standard deviation $= 0.0016$
+(c) Approximately Normal, mean $= 0.40$, standard deviation $= 0.24$
+:::
+
+
+::: {.callout-tip}
+## Answer
+
+(a) is correct. The standard deviation of the distribution is given by the formula, 
+
+$$\sigma_{\hat{p}} = \sqrt{\frac{p(1-p)}{n}} = \sqrt{\frac{0.4(0.6)}{150}} = 0.04.$$
+:::
+
+
+::: {#exm-sample-prop3}
+At a researcher's university, 20% of all students are first-generation college students. The researcher takes a random sample of 400 students is selected, and $\hat{p}$ is the proportion of first-generation students in the sample. What is the probability that the sample proportion is less than 0.17?
+:::
+
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+We can assume $\hat{p}$ is distributed normally since $np \geq 10$ and $n(1-p) \geq 10$. The mean is $0.2$ and the standard deviation is 
+
+$$\sqrt{\frac{0.2(0.8)}{400}} = 0.02.$$
+
+Now we can use the normal calculator to compute $P(\hat{p} < 0.17) = 0.0668$.
+:::
+
+
 ## Sample Mean
+
+Now we will focus on questions with *quantitative data*. In these instances, we want to compare the **sample mean** with the **population mean**. 
 
 ::: {#exm-sample-mean}
 A deli wants to know how long customers typically wait in line for their order. To measure this, the deli randomly samples 50 customers throughout the week. They find that the average wait time of these 50 customers was 7.25 minutes. This is the **sample mean**, e.g. $\bar{x} = 7.5$ minutes. 
-
-The question of interest is how close is the sample mean to the **population mean** $\mu$. In this example, $\mu$ is the average wait time of *all* the customers. 
 :::
 
 Like the sample proportion, the sample mean is a random variable. If I choose a different sample of customers in the example above, I should not expect the sample mean to be the same.
@@ -88,3 +139,73 @@ $$ \sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}} = \frac{0.5}{\sqrt{4}} = 0.25$$
 Now use the normal calculator to compute, $P(3.3 < \bar{x} < 3.5) = 0.3108$.
 :::
 
+## Mixed Practice
+
+### Problem 1
+
+For each scenario, state whether the statistic of interest is a sample mean ($\bar{x}$) or a sample proportion ($\hat{p}$).
+
+a. A city planner records the commute time (in minutes) of 50 randomly selected workers.
+b. A pollster asks 800 randomly selected voters whether they support a ballot measure.
+c. A quality inspector tests 200 light bulbs and counts how many are defective.
+d. An advisor records the GPA of 40 randomly selected seniors.
+
+::: {.callout-tip collapse="true"}
+## Answer 
+
+a. Sample mean.
+b. Sample proportion.
+c. Sample proportion.
+d. Sample mean.
+
+**Guide:** If you measure a number for each individual, use $\bar{x}$. If you classify each individual into a category, use $\hat{p}$.
+:::
+
+### Problem 2
+
+For each situation, decide whether the sampling distribution of the statistic is approximately Normal. Justify your answer.
+
+a. 4% of products from a factory are defective. A random sample of 150 products is selected, and $\hat{p}$ is the proportion defective.
+b. Household incomes in a city are strongly skewed right. A random sample of 12 households is selected, and $\bar{x}$ is the sample mean income.
+c. Adult female heights are normally distributed. A random sample of 8 women is selected, and $\bar{x}$ is the sample mean height.
+d. The time customers spend in a store is skewed right. A random sample of 50 customers is selected, and $\bar{x}$ is the sample mean time.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+a. Not appropriate, $np = 150(0.04) = 6 < 10$, so the large counts condition fails.
+b. Not appropriate, the population is strongly skewed and $n = 12 < 30$, so the Central Limit Theorem does not apply.
+c. Appropriate, the population is Normal, so $\bar{x}$ is Normal for *any* sample size.
+d. Appropriate, although the population is skewed, $n = 50 \geq 30$, so the sampling distribution of $\bar{x}$ is approximately Normal.
+:::
+
+### Problem 3
+
+The number of hours students at a large high school spend on homework per night is distributed with mean $\mu = 3.2$ hours and standard deviation $\sigma = 1.8$ hours. A random sample of 36 students is selected. What is the probability that the sample mean is between 2.9 and 3.5 hours?
+
+::: {.callout-tip collapse="true"}
+## Answer 
+
+We can assume the sample mean is normally distributed with mean 3.2 (same as population mean) and standard deviation
+
+$$\frac{\sigma}{\sqrt{n}} = \frac{1.8}{\sqrt{36}} = 0.3.$$ 
+
+$$
+P(2.9 < \bar{x} < 3.5) = 0.6827
+$$
+
+:::
+
+### Problem 4
+
+A grocery chain reports that 36% of its customers use its loyalty app. A random sample of 225 customers is selected. What is the probability that more than 40% of the sampled customers use the loyalty app?
+
+::: {.callout-tip collapse="true"}
+## Answer 
+
+We can assume the sample proportion is normally distributed with mean 0.36 and standard deviation
+
+$$\sqrt{\frac{0.36(0.64)}{225}} = 0.032.$$
+
+Then we want to compute the probability, $P(\hat{p} \geq 0.4) = 0.1056$.
+:::

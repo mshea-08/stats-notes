@@ -211,7 +211,15 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sample-mean" id="toc-sample-mean" class="nav-link active" data-scroll-target="#sample-mean"><span class="header-section-number">9.1</span> Sample Mean</a></li>
+  <li><a href="#sample-proportion-review" id="toc-sample-proportion-review" class="nav-link active" data-scroll-target="#sample-proportion-review"><span class="header-section-number">9.1</span> Sample Proportion Review</a></li>
+  <li><a href="#sample-mean" id="toc-sample-mean" class="nav-link" data-scroll-target="#sample-mean"><span class="header-section-number">9.2</span> Sample Mean</a></li>
+  <li><a href="#mixed-practice" id="toc-mixed-practice" class="nav-link" data-scroll-target="#mixed-practice"><span class="header-section-number">9.3</span> Mixed Practice</a>
+  <ul class="collapse">
+  <li><a href="#problem-1" id="toc-problem-1" class="nav-link" data-scroll-target="#problem-1"><span class="header-section-number">9.3.1</span> Problem 1</a></li>
+  <li><a href="#problem-2" id="toc-problem-2" class="nav-link" data-scroll-target="#problem-2"><span class="header-section-number">9.3.2</span> Problem 2</a></li>
+  <li><a href="#problem-3" id="toc-problem-3" class="nav-link" data-scroll-target="#problem-3"><span class="header-section-number">9.3.3</span> Problem 3</a></li>
+  <li><a href="#problem-4" id="toc-problem-4" class="nav-link" data-scroll-target="#problem-4"><span class="header-section-number">9.3.4</span> Problem 4</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -237,21 +245,14 @@ window.Quarto = {
 </header>
 
 
-<section id="sample-mean" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="sample-mean"><span class="header-section-number">9.1</span> Sample Mean</h2>
-<div id="exm-sample-mean" class="theorem example">
-<p><span class="theorem-title"><strong>Example 9.1</strong></span> A deli wants to know how long customers typically wait in line for their order. To measure this, the deli randomly samples 50 customers throughout the week. They find that the average wait time of these 50 customers was 7.25 minutes. This is the <strong>sample mean</strong>, e.g.&nbsp;<span class="math inline">\(\bar{x} = 7.5\)</span> minutes.</p>
-<p>The question of interest is how close is the sample mean to the <strong>population mean</strong> <span class="math inline">\(\mu\)</span>. In this example, <span class="math inline">\(\mu\)</span> is the average wait time of <em>all</em> the customers.</p>
-</div>
-<p>Like the sample proportion, the sample mean is a random variable. If I choose a different sample of customers in the example above, I should not expect the sample mean to be the same.</p>
-<p>Under the <em>right conditions</em>. We should expect the sample mean to be approximately normally distributed with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma/\sqrt{n}\)</span>, where <span class="math inline">\(\sigma\)</span> is the population standard deviation and <span class="math inline">\(n\)</span> is the sample size.</p>
-<p style="color: red;">
-What do we mean by <em>right conditions</em>?
-</p>
-<p>If our random sample size is large enough, then we can assume the distribution of sample means is approximately normal. The general rule of thumb is if <span class="math inline">\(n \geq 30\)</span> we can assume the distribution is normal.</p>
-<div id="exm-sample-mean2" class="theorem example">
-<p><span class="theorem-title"><strong>Example 9.2</strong></span> In a certain state, the average teacher salary is $54,000 with a standard deviation of $5,000. If I sample 50 teachers randomly, what is the probability that my sample mean is greater than $56,000?</p>
-<p>Before we compute the answer, we should recognize that <span class="math inline">\(\mu = 54,000\)</span> and <span class="math inline">\(\sigma = 5,000\)</span> are the population mean and standard deviation, respectively. Additionally, the sample size <span class="math inline">\(n = 50\)</span>.</p>
+<section id="sample-proportion-review" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="sample-proportion-review"><span class="header-section-number">9.1</span> Sample Proportion Review</h2>
+<div id="exm-sample-prop1" class="theorem example">
+<p><span class="theorem-title"><strong>Example 9.1</strong></span> A researcher randomly surveys 200 college students and finds that 64 of them own a car. Which of the following statements is correct?</p>
+<ol type="a">
+<li>The sample proportion <span class="math inline">\(\hat{p} = 0.32\)</span>.</li>
+<li>The population proportion is <span class="math inline">\(p = 0.32\)</span>.</li>
+</ol>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
@@ -265,40 +266,38 @@ What do we mean by <em>right conditions</em>?
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Since my sample size is 50, this is large enough to assume the sample mean is distributed normally.</p>
-<p>The standard deviation is then:</p>
-<p><span class="math display">\[ \sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}} = \frac{5000}{\sqrt{50}} = 707.107\]</span></p>
-<p>Now we can use the normal calculator to compute <span class="math inline">\(P(\bar{x} &gt; 56,000) = 0.0023\)</span>.</p>
+<ol type="a">
+<li>is correct since we have taken a sample.</li>
+</ol>
 </div>
 </div>
 </div>
-<div id="exm-sample-mean3" class="theorem example">
-<p><span class="theorem-title"><strong>Example 9.3</strong></span> The average time for pizza delivery at a pizzeria is 36 minutes with a standard deviation of 8 minutes. If 30 customers are sampled, what is the probability that the average wait time of those customers will be between 34 and 38 minutes?</p>
+<div id="exm-sample-prop2" class="theorem example">
+<p><span class="theorem-title"><strong>Example 9.2</strong></span> Suppose 40% of all adults in a large city use public transit at least once a week. You take a random sample of 150 adults and let <span class="math inline">\(\hat{p}\)</span> be the proportion in the sample who use public transit weekly. Which correctly describes the distribution of <span class="math inline">\(\hat{p}\)</span>?</p>
+<ol type="a">
+<li>Approximately Normal, mean <span class="math inline">\(= 0.40\)</span>, standard deviation <span class="math inline">\(= 0.04\)</span></li>
+<li>Approximately Normal, mean <span class="math inline">\(= 0.40\)</span>, standard deviation <span class="math inline">\(= 0.0016\)</span></li>
+<li>Approximately Normal, mean <span class="math inline">\(= 0.40\)</span>, standard deviation <span class="math inline">\(= 0.24\)</span></li>
+</ol>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
 <span class="screen-reader-only">Tip</span>Answer
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Since my sample size is 30, this is large enough to assume the sample mean is distributed normally.</p>
-<p>The standard deviation is then:</p>
-<p><span class="math display">\[ \sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}} = \frac{8}{\sqrt{30}} = 1.26\]</span></p>
-<p>Now we can use the normal calculator to compute <span class="math inline">\(P(34 &lt;\bar{x} &lt; 38) = 0.8876\)</span>.</p>
+<ol type="a">
+<li>is correct. The standard deviation of the distribution is given by the formula,</li>
+</ol>
+<p><span class="math display">\[\sigma_{\hat{p}} = \sqrt{\frac{p(1-p)}{n}} = \sqrt{\frac{0.4(0.6)}{150}} = 0.04.\]</span></p>
 </div>
 </div>
-</div>
-<p>If our sample size is <em>not</em> at least 30, then we can use the normal approximation only if our <em>population</em> is distributed normally. We should not assume that our <em>population</em> distribution is normal unless we are told it is.</p>
-<p>Note that this reveals an important and some times confusing fact: the population may have any distribution, but as long as our sample size is large enough the sample mean is <strong>always</strong> normal. This is again thanks to the <strong>Central Limit Theorem</strong>!</p>
-<p><a href="https://central-limit-visualizer.replit.app/" target="blank">We can explore the central limit theorem here.</a></p>
-<div id="exm-sample-mean3" class="theorem example">
-<p><span class="theorem-title"><strong>Example 9.4</strong></span> The average number of pets in a household is 1.4. If I randomly sample 8 households, what is the probability that the sample mean is less than 1?</p>
+<div id="exm-sample-prop3" class="theorem example">
+<p><span class="theorem-title"><strong>Example 9.3</strong></span> At a researcher’s university, 20% of all students are first-generation college students. The researcher takes a random sample of 400 students is selected, and <span class="math inline">\(\hat{p}\)</span> is the proportion of first-generation students in the sample. What is the probability that the sample proportion is less than 0.17?</p>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
@@ -312,14 +311,28 @@ What do we mean by <em>right conditions</em>?
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>We do not have enough information to answer this!</strong></p>
-<p>We should not assume the number of pets in a household is normally distributed. In fact, we would expect it to be a skewed distribution.</p>
+<p>We can assume <span class="math inline">\(\hat{p}\)</span> is distributed normally since <span class="math inline">\(np \geq 10\)</span> and <span class="math inline">\(n(1-p) \geq 10\)</span>. The mean is <span class="math inline">\(0.2\)</span> and the standard deviation is</p>
+<p><span class="math display">\[\sqrt{\frac{0.2(0.8)}{400}} = 0.02.\]</span></p>
+<p>Now we can use the normal calculator to compute <span class="math inline">\(P(\hat{p} &lt; 0.17) = 0.0668\)</span>.</p>
 </div>
 </div>
 </div>
-<div id="exm-sample-mean4" class="theorem example">
-<p><span class="theorem-title"><strong>Example 9.5</strong></span> The weight of a newborn baby is approximately normally distributed with a mean of 3.4 kg and a standard deviation of 0.5 kg.</p>
-<p>If I sample 4 newborn babies, what is the probability their average weight is between 3.3 and 3.5 kg?</p>
+</section>
+<section id="sample-mean" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="sample-mean"><span class="header-section-number">9.2</span> Sample Mean</h2>
+<p>Now we will focus on questions with <em>quantitative data</em>. In these instances, we want to compare the <strong>sample mean</strong> with the <strong>population mean</strong>.</p>
+<div id="exm-sample-mean" class="theorem example">
+<p><span class="theorem-title"><strong>Example 9.4</strong></span> A deli wants to know how long customers typically wait in line for their order. To measure this, the deli randomly samples 50 customers throughout the week. They find that the average wait time of these 50 customers was 7.25 minutes. This is the <strong>sample mean</strong>, e.g.&nbsp;<span class="math inline">\(\bar{x} = 7.5\)</span> minutes.</p>
+</div>
+<p>Like the sample proportion, the sample mean is a random variable. If I choose a different sample of customers in the example above, I should not expect the sample mean to be the same.</p>
+<p>Under the <em>right conditions</em>. We should expect the sample mean to be approximately normally distributed with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma/\sqrt{n}\)</span>, where <span class="math inline">\(\sigma\)</span> is the population standard deviation and <span class="math inline">\(n\)</span> is the sample size.</p>
+<p style="color: red;">
+What do we mean by <em>right conditions</em>?
+</p>
+<p>If our random sample size is large enough, then we can assume the distribution of sample means is approximately normal. The general rule of thumb is if <span class="math inline">\(n \geq 30\)</span> we can assume the distribution is normal.</p>
+<div id="exm-sample-mean2" class="theorem example">
+<p><span class="theorem-title"><strong>Example 9.5</strong></span> In a certain state, the average teacher salary is $54,000 with a standard deviation of $5,000. If I sample 50 teachers randomly, what is the probability that my sample mean is greater than $56,000?</p>
+<p>Before we compute the answer, we should recognize that <span class="math inline">\(\mu = 54,000\)</span> and <span class="math inline">\(\sigma = 5,000\)</span> are the population mean and standard deviation, respectively. Additionally, the sample size <span class="math inline">\(n = 50\)</span>.</p>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
@@ -333,6 +346,74 @@ What do we mean by <em>right conditions</em>?
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
+<p>Since my sample size is 50, this is large enough to assume the sample mean is distributed normally.</p>
+<p>The standard deviation is then:</p>
+<p><span class="math display">\[ \sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}} = \frac{5000}{\sqrt{50}} = 707.107\]</span></p>
+<p>Now we can use the normal calculator to compute <span class="math inline">\(P(\bar{x} &gt; 56,000) = 0.0023\)</span>.</p>
+</div>
+</div>
+</div>
+<div id="exm-sample-mean3" class="theorem example">
+<p><span class="theorem-title"><strong>Example 9.6</strong></span> The average time for pizza delivery at a pizzeria is 36 minutes with a standard deviation of 8 minutes. If 30 customers are sampled, what is the probability that the average wait time of those customers will be between 34 and 38 minutes?</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Since my sample size is 30, this is large enough to assume the sample mean is distributed normally.</p>
+<p>The standard deviation is then:</p>
+<p><span class="math display">\[ \sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}} = \frac{8}{\sqrt{30}} = 1.26\]</span></p>
+<p>Now we can use the normal calculator to compute <span class="math inline">\(P(34 &lt;\bar{x} &lt; 38) = 0.8876\)</span>.</p>
+</div>
+</div>
+</div>
+<p>If our sample size is <em>not</em> at least 30, then we can use the normal approximation only if our <em>population</em> is distributed normally. We should not assume that our <em>population</em> distribution is normal unless we are told it is.</p>
+<p>Note that this reveals an important and some times confusing fact: the population may have any distribution, but as long as our sample size is large enough the sample mean is <strong>always</strong> normal. This is again thanks to the <strong>Central Limit Theorem</strong>!</p>
+<p><a href="https://central-limit-visualizer.replit.app/" target="blank">We can explore the central limit theorem here.</a></p>
+<div id="exm-sample-mean3" class="theorem example">
+<p><span class="theorem-title"><strong>Example 9.7</strong></span> The average number of pets in a household is 1.4. If I randomly sample 8 households, what is the probability that the sample mean is less than 1?</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>We do not have enough information to answer this!</strong></p>
+<p>We should not assume the number of pets in a household is normally distributed. In fact, we would expect it to be a skewed distribution.</p>
+</div>
+</div>
+</div>
+<div id="exm-sample-mean4" class="theorem example">
+<p><span class="theorem-title"><strong>Example 9.8</strong></span> The weight of a newborn baby is approximately normally distributed with a mean of 3.4 kg and a standard deviation of 0.5 kg.</p>
+<p>If I sample 4 newborn babies, what is the probability their average weight is between 3.3 and 3.5 kg?</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>While our sample size is small, since the weight of newborns is approximately normal we are okay to use a normal approximation for the sample mean.</p>
 <p>First we compute the standard deviation:</p>
 <p><span class="math display">\[ \sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}} = \frac{0.5}{\sqrt{4}} = 0.25\]</span></p>
@@ -340,8 +421,120 @@ What do we mean by <em>right conditions</em>?
 </div>
 </div>
 </div>
+</section>
+<section id="mixed-practice" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="mixed-practice"><span class="header-section-number">9.3</span> Mixed Practice</h2>
+<section id="problem-1" class="level3" data-number="9.3.1">
+<h3 data-number="9.3.1" class="anchored" data-anchor-id="problem-1"><span class="header-section-number">9.3.1</span> Problem 1</h3>
+<p>For each scenario, state whether the statistic of interest is a sample mean (<span class="math inline">\(\bar{x}\)</span>) or a sample proportion (<span class="math inline">\(\hat{p}\)</span>).</p>
+<ol type="a">
+<li>A city planner records the commute time (in minutes) of 50 randomly selected workers.</li>
+<li>A pollster asks 800 randomly selected voters whether they support a ballot measure.</li>
+<li>A quality inspector tests 200 light bulbs and counts how many are defective.</li>
+<li>An advisor records the GPA of 40 randomly selected seniors.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>Sample mean.</li>
+<li>Sample proportion.</li>
+<li>Sample proportion.</li>
+<li>Sample mean.</li>
+</ol>
+<p><strong>Guide:</strong> If you measure a number for each individual, use <span class="math inline">\(\bar{x}\)</span>. If you classify each individual into a category, use <span class="math inline">\(\hat{p}\)</span>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="problem-2" class="level3" data-number="9.3.2">
+<h3 data-number="9.3.2" class="anchored" data-anchor-id="problem-2"><span class="header-section-number">9.3.2</span> Problem 2</h3>
+<p>For each situation, decide whether the sampling distribution of the statistic is approximately Normal. Justify your answer.</p>
+<ol type="a">
+<li>4% of products from a factory are defective. A random sample of 150 products is selected, and <span class="math inline">\(\hat{p}\)</span> is the proportion defective.</li>
+<li>Household incomes in a city are strongly skewed right. A random sample of 12 households is selected, and <span class="math inline">\(\bar{x}\)</span> is the sample mean income.</li>
+<li>Adult female heights are normally distributed. A random sample of 8 women is selected, and <span class="math inline">\(\bar{x}\)</span> is the sample mean height.</li>
+<li>The time customers spend in a store is skewed right. A random sample of 50 customers is selected, and <span class="math inline">\(\bar{x}\)</span> is the sample mean time.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>Not appropriate, <span class="math inline">\(np = 150(0.04) = 6 &lt; 10\)</span>, so the large counts condition fails.</li>
+<li>Not appropriate, the population is strongly skewed and <span class="math inline">\(n = 12 &lt; 30\)</span>, so the Central Limit Theorem does not apply.</li>
+<li>Appropriate, the population is Normal, so <span class="math inline">\(\bar{x}\)</span> is Normal for <em>any</em> sample size.</li>
+<li>Appropriate, although the population is skewed, <span class="math inline">\(n = 50 \geq 30\)</span>, so the sampling distribution of <span class="math inline">\(\bar{x}\)</span> is approximately Normal.</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="problem-3" class="level3" data-number="9.3.3">
+<h3 data-number="9.3.3" class="anchored" data-anchor-id="problem-3"><span class="header-section-number">9.3.3</span> Problem 3</h3>
+<p>The number of hours students at a large high school spend on homework per night is distributed with mean <span class="math inline">\(\mu = 3.2\)</span> hours and standard deviation <span class="math inline">\(\sigma = 1.8\)</span> hours. A random sample of 36 students is selected. What is the probability that the sample mean is between 2.9 and 3.5 hours?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>We can assume the sample mean is normally distributed with mean 3.2 (same as population mean) and standard deviation</p>
+<p><span class="math display">\[\frac{\sigma}{\sqrt{n}} = \frac{1.8}{\sqrt{36}} = 0.3.\]</span></p>
+<p><span class="math display">\[
+P(2.9 &lt; \bar{x} &lt; 3.5) = 0.6827
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="problem-4" class="level3" data-number="9.3.4">
+<h3 data-number="9.3.4" class="anchored" data-anchor-id="problem-4"><span class="header-section-number">9.3.4</span> Problem 4</h3>
+<p>A grocery chain reports that 36% of its customers use its loyalty app. A random sample of 225 customers is selected. What is the probability that more than 40% of the sampled customers use the loyalty app?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>We can assume the sample proportion is normally distributed with mean 0.36 and standard deviation</p>
+<p><span class="math display">\[\sqrt{\frac{0.36(0.64)}{225}} = 0.032.\]</span></p>
+<p>Then we want to compute the probability, <span class="math inline">\(P(\hat{p} \geq 0.4) = 0.1056\)</span>.</p>
+</div>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
