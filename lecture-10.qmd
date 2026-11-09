@@ -1,0 +1,185 @@
+# Drawing Conclusions from Sample Data
+
+The goal of this topic is to draw conclusions about the **population parameters** when we only have information about the **sample statistics**. This is of course a practical problem! 
+
+Today we will assume that the data we are dealing with is *quantitative*, therefore the statistic of interest will be the **sample mean** $\bar{x}$. 
+
+## Point Estimation
+
+The easiest, but least justified, way to relate the sample to the population is through **point estimation**. In point estimation, we estimate that the population mean *is the same as* the sample mean.
+
+The trustworthiness of our point estimation relies on the **quality of our sampling** and **sample size**. In general, we should be *more confident* that the population mean is close to the sample mean if:
+
+* We have taken a *random* sample that accurately represents *all* individuals in the population. 
+* We have taken a large random sample. The larger the better. 
+
+::: {#exm-pt-est-1}
+A high school with 1,200 students wants to estimate the average number of hours of sleep students get on a school night. Four different groups collected data and calculated a sample mean. Which point estimate should the school be most confident in?
+
+(a) 15 students were randomly selected from the school roster and surveyed. The sample mean was 7.1 hours.
+(b) An online poll was posted on the school website, and 350 students chose to respond. The sample mean was 6.5 hours.
+(c) 120 students were randomly selected from the school roster and surveyed. The sample mean was 6.9 hours.
+(d) All 30 students in one AP Calculus class were surveyed. The sample mean was 6.2 hours.
+
+:::
+
+::: {#exm-pt-est-2}
+A snack company fills bags of chips that are supposed to weigh 10 ounces. A quality control team wants to estimate the mean weight of all bags produced during one week. Which point estimate should the team be most confident in?
+
+(a) An inspector weighed the first 400 bags that came off the line Monday morning. The sample mean was 10.3 ounces.
+(b) 150 bags were randomly selected from all shifts throughout the week and weighed. The sample mean was 9.9 ounces.
+(c) A worker picked 40 bags that "looked full" and weighed them. The sample mean was 10.4 ounces.
+(d) 12 bags were randomly selected from all shifts throughout the week and weighed. The sample mean was 9.7 ounces.
+:::
+
+::: {#exm-data-pt-est-3}
+A teacher wants to estimate how long her students spend nightly on homework. The teacher randomly samples 40 students between her three classes. [The data collected can be found here.](https://statcrunch.pearson.com/app/index.html?dataid=5181397){target="blank"} Use the sample statistics to estimate the average amount of time her students spend on homework nightly. 
+:::
+
+## Confidence Intervals 
+
+In Topic 5 we were able to make statements like the following.
+
+::: {#exm-ci-1}
+Suppose the average commute time for residents of a city is 32 minutes with a standard deviation of 9 minutes. If I sample 36 residents randomly then there is a 90% chance the sample mean will be between __ and __. 
+:::
+
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+The sample mean is normally distributed with mean 32 (same as population) and standard deviation, 
+
+$$ \frac{9}{\sqrt{36}} = \frac{9}{6} = 1.5 $$
+
+We can use the Normal Calculator to compute the bounds, or we can recognize that for the standard normal distribution,  90% is between the z-scores $z = -1.645$ and $z = 1.645$. So the bounds are, 
+
+$$32 - 1.645 (1.5) = 29.5325$$
+
+and 
+
+$$32 + 1.645 (1.5) = 34.4675.$$
+
+So, there is a 90% chance the sample mean will be between 29.53 and 34.47.
+:::
+
+It will be more interesting, however to answer the reverse problem: Given a sample mean, can we give an interval expressing where we expect the population mean to fall? In order to do this we need to pick a **confidence level**. Common confidence levels are 90% and 95%. 
+
+To compute a confidence interval we need the following conditions to hold:
+
+* The sample is random. 
+* The sample size is large or the variable of interest is normally distributed. 
+
+How we compute the **confidence interval** depends on what information we have access to. To start, assume we know the **sample mean**, $\bar{x}$, and the **population standard deviation**, $\sigma$. Then given a confidence level, we can compute the confidence interval as, 
+
+$$(\bar{x} - z_{\text{CL}}\frac{\sigma}{\sqrt{n}}, \bar{x} + z_{\text{CL}}\frac{\sigma}{\sqrt{n}})$$
+
+where $z_{\text{CL}}$ is the appropriate $z$-score for whatever confidence level we choose.
+
+| Confidence Level | $z_{\text{CL}}$ | 
+| --- | --- |
+| 90% | 1.645 | 
+| 95% | 1.96 |
+
+::: {#exm-ci-2}
+Suppose average pizza delivery times are normally distributed with an unknown population mean and a population standard deviation of six minutes. A random sample of 28 pizza delivery restaurants is taken and has a sample mean delivery time of 36 minutes. Compute a 90% confidence interval for the population mean.
+:::
+
+::: {.callout-tip collapse="true"}
+## Answer 
+
+Our sample is *small*, but since we know that the population is normally distributed we are okay to proceed. 
+
+We have the population standard deviation, so we can use the above formula
+
+$$36 - 1.645 \times \frac{6}{\sqrt{28}} = 34.135, \; 36 + 1.645 \times \frac{6}{\sqrt{28}} = 37.865.$$
+
+We estimate with 90% confidence that the population mean is between 34.135 and 37.865 minutes. 
+:::
+
+
+::: {#exm-ci-3}
+A coffee shop chain wants to estimate the average time customers spend waiting for their order. Assume the population standard deviation of wait times is $\sigma = 14$ minutes. A manager takes a random sample of 49 customers and finds a sample mean wait time $\bar{x} = 128.5$ seconds. Construct a 95% confidence interval for the true mean wait time. 
+:::
+
+::: {.callout-tip collapse="true"}
+## Answer 
+
+We have the population standard deviation and this time $z_{\text{CL}} = 1.96$, 
+
+$$128.5 - 1.96 \times \frac{14}{\sqrt{49}} = 124.58, \; 128.5 + 1.96 \times \frac{14}{\sqrt{49}} = 132.42.$$
+
+We estimate with 95% confidence that the true mean wait time is between 124.58 and 132.42 minutes. 
+:::
+
+It's a bit strange to assume we know the population standard deviation, so suppose we are interested in the *same* question but only have the the **sample mean**, $\bar{x}$, and **sample standard deviation**, $s$. 
+
+In the case where we knew the population standard deviation, the $z$-score is given by
+
+$$z = \frac{\bar{x}-\mu}{\sigma/\sqrt{n}}.$$
+
+If we don't know the population standard deviation, the best we can do is replace it with the sample standard deviation
+
+$$t = \frac{\bar{x}-\mu}{s/\sqrt{n}}.$$
+
+But $s$, like $\bar{x}$, is random, so the value above varies more than a $z$-score would. It turns out we should consider $t$ as coming from the **student-t distribution** (instead of $z$, which comes from the normal distribution).
+
+So in order to compute the confidence interval when we only have the sample mean and standard deviation, we must use $t$-values instead od $z$-values. The confidence interval is then, 
+
+$$(\bar{x} - t_{\text{CL},n-1}\frac{s}{\sqrt{n}}, \bar{x} + t_{\text{CL},n-1}\frac{s}{\sqrt{n}})$$
+
+The $t$-score, $t_{\text{CL},n-1}$, depends on the confidence level AND the degrees of freedom which is $n-1$. Below we list the $t$-scores for various values of $n-1$ and the confidence levels 90% and 90%,
+
+| Degrees of Freedom, $n-1$ | 90% Confidence Level, $t_{90,n-1}$ | 95% Confidence Level, $t_{95,n-1}$ |
+|---|---|---|
+5 | 2.01505 | 2.57058 |
+10 | 1.81246 | 2.22814 |
+15 | 1.75305 | 2.13145 |
+20 | 1.72472 | 2.08596 |
+30 | 1.69726 | 2.04227 |
+40 | 1.68385 | 2.02108 |
+
+Since the $t$-score depends both on the confidence level and the degrees of freedom, we need a computer/calculator to compute it. 
+
+::: {#exm-ci-4}
+A random sample of 32 college students reported how many minutes they spend on their phones before bed. The sample mean was $\bar{x}=72$ minutes and the sample standard deviation was $s=10$ minutes. Construct a 95% confidence interval for the true mean.
+:::
+
+::: {.callout-tip collapse="true"}
+## Answer 
+
+Our sample is *large* ($n = 32 \geq 30$), so by the Central Limit Theorem we are okay to proceed even without knowing the population is normally distributed. 
+
+We do not have the population standard deviation, only the sample standard deviation, so we use the $t$ distribution with $n - 1 = 31$ degrees of freedom. For 95% confidence, $t_{\text{CL}} = 2.040$.
+
+$$72 - 2.040 \times \frac{10}{\sqrt{32}} = 68.39, \; 72 + 2.040 \times \frac{10}{\sqrt{32}} = 75.61.$$
+
+We estimate with 95% confidence that the population mean is between 68.39 and 75.61 minutes. 
+:::
+
+::: {#exm-ci-5}
+Use [this dataset](https://statcrunch.pearson.com/app/?dataid=5182194){target="blank"} to construct a 95% confidence interval for the true mean number of hours students sleep the night before an exam. 
+:::
+
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+We can use StatCrunch for this. We go Stat > T Stat > One Sample > with Data. Then we select "Confidence interval for $\mu$".
+
+We estimate with 95% confidence that the true mean hours of sleep is between 6.28 and 6.94. 
+:::
+
+
+## Confidence Intervals for Proportions
+
+If we know the **sample proportion** and want to compute a **confidence interval** for the true proportion we use the following formula for the interval,
+
+$$(\hat{p} - z_{\text{CL}}\sqrt{\frac{\hat{p}(1-\hat{p})}{n-1}}, \bar{x} + z_{\text{CL}}\sqrt{\frac{\hat{p}(1-\hat{p})}{n-1}})$$
+
+We call 
+
+$$\sqrt{\frac{\hat{p}(1-\hat{p})}{n-1}}$$
+
+the **standard error** of 
+

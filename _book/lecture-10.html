@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>10&nbsp; Drawing Conclusions from Sample Data – Statistics Lecture Notes</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./lecture-09.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-75d38af4ef6471681de3c6736dd07766.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture-10.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Drawing Conclusions from Sample Data</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statistics Lecture Notes</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Exploring Data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary Statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Examining Relationships</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sampling and Study Design</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Basics of Probability</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Random Variables and Probability Distributions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Normal Random Variables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Sampling</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sample Mean and SD</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture-10.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Drawing Conclusions from Sample Data</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#point-estimation" id="toc-point-estimation" class="nav-link active" data-scroll-target="#point-estimation"><span class="header-section-number">10.1</span> Point Estimation</a></li>
+  <li><a href="#confidence-intervals" id="toc-confidence-intervals" class="nav-link" data-scroll-target="#confidence-intervals"><span class="header-section-number">10.2</span> Confidence Intervals</a></li>
+  <li><a href="#confidence-intervals-for-proportions" id="toc-confidence-intervals-for-proportions" class="nav-link" data-scroll-target="#confidence-intervals-for-proportions"><span class="header-section-number">10.3</span> Confidence Intervals for Proportions</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Drawing Conclusions from Sample Data</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>The goal of this topic is to draw conclusions about the <strong>population parameters</strong> when we only have information about the <strong>sample statistics</strong>. This is of course a practical problem!</p>
+<p>Today we will assume that the data we are dealing with is <em>quantitative</em>, therefore the statistic of interest will be the <strong>sample mean</strong> <span class="math inline">\(\bar{x}\)</span>.</p>
+<section id="point-estimation" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="point-estimation"><span class="header-section-number">10.1</span> Point Estimation</h2>
+<p>The easiest, but least justified, way to relate the sample to the population is through <strong>point estimation</strong>. In point estimation, we estimate that the population mean <em>is the same as</em> the sample mean.</p>
+<p>The trustworthiness of our point estimation relies on the <strong>quality of our sampling</strong> and <strong>sample size</strong>. In general, we should be <em>more confident</em> that the population mean is close to the sample mean if:</p>
+<ul>
+<li>We have taken a <em>random</em> sample that accurately represents <em>all</em> individuals in the population.</li>
+<li>We have taken a large random sample. The larger the better.</li>
+</ul>
+<div id="exm-pt-est-1" class="theorem example">
+<p><span class="theorem-title"><strong>Example 10.1</strong></span> A high school with 1,200 students wants to estimate the average number of hours of sleep students get on a school night. Four different groups collected data and calculated a sample mean. Which point estimate should the school be most confident in?</p>
+<ol type="a">
+<li>15 students were randomly selected from the school roster and surveyed. The sample mean was 7.1 hours.</li>
+<li>An online poll was posted on the school website, and 350 students chose to respond. The sample mean was 6.5 hours.</li>
+<li>120 students were randomly selected from the school roster and surveyed. The sample mean was 6.9 hours.</li>
+<li>All 30 students in one AP Calculus class were surveyed. The sample mean was 6.2 hours.</li>
+</ol>
+</div>
+<div id="exm-pt-est-2" class="theorem example">
+<p><span class="theorem-title"><strong>Example 10.2</strong></span> A snack company fills bags of chips that are supposed to weigh 10 ounces. A quality control team wants to estimate the mean weight of all bags produced during one week. Which point estimate should the team be most confident in?</p>
+<ol type="a">
+<li>An inspector weighed the first 400 bags that came off the line Monday morning. The sample mean was 10.3 ounces.</li>
+<li>150 bags were randomly selected from all shifts throughout the week and weighed. The sample mean was 9.9 ounces.</li>
+<li>A worker picked 40 bags that “looked full” and weighed them. The sample mean was 10.4 ounces.</li>
+<li>12 bags were randomly selected from all shifts throughout the week and weighed. The sample mean was 9.7 ounces.</li>
+</ol>
+</div>
+<div id="exm-data-pt-est-3" class="theorem example">
+<p><span class="theorem-title"><strong>Example 10.3</strong></span> A teacher wants to estimate how long her students spend nightly on homework. The teacher randomly samples 40 students between her three classes. <a href="https://statcrunch.pearson.com/app/index.html?dataid=5181397" target="blank">The data collected can be found here.</a> Use the sample statistics to estimate the average amount of time her students spend on homework nightly.</p>
+</div>
+</section>
+<section id="confidence-intervals" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="confidence-intervals"><span class="header-section-number">10.2</span> Confidence Intervals</h2>
+<p>In Topic 5 we were able to make statements like the following.</p>
+<div id="exm-ci-1" class="theorem example">
+<p><span class="theorem-title"><strong>Example 10.4</strong></span> Suppose the average commute time for residents of a city is 32 minutes with a standard deviation of 9 minutes. If I sample 36 residents randomly then there is a 90% chance the sample mean will be between __ and __.</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The sample mean is normally distributed with mean 32 (same as population) and standard deviation,</p>
+<p><span class="math display">\[ \frac{9}{\sqrt{36}} = \frac{9}{6} = 1.5 \]</span></p>
+<p>We can use the Normal Calculator to compute the bounds, or we can recognize that for the standard normal distribution, 90% is between the z-scores <span class="math inline">\(z = -1.645\)</span> and <span class="math inline">\(z = 1.645\)</span>. So the bounds are,</p>
+<p><span class="math display">\[32 - 1.645 (1.5) = 29.5325\]</span></p>
+<p>and</p>
+<p><span class="math display">\[32 + 1.645 (1.5) = 34.4675.\]</span></p>
+<p>So, there is a 90% chance the sample mean will be between 29.53 and 34.47.</p>
+</div>
+</div>
+</div>
+<p>It will be more interesting, however to answer the reverse problem: Given a sample mean, can we give an interval expressing where we expect the population mean to fall? In order to do this we need to pick a <strong>confidence level</strong>. Common confidence levels are 90% and 95%.</p>
+<p>To compute a confidence interval we need the following conditions to hold:</p>
+<ul>
+<li>The sample is random.</li>
+<li>The sample size is large or the variable of interest is normally distributed.</li>
+</ul>
+<p>How we compute the <strong>confidence interval</strong> depends on what information we have access to. To start, assume we know the <strong>sample mean</strong>, <span class="math inline">\(\bar{x}\)</span>, and the <strong>population standard deviation</strong>, <span class="math inline">\(\sigma\)</span>. Then given a confidence level, we can compute the confidence interval as,</p>
+<p><span class="math display">\[(\bar{x} - z_{\text{CL}}\frac{\sigma}{\sqrt{n}}, \bar{x} + z_{\text{CL}}\frac{\sigma}{\sqrt{n}})\]</span></p>
+<p>where <span class="math inline">\(z_{\text{CL}}\)</span> is the appropriate <span class="math inline">\(z\)</span>-score for whatever confidence level we choose.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Confidence Level</th>
+<th><span class="math inline">\(z_{\text{CL}}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>90%</td>
+<td>1.645</td>
+</tr>
+<tr class="even">
+<td>95%</td>
+<td>1.96</td>
+</tr>
+</tbody>
+</table>
+<div id="exm-ci-2" class="theorem example">
+<p><span class="theorem-title"><strong>Example 10.5</strong></span> Suppose average pizza delivery times are normally distributed with an unknown population mean and a population standard deviation of six minutes. A random sample of 28 pizza delivery restaurants is taken and has a sample mean delivery time of 36 minutes. Compute a 90% confidence interval for the population mean.</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Our sample is <em>small</em>, but since we know that the population is normally distributed we are okay to proceed.</p>
+<p>We have the population standard deviation, so we can use the above formula</p>
+<p><span class="math display">\[36 - 1.645 \times \frac{6}{\sqrt{28}} = 34.135, \; 36 + 1.645 \times \frac{6}{\sqrt{28}} = 37.865.\]</span></p>
+<p>We estimate with 90% confidence that the population mean is between 34.135 and 37.865 minutes.</p>
+</div>
+</div>
+</div>
+<div id="exm-ci-3" class="theorem example">
+<p><span class="theorem-title"><strong>Example 10.6</strong></span> A coffee shop chain wants to estimate the average time customers spend waiting for their order. Assume the population standard deviation of wait times is <span class="math inline">\(\sigma = 14\)</span> minutes. A manager takes a random sample of 49 customers and finds a sample mean wait time <span class="math inline">\(\bar{x} = 128.5\)</span> seconds. Construct a 95% confidence interval for the true mean wait time.</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>We have the population standard deviation and this time <span class="math inline">\(z_{\text{CL}} = 1.96\)</span>,</p>
+<p><span class="math display">\[128.5 - 1.96 \times \frac{14}{\sqrt{49}} = 124.58, \; 128.5 + 1.96 \times \frac{14}{\sqrt{49}} = 132.42.\]</span></p>
+<p>We estimate with 95% confidence that the true mean wait time is between 124.58 and 132.42 minutes.</p>
+</div>
+</div>
+</div>
+<p>It’s a bit strange to assume we know the population standard deviation, so suppose we are interested in the <em>same</em> question but only have the the <strong>sample mean</strong>, <span class="math inline">\(\bar{x}\)</span>, and <strong>sample standard deviation</strong>, <span class="math inline">\(s\)</span>.</p>
+<p>In the case where we knew the population standard deviation, the <span class="math inline">\(z\)</span>-score is given by</p>
+<p><span class="math display">\[z = \frac{\bar{x}-\mu}{\sigma/\sqrt{n}}.\]</span></p>
+<p>If we don’t know the population standard deviation, the best we can do is replace it with the sample standard deviation</p>
+<p><span class="math display">\[t = \frac{\bar{x}-\mu}{s/\sqrt{n}}.\]</span></p>
+<p>But <span class="math inline">\(s\)</span>, like <span class="math inline">\(\bar{x}\)</span>, is random, so the value above varies more than a <span class="math inline">\(z\)</span>-score would. It turns out we should consider <span class="math inline">\(t\)</span> as coming from the <strong>student-t distribution</strong> (instead of <span class="math inline">\(z\)</span>, which comes from the normal distribution).</p>
+<p>So in order to compute the confidence interval when we only have the sample mean and standard deviation, we must use <span class="math inline">\(t\)</span>-values instead od <span class="math inline">\(z\)</span>-values. The confidence interval is then,</p>
+<p><span class="math display">\[(\bar{x} - t_{\text{CL},n-1}\frac{s}{\sqrt{n}}, \bar{x} + t_{\text{CL},n-1}\frac{s}{\sqrt{n}})\]</span></p>
+<p>The <span class="math inline">\(t\)</span>-score, <span class="math inline">\(t_{\text{CL},n-1}\)</span>, depends on the confidence level AND the degrees of freedom which is <span class="math inline">\(n-1\)</span>. Below we list the <span class="math inline">\(t\)</span>-scores for various values of <span class="math inline">\(n-1\)</span> and the confidence levels 90% and 90%,</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Degrees of Freedom, <span class="math inline">\(n-1\)</span></th>
+<th>90% Confidence Level, <span class="math inline">\(t_{90,n-1}\)</span></th>
+<th>95% Confidence Level, <span class="math inline">\(t_{95,n-1}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>5</td>
+<td>2.01505</td>
+<td>2.57058</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>1.81246</td>
+<td>2.22814</td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td>1.75305</td>
+<td>2.13145</td>
+</tr>
+<tr class="even">
+<td>20</td>
+<td>1.72472</td>
+<td>2.08596</td>
+</tr>
+<tr class="odd">
+<td>30</td>
+<td>1.69726</td>
+<td>2.04227</td>
+</tr>
+<tr class="even">
+<td>40</td>
+<td>1.68385</td>
+<td>2.02108</td>
+</tr>
+</tbody>
+</table>
+<p>Since the <span class="math inline">\(t\)</span>-score depends both on the confidence level and the degrees of freedom, we need a computer/calculator to compute it.</p>
+<div id="exm-ci-4" class="theorem example">
+<p><span class="theorem-title"><strong>Example 10.7</strong></span> A random sample of 32 college students reported how many minutes they spend on their phones before bed. The sample mean was <span class="math inline">\(\bar{x}=72\)</span> minutes and the sample standard deviation was <span class="math inline">\(s=10\)</span> minutes. Construct a 95% confidence interval for the true mean.</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Our sample is <em>large</em> (<span class="math inline">\(n = 32 \geq 30\)</span>), so by the Central Limit Theorem we are okay to proceed even without knowing the population is normally distributed.</p>
+<p>We do not have the population standard deviation, only the sample standard deviation, so we use the <span class="math inline">\(t\)</span> distribution with <span class="math inline">\(n - 1 = 31\)</span> degrees of freedom. For 95% confidence, <span class="math inline">\(t_{\text{CL}} = 2.040\)</span>.</p>
+<p><span class="math display">\[72 - 2.040 \times \frac{10}{\sqrt{32}} = 68.39, \; 72 + 2.040 \times \frac{10}{\sqrt{32}} = 75.61.\]</span></p>
+<p>We estimate with 95% confidence that the population mean is between 68.39 and 75.61 minutes.</p>
+</div>
+</div>
+</div>
+<div id="exm-ci-5" class="theorem example">
+<p><span class="theorem-title"><strong>Example 10.8</strong></span> Use <a href="https://statcrunch.pearson.com/app/?dataid=5182194" target="blank">this dataset</a> to construct a 95% confidence interval for the true mean number of hours students sleep the night before an exam.</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>We can use StatCrunch for this. We go Stat &gt; T Stat &gt; One Sample &gt; with Data. Then we select “Confidence interval for <span class="math inline">\(\mu\)</span>”.</p>
+<p>We estimate with 95% confidence that the true mean hours of sleep is between 6.28 and 6.94.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="confidence-intervals-for-proportions" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="confidence-intervals-for-proportions"><span class="header-section-number">10.3</span> Confidence Intervals for Proportions</h2>
+<p>If we know the <strong>sample proportion</strong> and want to compute a <strong>confidence interval</strong> for the true proportion we use the following formula for the interval,</p>
+<p><span class="math display">\[(\hat{p} - z_{\text{CL}}\sqrt{\frac{\hat{p}(1-\hat{p})}{n-1}}, \bar{x} + z_{\text{CL}}\sqrt{\frac{\hat{p}(1-\hat{p})}{n-1}})\]</span></p>
+<p>We call</p>
+<p><span class="math display">\[\sqrt{\frac{\hat{p}(1-\hat{p})}{n-1}}\]</span></p>
+<p>the <strong>standard error</strong> of</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./lecture-09.html" class="pagination-link" aria-label="Sample Mean and SD">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sample Mean and SD</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

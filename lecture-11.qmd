@@ -1,0 +1,13 @@
+# More Confidence Intervals
+
+## Confidence Intervals for Proportions
+
+If we know the **sample proportion** and want to compute a **confidence interval** for the true proportion we use the following formula for the interval,
+
+$$(\hat{p} - z_{\text{CL}}\sqrt{\frac{\hat{p}(1-\hat{p})}{n-1}}, \bar{x} + z_{\text{CL}}\sqrt{\frac{\hat{p}(1-\hat{p})}{n-1}})$$
+
+We call 
+
+$$\sqrt{\frac{\hat{p}(1-\hat{p})}{n-1}}$$
+
+the **standard error** of 
