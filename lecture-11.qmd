@@ -4,10 +4,62 @@
 
 If we know the **sample proportion** and want to compute a **confidence interval** for the true proportion we use the following formula for the interval,
 
-$$(\hat{p} - z_{\text{CL}}\sqrt{\frac{\hat{p}(1-\hat{p})}{n-1}}, \bar{x} + z_{\text{CL}}\sqrt{\frac{\hat{p}(1-\hat{p})}{n-1}})$$
+$$\left(\hat{p} - z_{\text{CL}}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}, \bar{x} + z_{\text{CL}}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\right)$$
 
-We call 
+The **margin of error** is the term that is added/subtract, e.g. 
 
-$$\sqrt{\frac{\hat{p}(1-\hat{p})}{n-1}}$$
+$$z_{\text{CL}}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$$
 
-the **standard error** of 
+where $z_{\text{CL}}$ is the appropriate $z$-score for our confidence interval.
+
+In Topic 5, we were only allowed to assume the distribution of the sample proportion was normal if $np \geq 10$ and $n(1-p) \geq 10$. For the same reason, we cannot compute the confidence interval unless we have satisfied the conditions,
+
+$$n\hat{p} \geq 10 \text{ and } n(1-\hat{p}) \geq 10.$$
+
+
+
+::: {#exm-sam-prop}
+Jean randomly samples 200 nurses at her hospital and find that 82% of them commute to work by car. Construct a 90% confidence interval for the proportion of all nurses at Jean's hospital who commute to work by car. 
+:::
+
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+### Work by Hand
+
+The sample proportion is $\hat{p} = 0.82$. Since we are interested in a 90% confidence interval, we use $z_{CL} = 1.645$. The margin of error is then, 
+
+$$z_{\text{CL}}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}} = 1.645 \times \sqrt{\frac{0.82(0.18)}{200}} = 0.0447.$$
+
+So the confidence interval is $(0.82-0.0447, 0.82+0.0447) = (0.7753, 0.8647)$.
+
+### Work by StatCrunch
+
+*Add in when StatCrunch wants to work.*
+
+### Summary Sentence
+
+We estimate with 90% confidence that the true proportion of nurses who drive to work at Jean's hospital is between 77.53% and 86.47%. 
+:::
+
+::: {#exm-margin}
+A state's department of education is interested in the proportion of all eighth-grade students in their state that will score at less-than-proficient in math on a national assessment. A random sample of 100 student were studied and it was found that $\hat{p} = 0.58$. Construct a 95% confidence interval for the proportion of eighth-grade students at a less-than-proficient mathematics level. 
+:::
+
+### Work by Hand
+
+Since we are interested in a 90% confidence interval, we use $z_{CL} = 1.96$. The margin of error is then, 
+
+$$z_{\text{CL}}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}} = 1.96 \times \sqrt{\frac{0.58(0.42)}{100}} = 0.0977.$$
+
+So the confidence interval is $(0.4823, 0.6777)$.
+
+### Work by StatCrunch
+
+*Add in when StatCrunch wants to work.*
+
+### Summary Sentence
+
+We estimate with 95% confidence that the true proportion of eighth-graders at a less-than-proficient mathematics level is between 48.23% and 67.77%. 
+:::

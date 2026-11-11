@@ -36,6 +36,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./lecture-11.html" rel="next">
 <link href="./lecture-09.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -207,6 +208,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Drawing Conclusions from Sample Data</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">More Confidence Intervals</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -219,7 +226,6 @@ window.Quarto = {
   <ul>
   <li><a href="#point-estimation" id="toc-point-estimation" class="nav-link active" data-scroll-target="#point-estimation"><span class="header-section-number">10.1</span> Point Estimation</a></li>
   <li><a href="#confidence-intervals" id="toc-confidence-intervals" class="nav-link" data-scroll-target="#confidence-intervals"><span class="header-section-number">10.2</span> Confidence Intervals</a></li>
-  <li><a href="#confidence-intervals-for-proportions" id="toc-confidence-intervals-for-proportions" class="nav-link" data-scroll-target="#confidence-intervals-for-proportions"><span class="header-section-number">10.3</span> Confidence Intervals for Proportions</a></li>
   </ul>
 </nav>
     </div>
@@ -355,7 +361,7 @@ window.Quarto = {
 </div>
 </div>
 <div id="exm-ci-3" class="theorem example">
-<p><span class="theorem-title"><strong>Example 10.6</strong></span> A coffee shop chain wants to estimate the average time customers spend waiting for their order. Assume the population standard deviation of wait times is <span class="math inline">\(\sigma = 14\)</span> minutes. A manager takes a random sample of 49 customers and finds a sample mean wait time <span class="math inline">\(\bar{x} = 128.5\)</span> seconds. Construct a 95% confidence interval for the true mean wait time.</p>
+<p><span class="theorem-title"><strong>Example 10.6</strong></span> A coffee shop chain wants to estimate the average time customers spend waiting for their order. Assume the population standard deviation of wait times is <span class="math inline">\(\sigma = 14\)</span> seconds. A manager takes a random sample of 49 customers and finds a sample mean wait time <span class="math inline">\(\bar{x} = 128.5\)</span> seconds. Construct a 95% confidence interval for the true mean wait time.</p>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
@@ -371,7 +377,7 @@ window.Quarto = {
 <div class="callout-body-container callout-body">
 <p>We have the population standard deviation and this time <span class="math inline">\(z_{\text{CL}} = 1.96\)</span>,</p>
 <p><span class="math display">\[128.5 - 1.96 \times \frac{14}{\sqrt{49}} = 124.58, \; 128.5 + 1.96 \times \frac{14}{\sqrt{49}} = 132.42.\]</span></p>
-<p>We estimate with 95% confidence that the true mean wait time is between 124.58 and 132.42 minutes.</p>
+<p>We estimate with 95% confidence that the true mean wait time is between 124.58 and 132.42 seconds.</p>
 </div>
 </div>
 </div>
@@ -454,7 +460,7 @@ window.Quarto = {
 </div>
 </div>
 <div id="exm-ci-5" class="theorem example">
-<p><span class="theorem-title"><strong>Example 10.8</strong></span> Use <a href="https://statcrunch.pearson.com/app/?dataid=5182194" target="blank">this dataset</a> to construct a 95% confidence interval for the true mean number of hours students sleep the night before an exam.</p>
+<p><span class="theorem-title"><strong>Example 10.8</strong></span> Use <a href="https://statcrunch.pearson.com/app/?dataid=5182943" target="blank">this dataset</a> to construct a 95% confidence interval for the true mean number of hours students sleep the night before an exam.</p>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
@@ -469,18 +475,10 @@ window.Quarto = {
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>We can use StatCrunch for this. We go Stat &gt; T Stat &gt; One Sample &gt; with Data. Then we select “Confidence interval for <span class="math inline">\(\mu\)</span>”.</p>
-<p>We estimate with 95% confidence that the true mean hours of sleep is between 6.28 and 6.94.</p>
+<p>We estimate with 95% confidence that the true mean hours of sleep is between 6.25 and 6.95.</p>
 </div>
 </div>
 </div>
-</section>
-<section id="confidence-intervals-for-proportions" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="confidence-intervals-for-proportions"><span class="header-section-number">10.3</span> Confidence Intervals for Proportions</h2>
-<p>If we know the <strong>sample proportion</strong> and want to compute a <strong>confidence interval</strong> for the true proportion we use the following formula for the interval,</p>
-<p><span class="math display">\[(\hat{p} - z_{\text{CL}}\sqrt{\frac{\hat{p}(1-\hat{p})}{n-1}}, \bar{x} + z_{\text{CL}}\sqrt{\frac{\hat{p}(1-\hat{p})}{n-1}})\]</span></p>
-<p>We call</p>
-<p><span class="math display">\[\sqrt{\frac{\hat{p}(1-\hat{p})}{n-1}}\]</span></p>
-<p>the <strong>standard error</strong> of</p>
 
 
 </section>
@@ -893,6 +891,9 @@ window.Quarto = {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./lecture-11.html" class="pagination-link" aria-label="More Confidence Intervals">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">More Confidence Intervals</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

@@ -99,7 +99,7 @@ We estimate with 90% confidence that the population mean is between 34.135 and 3
 
 
 ::: {#exm-ci-3}
-A coffee shop chain wants to estimate the average time customers spend waiting for their order. Assume the population standard deviation of wait times is $\sigma = 14$ minutes. A manager takes a random sample of 49 customers and finds a sample mean wait time $\bar{x} = 128.5$ seconds. Construct a 95% confidence interval for the true mean wait time. 
+A coffee shop chain wants to estimate the average time customers spend waiting for their order. Assume the population standard deviation of wait times is $\sigma = 14$ seconds. A manager takes a random sample of 49 customers and finds a sample mean wait time $\bar{x} = 128.5$ seconds. Construct a 95% confidence interval for the true mean wait time. 
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -109,7 +109,7 @@ We have the population standard deviation and this time $z_{\text{CL}} = 1.96$,
 
 $$128.5 - 1.96 \times \frac{14}{\sqrt{49}} = 124.58, \; 128.5 + 1.96 \times \frac{14}{\sqrt{49}} = 132.42.$$
 
-We estimate with 95% confidence that the true mean wait time is between 124.58 and 132.42 minutes. 
+We estimate with 95% confidence that the true mean wait time is between 124.58 and 132.42 seconds. 
 :::
 
 It's a bit strange to assume we know the population standard deviation, so suppose we are interested in the *same* question but only have the the **sample mean**, $\bar{x}$, and **sample standard deviation**, $s$. 
@@ -158,7 +158,7 @@ We estimate with 95% confidence that the population mean is between 68.39 and 75
 :::
 
 ::: {#exm-ci-5}
-Use [this dataset](https://statcrunch.pearson.com/app/?dataid=5182194){target="blank"} to construct a 95% confidence interval for the true mean number of hours students sleep the night before an exam. 
+Use [this dataset](https://statcrunch.pearson.com/app/?dataid=5182943){target="blank"} to construct a 95% confidence interval for the true mean number of hours students sleep the night before an exam. 
 :::
 
 
@@ -167,19 +167,9 @@ Use [this dataset](https://statcrunch.pearson.com/app/?dataid=5182194){target="b
 
 We can use StatCrunch for this. We go Stat > T Stat > One Sample > with Data. Then we select "Confidence interval for $\mu$".
 
-We estimate with 95% confidence that the true mean hours of sleep is between 6.28 and 6.94. 
+We estimate with 95% confidence that the true mean hours of sleep is between 6.25 and 6.95. 
 :::
 
 
-## Confidence Intervals for Proportions
 
-If we know the **sample proportion** and want to compute a **confidence interval** for the true proportion we use the following formula for the interval,
-
-$$(\hat{p} - z_{\text{CL}}\sqrt{\frac{\hat{p}(1-\hat{p})}{n-1}}, \bar{x} + z_{\text{CL}}\sqrt{\frac{\hat{p}(1-\hat{p})}{n-1}})$$
-
-We call 
-
-$$\sqrt{\frac{\hat{p}(1-\hat{p})}{n-1}}$$
-
-the **standard error** of 
 
