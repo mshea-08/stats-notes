@@ -48,6 +48,8 @@ A state's department of education is interested in the proportion of all eighth-
 :::
 
 ::: {.callout-tip collapse="true"}
+## Answer 
+
 ### Work by Hand
 
 Since we are interested in a 90% confidence interval, we use $z_{CL} = 1.96$. The margin of error is then, 
