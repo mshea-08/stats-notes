@@ -47,6 +47,7 @@ We estimate with 90% confidence that the true proportion of nurses who drive to 
 A state's department of education is interested in the proportion of all eighth-grade students in their state that will score at less-than-proficient in math on a national assessment. A random sample of 100 student were studied and it was found that $\hat{p} = 0.58$. Construct a 95% confidence interval for the proportion of eighth-grade students at a less-than-proficient mathematics level. 
 :::
 
+::: {.callout-tip collapse="true"}
 ### Work by Hand
 
 Since we are interested in a 90% confidence interval, we use $z_{CL} = 1.96$. The margin of error is then, 
