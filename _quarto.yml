@@ -21,6 +21,7 @@ book:
     - lecture-09.qmd
     - lecture-10.qmd
     - lecture-11.qmd
+    - lecture-12.qmd
 
 format:
   html:

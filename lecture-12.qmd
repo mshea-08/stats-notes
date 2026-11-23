@@ -1,0 +1,199 @@
+# Hypothesis Testing 
+
+## Null and Alternative Hypotheses
+
+The goal of **hypothesis testing** is to determine whether sample data provides *significant* evidence to reject a default assumption about a population. Hypothesis testing is used for things like:
+
+* Testing a marketing claim. 
+* Testing the efficacy of a new drug, clinical method, etc.
+* Testing whether a subset of a population behaves differently than the whole (or another subset). 
+
+In hypothesis testing we develop a **null hypothesis** $H_0$ and an **alternative hypothesis** $H_a$. The null hypothesis typically states that there is no difference in populations or that the experiment has no effect. The alternative hypothesis says there *is* a difference.
+
+::: {#exm-h1}
+A machine is supposed to fill cereal boxes with 500 g of cereal. The company wants to test to see if it is under filling the boxes. To test this, the company takes a random sample of 100 boxes and weighs them. 
+:::
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+$H_0$: $\mu = 500$ (the boxes are filled, on average, with 500 g of cereal)
+
+$H_a$: $\mu < 500$ (the boxes are filled, on average, with *less* than 500 g of cereal)
+:::
+
+::: {#exm-h2}
+Th average adult in a city sleeps 7.0 hours a night. A researcher thinks nurses who work the night shift sleep less than that. To test this theory, she samples 40 night shift nurses across the city's 3 hospitals. 
+:::
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+$H_0$: $\mu = 7.0$ (night shift nurses sleep the same amount on average)
+
+$H_a$: $\mu < 7.0$ (night shift nurses sleep less on average)
+:::
+
+In the above examples, we say that the alternative hypothesis is **one-sided** and so we perform a *one-sided hypothesis test*. A one-sided test is used when the question proposed is one-sided in nature, e.g. the night shift nurses sleep *less*, or the machine *underfills*. 
+
+A **two-sided** test is when you just want to test for any difference. Two-sided test are more conservative and are typically the standard unless there is a strong reason to perform a one-sided test.  
+
+::: {#exm-h3}
+A company advertises that the average life span of their batteries is 10 hours. A consumer researcher wants to test if this is tue by randomly sampling 64 batteries. 
+:::
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+$H_0$: $\mu = 10$ (the average life span is 10 hours)
+
+$H_a$: $\mu \neq 10$ (the average lifespan is different than 10 hours)
+:::
+
+## The General Process
+
+1. State your *claims*, e.g. what is your null hypothesis and what is your alternative hypothesis.
+
+[In practice, you are coming up with these based on the research question you are trying to study. For us, in class, we want to be able to identify the null and alternative hypothesis from statements like above and write them mathematically.]{style="color: blue;"}
+
+2. Take a random sample to test your claim. 
+
+[Not the focus for use. It is important to understand though that the theory **does not** hold up if we don't have an unbiased random sample. Bad sampling means your conclusion is garbage.]{style="color: blue;"}
+
+3. Use the sample statistics to test your claim. 
+
+[Figure out the *probability* of getting the observed data under the assumption that the null hypothesis is true. We call this probability a **p-value**. To compute the p-value we use techniques discussed in Topic 5 and 6.]{style="color: blue;"}
+
+[For example, if our null hypothesis is that $p = 0.3$ and our sample gives $\hat{p} = 0.2$ for a one-sided test, we want to compute $P(\hat{p} < 0.2)$ and for a two-sided test we want to compute $P(\hat{p} < 0.2 \text{ or } \hat{p} > 0.4)$. To compute both of these probabilities we use the method described in Topic 5.]{style="color: blue;"}
+
+
+::: {#exm-pval}
+An airline claims that 90% of its flights arrive on time. A travel watchdog suspects the true rate is lower. It takes a random sample of 200 of the airline's flights and finds that 170 of them (85%) arrived on time. They compute a p-value of 0.009.
+
+1. State the null and alternative hypotheses.
+
+2. The fact that the p-value = 0.009 means that:
+    * There is a 0.009 probability that 90% of the airline's flights arrive on time.
+    * There is a 0.009 probability of observing a sample proportion of 85% or less.
+    * If 90% of the airline's flights arrived on time, there would be a 0.009 probability of getting a sample proportion of 85% or lower, so data like these would be very unlikely.
+    * There is a 0.991 probability that fewer than 90% of the airline's flights arrive on time. 
+:::
+
+::: {#exm-pval-mean}
+A coffee shop advertises that customers wait an average of 4 minutes for their order. A regular customer suspects the average wait is longer. She records the wait times of a random sample of 35 orders and finds a sample mean of 4.6 minutes. She computes a p-value of 0.02.
+
+1. State the null and alternative hypotheses.
+
+2. The fact that the p-value = 0.02 means that:
+    * There is a 0.02 probability that the average wait time is 4 minutes.
+    * There is a 0.02 probability of observing a sample mean of 4.6 minutes or more.
+    * If the true average wait time were 4 minutes, there would be a 0.02 probability of getting a sample mean of 4.6 minutes or higher, so data like these would be fairly unlikely.
+    * There is a 0.98 probability that the average wait time is longer than 4 minutes.
+:::
+
+4. Determine whether the data supports rejecting the null hypothesis. 
+
+[To do this, we compare the computed p-value to a predetermined **significance level** $\alpha$. We **reject** the null hypothesis if our p-value is less than $\alpha$. The most common significance level is $\alpha = 0.05$, however it is not uncommon to see other significance levels such as $0.01$. Typically, fields of research will have their own standard for what an appropriate significance level is.]{style="color: blue;"}
+
+## One-Sample Tests for Proportions
+
+We are going to go right into explaining these concepts by looking at an example of a **one-sample tests for proportions**.
+
+::: {#exm-h1-prop1}
+About 10% of the general population is left-handed. A teacher thinks left-handedness is more common among students at an art school. 
+:::
+
+In this example we are asking about *proportions*. Remember, if what we are measuring is categorical (e.g. left-handedness), then we are asking about proportions. 
+
+In this case, the null hypothesis would be that the proportion of left-handedness at the art school is the same as the general population,
+
+$$H_0: \; p=0.1.$$
+
+The alternative hypothesis is that left-handedness is *more common* at the art school, 
+
+$$H_a: \; p > 0.1.$$
+
+::: {#exm-h1-prop2}
+She surveys 150 randomly chosen art students and finds that 24 of them are left-handed.
+:::
+
+From the sample, the proportion of left-handedness is 
+
+$$\hat{p} = \frac{24}{150} = 0.16.$$
+
+**If we assume the null hypothesis, what is the probability of the sample proportion being at least 0.16?** To answer this, we go back to Topic 5! We can assume the sample proportion $\hat{p}$ is normally distributed with mean 
+
+$$\mu_{\hat{p}} = p = 0.1$$
+
+and standard deviation
+
+$$\sigma_{\hat{p}} = \sqrt{\frac{p(1-p)}{n}} = \sqrt{\frac{0.1(0.9)}{150}} = 0.0245.$$
+
+Now we compute the probability (using a Normal calculator), 
+
+$$P(\hat{p} > 0.16) = 0.0072.$$
+
+This is our p-value! If we assume a significance level of 0.05, then we should reject the null hypothesis since $0.0072 < 0.05$. **We summarize this by stating: The data provides significant evidence that the proportion of students at the art school who are left-handed is greater than 10%.**
+
+Let's look at the following examples taken from [LibreText Statistics](https://stats.libretexts.org/Bookshelves/Introductory_Statistics/Statistics_with_Technology_2e_(Kozak)/07%3A_One-Sample_Inference/7.02%3A_One-Sample_Proportion_Test)...
+
+::: {#exm-prop2}
+Eyeglassomatic manufactures eyeglasses for different retailers. They test to see how many defective lenses they made in a given time period and found that 11% of all lenses had defects of some type. Looking at the type of defects, they found in a three-month time period that out of 34,641 defective lenses, 5865 were due to scratches. Are there more defects from scratches than from all other causes? Use a 1% level of significance.
+
+a. What are the null and alternative hypotheses? Is the test one-sided or two-sided?
+b. What is the sample proportion?
+c. What is the p-value?
+d. What significance level?
+e. State the conclusion of the test. 
+:::
+
+::: {#exm-prop2}
+According to the February 2008 Federal Trade Commission report on consumer fraud and identity theft, 23% of all complaints in 2007 were for identity theft. In that year, Alaska had 321 complaints of identity theft out of 1,432 consumer complaints ("Consumer fraud and," 2008). Does this data provide enough evidence to show that Alaska had a lower proportion of identity theft than 23%? Test at the 5% level.
+
+a. What are the null and alternative hypotheses? Is the test one-sided or two-sided?
+b. What is the sample proportion?
+c. What is the p-value?
+d. What significance level?
+e. State the conclusion of the test. 
+:::
+
+### When is the Test Appropriate to Use?
+
+We should comment on the conditions necessary to perform this test. The conditions are identical to those discussed in Topics 5 and 6. We need:
+
+1. An unbiased and random sample.
+2. The sample size to be large enough such that $np \geq 10$ and $n(1-p) \geq 10$. *This condition allows use to assume the distribution of $\hat{p}$ is normal by the Central Limit Theorem.*
+
+::: {#exm-sampsize}
+A researcher tests $H_0:\; p = 0.50$ against $H_a:\; p > 0.50$ and gets a sample proportion of $\hat{p} = 0.56$. Will the p-value be larger if the sample size was $n = 100$ or $n = 1,000$?
+:::
+
+### Other Important Details
+
+::: {#exm-pval}
+Two researchers conduct a one sample hypothesis test and get a p-value of 0.03. One researcher says they should reject the null hypothesis because $0.03 < 0.05$, while the other says they should *not* reject the null because $0.03 > 0.01$. What is the problem here?
+:::
+
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+Neither is right or wrong per say. The two researchers are applying different significance levels. The problem here lies in the fact that, in good research, one should determine a significance level *before* conducting the experiment/study. The significance level should ideally reflect the industry standards and the type of research being conducted. 
+
+What is important to note here is that the p-value is a mathematically understandable object (it is a probability!). The choice of significance level is not, generally, mathematically understandable. 
+:::
+
+A **type I error** is rejecting the null hypothesis when it is actually true. A **type II error** is not rejecting the null when it is actually false. One factor in deciding your significance level is your tolerance for these errors:
+
+* Spam filtering: $H_0$: the email is legitimate. A Type I error sends an important email to spam. 
+* Disease screening: $H_0$: the patient doesn't have the disease. A Type II error misses a disease that could have been caught early. A false alarm only leads to a follow-up test.
+
+::: {#exm-1vs2}
+If you switch from a one-sided test to a two-sided test with the same data, what happens to the p-value?
+:::
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+The p-value will double. This is why--when in doubt--use a two-sided test, because it is always more conservative. 
+:::
