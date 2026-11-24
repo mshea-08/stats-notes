@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>13&nbsp; More One Sample Hypothesis Testing – Statistics Lecture Notes</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./lecture-12.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-75d38af4ef6471681de3c6736dd07766.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture-13.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">More One Sample Hypothesis Testing</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statistics Lecture Notes</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Exploring Data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary Statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Examining Relationships</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sampling and Study Design</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Basics of Probability</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Random Variables and Probability Distributions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Normal Random Variables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Sampling</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sample Mean and SD</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Drawing Conclusions from Sample Data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">More Confidence Intervals</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture-13.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">More One Sample Hypothesis Testing</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#hypothesis-tests-for-means" id="toc-hypothesis-tests-for-means" class="nav-link active" data-scroll-target="#hypothesis-tests-for-means"><span class="header-section-number">13.1</span> Hypothesis Tests for Means</a></li>
+  <li><a href="#one-sample-z-test" id="toc-one-sample-z-test" class="nav-link" data-scroll-target="#one-sample-z-test"><span class="header-section-number">13.2</span> One Sample z-Test</a></li>
+  <li><a href="#one-sample-t-test" id="toc-one-sample-t-test" class="nav-link" data-scroll-target="#one-sample-t-test"><span class="header-section-number">13.3</span> One Sample t-Test</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">More One Sample Hypothesis Testing</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="hypothesis-tests-for-means" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="hypothesis-tests-for-means"><span class="header-section-number">13.1</span> Hypothesis Tests for Means</h2>
+<p>Last notes, we dealt with the case of one-sample hypothesis tests <em>for proportions</em>. We applied the general set up:</p>
+<ol type="1">
+<li>State the claims we are testing.</li>
+<li>Conduct survey/experiment using random sampling.</li>
+<li>Use the sample statistics to compute the p-value.</li>
+<li>Come to a conclusion by comparing the p-value to the significance level.</li>
+</ol>
+<p>Now we want to deal with the case of sample means. Consider the following example,</p>
+<div id="exm-sm" class="theorem example">
+<p><span class="theorem-title"><strong>Example 13.1</strong></span> M&amp;Ms candies advertise a mean weight of 0.8535 grams. A skeptic M&amp;M consumer claims that the mean weight is less than what is advertised.</p>
+</div>
+<p>In this example, we are testing whether the mean weight is the claimed 0.8535 grams or whether it is actually <em>less</em> than that. In other words,</p>
+<p><span class="math display">\[H_0: \; \mu = 0.8535\]</span> <span class="math display">\[H_a: \; \mu &lt; 0.8535\]</span></p>
+<p>So this is a one-sided hypothesis test for a mean. For proportions, we always tackle the test the same way. However, for means, how we approach the test depends on the information we are given:</p>
+<ul>
+<li>If we <em>know</em> the population standard deviation, we use a z-test.</li>
+<li>If we <em>don’t know</em> the population standard deviation, we instead use the sample standard deviation and conduct a t-test.</li>
+</ul>
+<p>This is exactly the same differentiation we discussed in Topic 6. We will discuss the case where the population standard deviation is known first. Even though it is less realistic, its a bit easier to implement and is a good launching off point for us.</p>
+</section>
+<section id="one-sample-z-test" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="one-sample-z-test"><span class="header-section-number">13.2</span> One Sample z-Test</h2>
+<p>If the standard deviation of the population is known, we use <strong>z-test</strong> and the normal distribution to compute the p-value. This is nearly identical to the proportion case.</p>
+<div id="exm-sm2" class="theorem example">
+<p><span class="theorem-title"><strong>Example 13.2</strong></span> M&amp;Ms candies advertise a mean weight of 0.8535 grams. A sample of 50 M&amp;M candies is randomly selected from a bag of M&amp;Ms and the mean is found to be 0.8472 grams. The standard deviation of the weights of all M&amp;Ms is (somehow) known to be <span class="math inline">\(\sigma = 0.06\)</span> grams. A skeptic M&amp;M consumer claims that the mean weight is less than what is advertised. Test this claim using the traditional method of hypothesis testing. Use a 5% level of significance.</p>
+</div>
+<p>For this problem we start by stating our null hypothesis, alternative hypothesis, and significance level.</p>
+<p><span class="math display">\[H_0: \; \mu = 0.8535\]</span> <span class="math display">\[H_a: \; \mu &lt; 0.8535\]</span> <span class="math display">\[\alpha = 0.05\]</span></p>
+<p>Now let’s compute the mean and standard deviation of the <em>sample mean distribution</em>. Note that the sample mean is normally distributed because <span class="math inline">\(n \geq 30\)</span>. The mean comes from assuming the null hypothesis is true,</p>
+<p><span class="math display">\[\mu_{\bar{x}} = 0.8535.\]</span></p>
+<p>The standard deviation is,</p>
+<p><span class="math display">\[\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}} = \frac{0.06}{\sqrt{100}} = 0.006.\]</span></p>
+<p>Let’s compute the z-score from this,</p>
+<p><span class="math display">\[z = \frac{0.8472 - 0.8535}{0.006} = -1.05\]</span></p>
+<p>The p-value comes from computing <span class="math inline">\(P(Z \leq -1.05)\)</span> where <span class="math inline">\(Z\)</span> is a <strong>standard normal</strong> random variable and the inequality is the same as the alternative hypothesis. We get,</p>
+<p><span class="math display">\[P(Z \leq -1.05) = 0.1469\]</span>.</p>
+<p>This p-value is larger than the stated significance level of 0.05, so we do not reject the null hypothesis. In other words, <span style="color: blue;">there is not enough evidence to support that the mean weight of the candy is less than 0.8535 grams.</span></p>
+<div id="exm-sm3" class="theorem example">
+<p><span class="theorem-title"><strong>Example 13.3</strong></span> A city transit authority says its downtown express bus takes 42 minutes on average to finish its route. From years of GPS tracking data, the population standard deviation of trip times is known to be 6 minutes. A commuter advocacy group thinks the average trip time is now different, so it records a random sample of 50 trips and finds a mean of 44.1 minutes. At the 1% significance level, is there enough evidence to conclude that the true mean trip time differs from 42 minutes?</p>
+<ol type="a">
+<li>State the null and alternative hypotheses.</li>
+<li>State <span class="math inline">\(\alpha\)</span>.</li>
+<li>Compute the p-value.</li>
+<li>State the conclusion.</li>
+</ol>
+</div>
+<div id="exm-sm3" class="theorem example">
+<p><span class="theorem-title"><strong>Example 13.4</strong></span> A school district reports that its 8th graders score an average of 250 points on a statewide math assessment, and the population standard deviation is known to be 30 points. After the district adopts a new math curriculum, administrators want to know if scores have gone up. They randomly select 64 students who learned with the new curriculum and find a mean score of 258 points. At the 5% significance level, is there enough evidence to conclude that the true mean score under the new curriculum is greater than 250 points?</p>
+<ol type="a">
+<li>State the null and alternative hypotheses.</li>
+<li>State <span class="math inline">\(\alpha\)</span>.</li>
+<li>Compute the p-value.</li>
+<li>State the conclusion.</li>
+</ol>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>StatCrunch Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>We can perform this z-Test on StatCrunch using the following inputs: Stats – Z Stats – One Sample – With Summary. On the pop up we enter the necessary information. In this case,</p>
+<ul>
+<li>Sample mean: 258</li>
+<li>Standard deviation: 30</li>
+<li>Sample size: 64</li>
+</ul>
+<p>For the hypotheses:</p>
+<ul>
+<li>Null: <span class="math inline">\(\mu = 250\)</span></li>
+<li>Alt: <span class="math inline">\(\mu &gt; 250\)</span></li>
+</ul>
+<p>The output gives us a z-score of 2.13 and a p-value of 0.0164. This p-value is smaller than the significance level, <span class="math inline">\(\alpha = 0.05\)</span>, so we reject the null.</p>
+<p>There is significant evidence that the average score increased form 250 points.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Correlation <span class="math inline">\(\neq\)</span> Causation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We cannot necessarily say from the amount of information we have that the scores increased <em>because</em> of the change in curriculum. We would need to provide evidence that other factors did not impact the score (e.g.&nbsp;student population, change in instructors, etc). This is why sampling is crucial to drawing conclusions.</p>
+</div>
+</div>
+</section>
+<section id="one-sample-t-test" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="one-sample-t-test"><span class="header-section-number">13.3</span> One Sample t-Test</h2>
+<p>Now we have to deal with the case where we do not know the population standard deviation. In practice, this is the most relevant case. Before, to compute the p-value we computed the z-score of the sample statistic. <strong>Now we want to compute the t-score.</strong> To compute the t-score, we just use the standard deviation of the sample <span class="math inline">\(s\)</span> instead of the population standard deviation.</p>
+<p><span class="math display">\[t = \frac{\bar{x} - \mu}{s/\sqrt{n}}\]</span></p>
+<p><span style="color: red;">Unlike our z-score, the t-score is not normally distributed!</span> The t-score comes from the student-t distribution. This distribution has a parameter called <strong>degreees of freedom</strong> (really, it is a family of distributions) and looks like a normal distribution but with a <em>heavier tail</em>.</p>
+<p><a href="https://tjkyner.medium.com/the-normal-distribution-vs-students-t-distribution-322aa12ffd15">This article has some nice visualizations illustrating the difference between the student-t and the normal distribution.</a></p>
+<p>Like for our normal distribution, StatCrunch has a student-t distribution calculator (Stats - Calculator - T). The degrees of freedom is <span class="math inline">\(n-1\)</span>, where <span class="math inline">\(n\)</span> is the sample size.</p>
+<div id="exm-sm4" class="theorem example">
+<p><span class="theorem-title"><strong>Example 13.5</strong></span> An energy drink brand advertises that each can contains 160 mg of caffeine. A food safety lab suspects the actual amount is different, so it tests a random sample of 15 cans. The sample has a mean caffeine content of 166.2 mg and a standard deviation of 9.8 mg. Assuming caffeine content is approximately normally distributed, is there enough evidence at the 5% significance level to conclude that the true mean caffeine content differs from 160 mg?</p>
+<ol type="a">
+<li>State the null and alternative hypotheses.</li>
+<li>State <span class="math inline">\(\alpha\)</span>.</li>
+<li>Compute the p-value.</li>
+<li>State the conclusion.</li>
+</ol>
+</div>
+<p><span style="color: red;">We should be concerned about the small sample size here, but since the prompt tells us the caffeine content is approximately normal, we are safe to proceed.</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<section id="null-and-alt-hypothesis" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="null-and-alt-hypothesis">Null and Alt Hypothesis</h4>
+<p><span class="math inline">\(H_0: \; \mu = 160\)</span> mg (the drink contains, on average, 160 mg of caffeine)</p>
+<p><span class="math inline">\(H_a: \; \mu \neq 160\)</span> mg (the actual amount of caffeine, on average, is different)</p>
+</section>
+<section id="significance-level" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="significance-level">Significance Level</h4>
+<p>From the statement we should use <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+</section>
+<section id="p-value" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="p-value">p-Value</h4>
+<p>To compute the p-value, we need to first determine the t-score. This is the same as computing the z-score, but we replace the population standard deviation with the sample standard deviation,</p>
+<p><span class="math display">\[t = \frac{\bar{x} - \mu}{s/\sqrt{n}} = \frac{166.2-160}{9.8/\sqrt{15}} = 2.45.\]</span></p>
+<p>Since we are doing a <em>two-sided</em> test, we need to compute:</p>
+<p><span class="math display">\[P(T &gt; 2.45 \text{ or } T &lt; -2.45) = 2P(T &gt; 2.45).\]</span></p>
+<p>Like the normal distribution, the student-t distribution is <strong>symmetric</strong> so we can make the simplification above. For these probabilities we need to use the T calculator, <em>not</em> the normal calculator. Thus we get a p-value of 0.028.</p>
+</section>
+<section id="conclusion" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="conclusion">Conclusion</h4>
+<p>Since the p-value is less than our significance level we reject the null hypothesis. In other words, there is significant evidence to suggest that, on average, the energy drink does not contain 160 mg of caffeine.</p>
+</section>
+<section id="testing-via-statcrunch" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="testing-via-statcrunch">Testing via StatCrunch</h4>
+<p>We can do the entire test via StatCrunch by selecting: Stats – T Stats – One Sample – With Summary. Entering in our data will give us the same p-value as computed above.</p>
+</section>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./lecture-12.html" class="pagination-link" aria-label="Hypothesis Testing">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

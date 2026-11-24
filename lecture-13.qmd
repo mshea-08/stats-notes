@@ -1,0 +1,164 @@
+# More One Sample Hypothesis Testing
+
+## Hypothesis Tests for Means
+
+Last notes, we dealt with the case of one-sample hypothesis tests *for proportions*. We applied the general set up:
+
+1. State the claims we are testing. 
+2. Conduct survey/experiment using random sampling.
+3. Use the sample statistics to compute the p-value.
+4. Come to a conclusion by comparing the p-value to the significance level.
+
+Now we want to deal with the case of sample means. Consider the following example,
+
+::: {#exm-sm}
+M&Ms candies advertise a mean weight of 0.8535 grams. A skeptic M&M consumer claims that the mean weight is less than what is advertised. 
+:::
+
+In this example, we are testing whether the mean weight is the claimed 0.8535 grams or whether it is actually *less* than that. In other words,
+
+$$H_0: \; \mu = 0.8535$$
+$$H_a: \; \mu < 0.8535$$
+
+So this is a one-sided hypothesis test for a mean. For proportions, we always tackle the test the same way. However, for means, how we approach the test depends on the information we are given:
+
+* If we *know* the population standard deviation, we use a z-test.
+* If we *don't know* the population standard deviation, we instead use the sample standard deviation and conduct a t-test. 
+
+This is exactly the same differentiation we discussed in Topic 6. We will discuss the case where the population standard deviation is known first. Even though it is less realistic, its a bit easier to implement and is a good launching off point for us. 
+
+## One Sample z-Test 
+
+If the standard deviation of the population is known, we use **z-test** and the normal distribution to compute the p-value. This is nearly identical to the proportion case.
+
+::: {#exm-sm2}
+M&Ms candies advertise a mean weight of 0.8535 grams. A sample of 50 M&M candies is randomly selected from a bag of M&Ms and the mean is found to be 0.8472 grams. The standard deviation of the weights of all M&Ms is (somehow) known to be $\sigma = 0.06$ grams. A skeptic M&M consumer claims that the mean weight is less than what is advertised. Test this claim using the traditional method of hypothesis testing. Use a 5% level of significance.
+:::
+
+For this problem we start by stating our null hypothesis, alternative hypothesis, and significance level. 
+
+$$H_0: \; \mu = 0.8535$$
+$$H_a: \; \mu < 0.8535$$
+$$\alpha = 0.05$$
+
+Now let's compute the mean and standard deviation of the *sample mean distribution*. Note that the sample mean is normally distributed because $n \geq 30$. The mean comes from assuming the null hypothesis is true, 
+
+$$\mu_{\bar{x}} = 0.8535.$$
+
+The standard deviation is, 
+
+$$\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}} = \frac{0.06}{\sqrt{100}} = 0.006.$$
+
+Let's compute the z-score from this,
+
+$$z = \frac{0.8472 - 0.8535}{0.006} = -1.05$$
+
+The p-value comes from computing $P(Z \leq -1.05)$ where $Z$ is a **standard normal** random variable and the inequality is the same as the alternative hypothesis. We get, 
+
+$$P(Z \leq -1.05) = 0.1469$$.
+
+This p-value is larger than the stated significance level of 0.05, so we do not reject the null hypothesis. In other words, [there is not enough evidence to support that the mean weight of the candy is less than 0.8535 grams.]{style="color: blue;"}
+
+::: {#exm-sm3}
+A city transit authority says its downtown express bus takes 42 minutes on average to finish its route. From years of GPS tracking data, the population standard deviation of trip times is known to be 6 minutes. A commuter advocacy group thinks the average trip time is now different, so it records a random sample of 50 trips and finds a mean of 44.1 minutes. At the 1% significance level, is there enough evidence to conclude that the true mean trip time differs from 42 minutes?
+
+a. State the null and alternative hypotheses.
+b. State $\alpha$.
+c. Compute the p-value. 
+d. State the conclusion. 
+::: 
+
+::: {#exm-sm3}
+A school district reports that its 8th graders score an average of 250 points on a statewide math assessment, and the population standard deviation is known to be 30 points. After the district adopts a new math curriculum, administrators want to know if scores have gone up. They randomly select 64 students who learned with the new curriculum and find a mean score of 258 points. At the 5% significance level, is there enough evidence to conclude that the true mean score under the new curriculum is greater than 250 points?
+
+a. State the null and alternative hypotheses.
+b. State $\alpha$.
+c. Compute the p-value. 
+d. State the conclusion. 
+::: 
+
+
+::: {.callout-tip collapse="true"}
+## StatCrunch Answer 
+
+We can perform this z-Test on StatCrunch using the following inputs: Stats -- Z Stats -- One Sample -- With Summary. On the pop up we enter the necessary information. In this case, 
+
+* Sample mean: 258
+* Standard deviation: 30
+* Sample size: 64
+
+For the hypotheses:
+
+* Null: $\mu = 250$
+* Alt: $\mu > 250$
+
+The output gives us a z-score of 2.13 and a p-value of 0.0164. This p-value is smaller than the significance level, $\alpha = 0.05$, so we reject the null. 
+
+There is significant evidence that the average score increased form 250 points. 
+:::
+
+
+::: {.callout-warning}
+## Correlation $\neq$ Causation
+
+We cannot necessarily say from the amount of information we have that the scores increased *because* of the change in curriculum. We would need to provide evidence that other factors did not impact the score (e.g. student population, change in instructors, etc). This is why sampling is crucial to drawing conclusions. 
+:::
+
+
+
+## One Sample t-Test
+
+Now we have to deal with the case where we do not know the population standard deviation. In practice, this is the most relevant case. Before, to compute the p-value we computed the z-score of the sample statistic. **Now we want to compute the t-score.** To compute the t-score, we just use the standard deviation of the sample $s$ instead of the population standard deviation. 
+
+$$t = \frac{\bar{x} - \mu}{s/\sqrt{n}}$$
+
+[Unlike our z-score, the t-score is not normally distributed!]{style="color: red;"} The t-score comes from the student-t distribution. This distribution has a parameter called **degreees of freedom** (really, it is a family of distributions) and looks like a normal distribution but with a *heavier tail*. 
+
+[This article has some nice visualizations illustrating the difference between the student-t and the normal distribution.](https://tjkyner.medium.com/the-normal-distribution-vs-students-t-distribution-322aa12ffd15)
+
+Like for our normal distribution, StatCrunch has a student-t distribution calculator (Stats - Calculator - T). The degrees of freedom is $n-1$, where $n$ is the sample size. 
+
+::: {#exm-sm4}
+An energy drink brand advertises that each can contains 160 mg of caffeine. A food safety lab suspects the actual amount is different, so it tests a random sample of 15 cans. The sample has a mean caffeine content of 166.2 mg and a standard deviation of 9.8 mg. Assuming caffeine content is approximately normally distributed, is there enough evidence at the 5% significance level to conclude that the true mean caffeine content differs from 160 mg?
+
+a. State the null and alternative hypotheses.
+b. State $\alpha$.
+c. Compute the p-value. 
+d. State the conclusion. 
+::: 
+
+[We should be concerned about the small sample size here, but since the prompt tells us the caffeine content is approximately normal, we are safe to proceed.]{style="color: red;"}
+
+::: {.callout-tip collapse="true"}
+## Answer 
+
+#### Null and Alt Hypothesis {-}
+
+$H_0: \; \mu = 160$ mg (the drink contains, on average, 160 mg of caffeine)
+
+$H_a: \; \mu \neq 160$ mg (the actual amount of caffeine, on average, is different)
+
+#### Significance Level {-}
+
+From the statement we should use $\alpha = 0.05$. 
+
+#### p-Value {-}
+
+To compute the p-value, we need to first determine the t-score. This is the same as computing the z-score, but we replace the population standard deviation with the sample standard deviation, 
+
+$$t = \frac{\bar{x} - \mu}{s/\sqrt{n}} = \frac{166.2-160}{9.8/\sqrt{15}} = 2.45.$$
+
+Since we are doing a *two-sided* test, we need to compute:
+
+$$P(T > 2.45 \text{ or } T < -2.45) = 2P(T > 2.45).$$
+
+Like the normal distribution, the student-t distribution is **symmetric** so we can make the simplification above. For these probabilities we need to use the T calculator, *not* the normal calculator. Thus we get a p-value of 0.028.
+
+#### Conclusion {-}
+
+Since the p-value is less than our significance level we reject the null hypothesis. In other words, there is significant evidence to suggest that, on average, the energy drink does not contain 160 mg of caffeine. 
+
+#### Testing via StatCrunch {-}
+
+We can do the entire test via StatCrunch by selecting: Stats -- T Stats -- One Sample -- With Summary. Entering in our data will give us the same p-value as computed above. 
+:::

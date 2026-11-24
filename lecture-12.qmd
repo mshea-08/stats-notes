@@ -138,7 +138,7 @@ This is our p-value! If we assume a significance level of 0.05, then we should r
 Let's look at the following examples taken from [LibreText Statistics](https://stats.libretexts.org/Bookshelves/Introductory_Statistics/Statistics_with_Technology_2e_(Kozak)/07%3A_One-Sample_Inference/7.02%3A_One-Sample_Proportion_Test)...
 
 ::: {#exm-prop2}
-Eyeglassomatic manufactures eyeglasses for different retailers. They test to see how many defective lenses they made in a given time period and found that 11% of all lenses had defects of some type. Looking at the type of defects, they found in a three-month time period that out of 34,641 defective lenses, 5865 were due to scratches. Are there more defects from scratches than from all other causes? Use a 1% level of significance.
+According to the February 2008 Federal Trade Commission report on consumer fraud and identity theft, 23% of all complaints in 2007 were for identity theft. In that year, Alaska had 321 complaints of identity theft out of 1,432 consumer complaints. Does this data provide enough evidence to show that Alaska had a lower proportion of identity theft than 23%? Test at the 5% level.
 
 a. What are the null and alternative hypotheses? Is the test one-sided or two-sided?
 b. What is the sample proportion?
@@ -147,8 +147,39 @@ d. What significance level?
 e. State the conclusion of the test. 
 :::
 
-::: {#exm-prop2}
-According to the February 2008 Federal Trade Commission report on consumer fraud and identity theft, 23% of all complaints in 2007 were for identity theft. In that year, Alaska had 321 complaints of identity theft out of 1,432 consumer complaints ("Consumer fraud and," 2008). Does this data provide enough evidence to show that Alaska had a lower proportion of identity theft than 23%? Test at the 5% level.
+::: {#exm-prop3}
+In 2001, the Gallup poll found that 81% of American adults believed that there was a conspiracy in the death of President Kennedy. In 2013, the Gallup poll asked 1,039 American adults if they believe there was a conspiracy in the assassination, and found that 634 believe there was a conspiracy. Do the data show that the proportion of Americans who believe in this conspiracy has decreased? Test at the 1% level.
+
+a. What are the null and alternative hypotheses? Is the test one-sided or two-sided?
+b. What is the sample proportion?
+c. What is the p-value?
+d. What significance level?
+e. State the conclusion of the test. 
+:::
+
+
+::: {.callout-tip collapse="true"}
+## StatCrunch Answer 
+
+We go: Stats -- Proportion Stats -- One Sample -- With Summary. Then enter, 
+
+* \# of successes: 634
+* \# of observations: 1039
+
+And for the hypotheses:
+
+* Null: $p = 0.81$
+* Alt: $p < 0.81$
+
+According to the output, the p-value is <0.0001 so we reject the null. 
+
+There is significant evidence to suggest the proportion of US adults who think there was a conspiracy in the death of President Kennedy is less than 81%.
+:::
+
+
+
+::: {#exm-prop4}
+A retail shop claims that 6% of customers return an item that they purchased. A consumer group wishes to test if this claim is true. They randomly sample 1,000 customers and find that 98 returned an item. Use a significance level of 0.05.
 
 a. What are the null and alternative hypotheses? Is the test one-sided or two-sided?
 b. What is the sample proportion?
